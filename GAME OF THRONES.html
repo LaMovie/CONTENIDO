@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<head>
+  <title>📜 JUEGO DE TRONOS 📜</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Lacquer&display=swap');
+body{
+    margin-top: 3vh;
+    background: black;
+    font-family: 'Lacquer', cursive;
+}
+.summary {
+    background: linear-gradient(to right, black, orange, red, black);
+    color: #000;
+    font-weight: bold;
+    border-radius:50px;
+    padding:5px;
+    transition: .2s linear;
+  &:hover {
+      color: #aaa;
+      padding: 2%;
+      transform: perspective(200px)rotateX(55deg);
+  }
+}
+#EE {
+    width: 90%;
+    height: 28vh;
+    border-radius: 5%;
+    border-top: .5vh solid brown;
+    border-left: 2vh solid brown;
+    border-right: .1vh solid brown;
+    border-bottom: 2vh solid #800000;
+    background: url(https://is.gd/bmtWcL);
+}
+.link {
+    background:#800090;
+    color: gold;
+    border-radius:10px;
+    opacity:0.8;
+    padding:8px;
+    width: 100%;
+    font-size:20px;
+}
+#opaco{
+    color:gray;
+    opacity:0.3;
+    font-weight:bold;
+    font-size:25px;
+}
+button{
+    background:gray;
+    color:black;
+    opacity:0.5;
+    font-weight:bold;
+    font-size:15px;
+    padding:1px;
+    border-radius:50px;
+}
+#A{
+    display: grid;
+    background: #000;
+    border-radius:20px;
+    scale: 90%;    
+    justify-content: center;
+}
+#mas{
+    border-radius:50px;
+    background:gray;
+    color:red;
+}
+</style>  
+      <!-- STYLE ROTATIVO -->
+     
+<style>
+#I{
+             box-sizing: border-box;
+             width: 5em;
+             height: 3em;
+             font-size: 20px;
+             border-radius: 0.5em;
+             margin: 0.5em;
+             box-shadow: 0 01em rgba(0,0,0,0.2);
+             color: white;
+             font-family: sans-serif; 
+             text-transform: capitalize;
+             line-height: 3em;
+             transition: 0.3s;
+             cursor: pointer;
+}
+summary{
+    background:purple;
+    border-radius: 50%;
+}
+#fila{
+    display: flex;
+    overflow: scroll;
+    position:relative;
+    left:-10px;
+    top:0px;
+    scale:95%;
+    gap: 5px;
+    justify-content: start;
+}
+#fila a {
+    color: gold;
+    font-weight: bold;
+    text-decoration: none;
+}
+#Hr1 {
+    width: 10%;
+    height: 1px;
+    background: gray;
+    transform: rotate(80deg);
+}
+#Hr2 {
+    width: 10%;
+    height: 1px;
+    background: gray;
+    transform: translate(2vh, -1vh)rotate(-80deg);
+}
+</style>
+<style>                 
+#I:nth-child(odd) {
+             background: linear-gradient(to right,orange, tomato, blue);
+text-align: left;
+             padding-left: 10%;
+             transform: perspective(500px)rotateX(45deg);     
+}              
+#I:nth-child(even) {
+             background: linear-gradient(to left,orange, tomato, gold);
+             text-align: right;
+             padding-right: 10%;
+             transform: perspective(500px)rotateX(-45deg);     
+}
+#I:nth-child(odd):hover {
+             transform: perspective(200px)rotateY(55deg);
+             padding-left: 5%;     
+}
+       
+
+#I:nth-child(even):hover{
+             transform: perspective(200px)rotateY(-55deg);
+             padding-right: 5%;     
+}
+</style>
+</head>
+<body>
+            <center>    
+    <img hidden src="https://is.gd/g9JTwV"/>   
+
+<hr id="Hr1"/><hr id="Hr2"/>            
+        <div>
+ <embed id="EE" src="https://mix.okpeliz.com/embed/1399-1-1"></embed></div>
+            
+         <br/>
+  <div id="Total">
+       <details name="info" onclick="playSound()">
+  <summary class="summary">🍿 TEMP 1 🍿</summary>
+  <div id="A">
+    <div class="GG" id="fila">
+      <a href="https://mix.okpeliz.com/embed/1399-1-1" target="WILLOW"><img src="" title="1" id="I"/>1</a>
+      <a href="https://mix.okpeliz.com/embed/1399-1-2" target="WILLOW"><img src="" title="2" id="I"/>2</a>
+      <a href="https://mix.okpeliz.com/embed/1399-1-3" target="WILLOW"><img src="" title="3" id="I"/>3</a>
+      <a href="https://mix.okpeliz.com/embed/1399-1-4" target="WILLOW"><img src="" title="4" id="I"/>4</a>
+      <a href="https://mix.okpeliz.com/embed/1399-1-5" target="WILLOW"><img src="" title="5" id="I"/>5</a>
+      <a href="https://mix.okpeliz.com/embed/1399-1-6" target="WILLOW"><img src="" title="6" id="I"/>6</a>
+      <a href="https://mix.okpeliz.com/embed/1399-1-7" target="WILLOW"><img src="" title="7" id="I"/>7</a>
+      <a href="https://mix.okpeliz.com/embed/1399-1-8" target="WILLOW"><img src="" title="8" id="I"/>8</a>
+      <a href="https://mix.okpeliz.com/embed/1399-1-9" target="WILLOW"><img src="" title="9" id="I"/>9</a>
+      <a href="https://mix.okpeliz.com/embed/1399-1-10" target="WILLOW"><img src="" title="10" id="I"/>10</a>
+    </div>
+  </div>
+</details>
+
+<hr style="height:1px; border:0"/>  
+
+ <details name="info" onclick="playSound()">
+  <summary class="summary">🍿 TEMP 2 🍿</summary>
+  <div id="A">
+    <div class="GG" id="fila">
+      <a href="https://mix.okpeliz.com/embed/1399-2-1" target="WILLOW"><img src="" title="1" id="I"/>1</a>
+      <a href="https://mix.okpeliz.com/embed/1399-2-2" target="WILLOW"><img src="" title="2" id="I"/>2</a>
+      <a href="https://mix.okpeliz.com/embed/1399-2-3" target="WILLOW"><img src="" title="3" id="I"/>3</a>
+      <a href="https://mix.okpeliz.com/embed/1399-2-4" target="WILLOW"><img src="" title="4" id="I"/>4</a>
+      <a href="https://mix.okpeliz.com/embed/1399-2-5" target="WILLOW"><img src="" title="5" id="I"/>5</a>
+      <a href="https://mix.okpeliz.com/embed/1399-2-6" target="WILLOW"><img src="" title="6" id="I"/>6</a>
+      <a href="https://mix.okpeliz.com/embed/1399-2-7" target="WILLOW"><img src="" title="7" id="I"/>7</a>
+      <a href="https://mix.okpeliz.com/embed/1399-2-8" target="WILLOW"><img src="" title="8" id="I"/>8</a>
+      <a href="https://mix.okpeliz.com/embed/1399-2-9" target="WILLOW"><img src="" title="9" id="I"/>9</a>
+      <a href="https://mix.okpeliz.com/embed/1399-2-10" target="WILLOW"><img src="" title="10" id="I"/>10</a>
+    </div>
+  </div>
+</details>
+
+<hr style="height:1px; border:0"/>   
+  
+  <details name="info" onclick="playSound()">
+  <summary class="summary">🍿 TEMP 3 🍿</summary>
+  <div id="A">
+    <div class="GG" id="fila">          
+      <a href="https://mix.okpeliz.com/embed/1399-3-1" target="WILLOW"><img src="" title="1" id="I"/>1</a>
+      <a href="https://mix.okpeliz.com/embed/1399-3-2" target="WILLOW"><img src="" title="2" id="I"/>2</a>
+      <a href="https://mix.okpeliz.com/embed/1399-3-3" target="WILLOW"><img src="" title="3" id="I"/>3</a>
+      <a href="https://mix.okpeliz.com/embed/1399-3-4" target="WILLOW"><img src="" title="4" id="I"/>4</a>
+      <a href="https://mix.okpeliz.com/embed/1399-3-5" target="WILLOW"><img src="" title="5" id="I"/>5</a>
+      <a href="https://mix.okpeliz.com/embed/1399-3-6" target="WILLOW"><img src="" title="6" id="I"/>6</a>
+      <a href="https://mix.okpeliz.com/embed/1399-3-7" target="WILLOW"><img src="" title="7" id="I"/>7</a>
+      <a href="https://mix.okpeliz.com/embed/1399-3-8" target="WILLOW"><img src="" title="8" id="I"/>8</a>
+      <a href="https://mix.okpeliz.com/embed/1399-3-9" target="WILLOW"><img src="" title="9" id="I"/>9</a>
+      <a href="https://mix.okpeliz.com/embed/1399-3-10" target="WILLOW"><img src="" title="10" id="I"/>10</a>
+   </div>
+  </div>
+</details>
+
+<hr style="height:1px; border:0"/>    
+            
+   <details name="info">
+  <summary class="summary">🍿 TEMP 4 🍿</summary>  
+<hr style="height:1px; border:0"/>         
+       <div id="A"> 
+    <div class="GG" id="fila">
+            
+<a href="https://mix.okpeliz.com/embed/1399-4-1" target="WILLOW"><img src="" title="1" id="I"/>1</a>
+
+<a href="https://mix.okpeliz.com/embed/1399-4-2" target="WILLOW"><img src="" title="2" id="I"/>2</a>
+
+<a href="https://mix.okpeliz.com/embed/1399-4-3" target="WILLOW"><img src="" title="3" id="I"/>3</a>
+
+<a href="https://mix.okpeliz.com/embed/1399-4-4" target="WILLOW"><img src="" title="4" id="I"/>4</a>
+
+<a href="https://mix.okpeliz.com/embed/1399-4-5" target="WILLOW"><img src="" title="5" id="I"/>5</a>
+
+<a href="https://mix.okpeliz.com/embed/1399-4-6" target="WILLOW"><img src="" title="6" id="I"/>6</a>
+
+<a href="https://mix.okpeliz.com/embed/1399-4-7" target="WILLOW"><img src="" title="7" id="I"/>7</a>
+
+<a href="https://mix.okpeliz.com/embed/1399-4-8" target="WILLOW"><img src="" title="8" id="I"/>8</a>
+
+<a href="https://mix.okpeliz.com/embed/1399-4-9" target="WILLOW"><img src="" title="9" id="I"/>9</a>
+
+<a href="https://mix.okpeliz.com/embed/1399-4-10" target="WILLOW"><img src="" title="10" id="I"/>10</a>
+    </div>
+       </div>
+          </details> 
+
+<hr style="height:1px; border:0"/>           
+          
+          <details name="info">
+  <summary class="summary">🍿 TEMP 5 🍿</summary>  
+<hr style="height:1px; border:0"/>         
+       <div id="A"> 
+    <div class="GG" id="fila">
+            
+<a href="https://mix.okpeliz.com/embed/1399-5-1" target="WILLOW"><img src="" title="1" id="I"/>1</a>
+
+<a href="https://mix.okpeliz.com/embed/1399-5-2" target="WILLOW"><img src="" title="2" id="I"/>2</a>
+
+<a href="https://mix.okpeliz.com/embed/1399-5-3" target="WILLOW"><img src="" title="3" id="I"/>3</a>
+
+<a href="https://mix.okpeliz.com/embed/1399-5-4" target="WILLOW"><img src="" title="4" id="I"/>4</a>
+
+<a href="https://mix.okpeliz.com/embed/1399-5-5" target="WILLOW"><img src="" title="5" id="I"/>5</a>
+
+<a href="https://mix.okpeliz.com/embed/1399-5-6" target="WILLOW"><img src="" title="6" id="I"/>6</a>
+
+<a href="https://mix.okpeliz.com/embed/1399-5-7" target="WILLOW"><img src="" title="7" id="I"/>7</a>
+
+<a href="https://mix.okpeliz.com/embed/1399-5-8" target="WILLOW"><img src="" title="8" id="I"/>8</a>
+
+<a href="https://mix.okpeliz.com/embed/1399-5-9" target="WILLOW"><img src="" title="9" id="I"/>9</a>
+
+<a href="https://mix.okpeliz.com/embed/1399-5-10" target="WILLOW"><img src="" title="10" id="I"/>10</a>
+    </div>
+       </div>
+          </details> 
+             
+            
+<hr style="height:1px; border:0"/> 
+                       
+         
+     <details name="info">
+  <summary class="summary">🍿 TEMP 6 🍿</summary>  
+<hr style="height:1px; border:0"/>         
+       <div id="A"> 
+    <div class="GG" id="fila">
+            
+<a href="https://mix.okpeliz.com/embed/1399-6-1" target="WILLOW"><img src="" title="1" id="I"/>1</a>
+
+<a href="https://mix.okpeliz.com/embed/1399-6-2" target="WILLOW"><img src="" title="2" id="I"/>2</a>
+
+<a href="https://mix.okpeliz.com/embed/1399-6-3" target="WILLOW"><img src="" title="3" id="I"/>3</a>
+
+<a href="https://mix.okpeliz.com/embed/1399-6-4" target="WILLOW"><img src="" title="4" id="I"/>4</a>
+
+<a href="https://mix.okpeliz.com/embed/1399-6-5" target="WILLOW"><img src="" title="5" id="I"/>5</a>
+
+<a href="https://mix.okpeliz.com/embed/1399-6-6" target="WILLOW"><img src="" title="6" id="I"/>6</a>
+
+<a href="https://mix.okpeliz.com/embed/1399-6-7" target="WILLOW"><img src="" title="7" id="I"/>7</a>
+
+<a href="https://mix.okpeliz.com/embed/1399-6-8" target="WILLOW"><img src="" title="8" id="I"/>8</a>
+
+<a href="https://mix.okpeliz.com/embed/1399-6-9" target="WILLOW"><img src="" title="9" id="I"/>9</a>
+
+<a href="https://mix.okpeliz.com/embed/1399-6-10" target="WILLOW"><img src="" title="10" id="I"/>10</a>
+    </div>
+      </div>
+        </details>
+  
+<hr style="height:1px; border:0"/>
+
+         
+         <div>         
+  <details name="info" onclick="playSound()">
+  <summary class="summary">🍿 TEMP 7 🍿</summary><br/>
+     <div id="A">       
+       <div class="GG" id="fila">
+       
+ <a href="https://mix.okpeliz.com/embed/1399-7-1" target="WILLOW"><img src="" title="1" id="I"/>1</a>
+ 
+ <a href="https://mix.okpeliz.com/embed/1399-7-2" target="WILLOW"><img src="" title="2" id="I"/>2</a> 
+ 
+<a href="https://mix.okpeliz.com/embed/1399-7-3" target="WILLOW"><img src="" title="3" id="I"/>3</a>
+
+<a href="https://mix.okpeliz.com/embed/1399-7-4" target="WILLOW"><img src="" title="4" id="I"/>4</a>
+
+<a href="https://mix.okpeliz.com/embed/1399-7-5" target="WILLOW"><img src="" title="5" id="I"/>5</a>
+
+<a href="https://mix.okpeliz.com/embed/1399-7-6" target="WILLOW"><img src="" title="6" id="I"/>6</a>
+
+<a href="https://mix.okpeliz.com/embed/1399-7-7" target="WILLOW"><img src="" title="7" id="I"/>7</a>
+     </div>       
+        </div>       
+          </details>    
+                </div>
+ <hr style="height:1px; border:0"/>        
+                 
+            <div>       
+         <details name="info" onclick="playSound()">
+   <summary class="summary">🍿 TEMP 8 🍿</summary>
+<hr style="height:1px; border:0"/>         
+    <div id="A">       
+       <div class="GG" id="fila">
+       
+ <a href="https://mix.okpeliz.com/embed/1399-8-1" target="WILLOW"><img src="" title="1" id="I"/>1</a>
+ 
+ <a href="https://mix.okpeliz.com/embed/1399-8-2" target="WILLOW"><img src="" title="2" id="I"/>2</a> 
+ 
+<a href="https://mix.okpeliz.com/embed/1399-8-3" target="WILLOW"><img src="" title="3" id="I"/>3</a>
+
+<a href="https://mix.okpeliz.com/embed/1399-8-4" target="WILLOW"><img src="" title="4" id="I"/>4</a>
+
+<a href="https://mix.okpeliz.com/embed/1399-8-5" target="WILLOW"><img src="" title="5" id="I"/>5</a>
+
+<a href="https://mix.okpeliz.com/embed/1399-8-6" target="WILLOW"><img src="" title="6" id="I"/>6</a>
+     </div>       
+        </div>                  
+         </details>                                          
+             </div>   
+                </div>
+
+<hr style="height:1px; border:0"/>        
+                 
+                                                    
+             </div><br/>                       
+         <center><button id="fullscreenButton">Pantalla Completa</button><br/>
+     
+<hr style="height: 10vh; border:0"/>         
+  
+<i id="opaco">🔥JUEGO DE TRONOS🔥</i>        
+                                  
+<script>
+var fullscreenButton = document.querySelector('#fullscreenButton');
+var iframe = document.querySelector('embed');
+
+fullscreenButton.addEventListener('click', function() {
+  if (iframe.requestFullscreen) {
+    iframe.requestFullscreen();
+  } else if (iframe.mozRequestFullScreen) { // Firefox
+    iframe.mozRequestFullScreen();
+  } else if (iframe.webkitRequestFullscreen) { // Chrome, Safari and Opera
+    iframe.webkitRequestFullscreen();
+  } else if (iframe.msRequestFullscreen) { // IE/Edge
+    iframe.msRequestFullscreen();
+  }
+});
+
+<!-- Detectar cuando entra o sale de fullscreen -->
+document.addEventListener('fullscreenchange', function() {
+  if (document.fullscreenElement) {
+    <!-- Si estamos en pantalla completa, bloquear orientación horizontal -->
+    if (screen.orientation && screen.orientation.lock) {
+      screen.orientation.lock('landscape');
+      EE.style.border = 'black';
+    }
+  } else {
+    <!-- Si salimos de pantalla completa, volver a orientación vertical -->
+    if (screen.orientation && screen.orientation.lock) {
+      screen.orientation.lock('portrait');
+      
+   EE.style.borderTop = '.5vh solid brown';
+   EE.style.borderLeft = '2vh solid brown';
+   EE.style.borderRight = '.1vh solid brown';
+   EE.style.borderBottom = '2vh solid #800000';
+    }
+  }
+});
+</script>
+<script>
+     window.onload = () => {
+       if (window.innerWidth > window.innerHeight) {
+       EE.style.height = '200px';
+   }
+ };
+</script>
+<script>
+  var TOTAL = document.querySelectorAll('#Total img');
+    TOTAL.forEach(total => {
+       total.src = 'https://is.gd/g9JTwV';          
+ });
+</script>
+<script> 
+   var LINKS = document.querySelectorAll('.GG a');
+   var EMBED = document.querySelector('#EE');
+   
+ LINKS.forEach(link => {
+  link.onclick = (event) => {
+    event.preventDefault();
+    if (EMBED && link.href) {
+      EMBED.src = link.href;
+    }
+      LINKS.forEach(other => {
+        other.style.color = 'gold';
+   });      
+        link.style.color = '#4f9';
+   };
+});
+</script> 
+</body>
+</html>
+
+
+
+
+
+
