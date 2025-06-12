@@ -190,6 +190,7 @@ document.addEventListener('fullscreenchange', function() {
     if (screen.orientation && screen.orientation.lock) {
       screen.orientation.lock('landscape');
       EE.style.border = 'black';
+      EE.style.background = '#000';
     }
   } else {
     <!-- Si salimos de pantalla completa, volver a orientación vertical -->
@@ -200,6 +201,7 @@ document.addEventListener('fullscreenchange', function() {
    EE.style.borderLeft = '2vh solid brown';
    EE.style.borderRight = '.1vh solid brown';
    EE.style.borderBottom = '2vh solid #800000';
+   EE.style.background = 'url(https://is.gd/ZEQ7eT)';
     }
   }
 });
