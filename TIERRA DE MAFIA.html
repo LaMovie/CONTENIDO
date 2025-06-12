@@ -6,7 +6,8 @@
   <title>📜 TIERRA DE MAFIA 📜</title>
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Lacquer&display=swap');
-body{
+body {
+    position: fixed;
     margin-top: 3vh;
     background: black;
     font-family: 'Lacquer', cursive;
@@ -36,15 +37,6 @@ body{
     opacity:0.3;
     font-weight:bold;
     font-size:25px;
-}
-button{
-    background:gray;
-    color:black;
-    opacity:0.5;
-    font-weight:bold;
-    font-size:15px;
-    padding:1px;
-    border-radius:50px;
 }
 #A{
     display: grid;
@@ -77,7 +69,7 @@ button{
              transition: 0.3s;
              cursor: pointer;
 }
-#fila{
+#Fila {
     display: flex;
     overflow: scroll;
     position:relative;
@@ -87,7 +79,7 @@ button{
     gap: 5px;
     justify-content: start;
 }
-#fila a {
+#Fila a {
     color: gold;
     font-weight: bold;
     text-decoration: none;
@@ -128,6 +120,16 @@ text-align: left;
              transform: perspective(200px)rotateY(-55deg);
              padding-right: 5%;     
 }
+#FULL {
+    background: gray;
+    color: black;
+    opacity: 0.5;
+    font-weight: bold;
+    font-size: 15px;
+    padding: 1px;
+    border-radius: 50px;
+    z-index: 9999;
+}
 </style>
 </head>
 <body>
@@ -141,7 +143,7 @@ text-align: left;
          <br/>
  <div id="Total">
   <div id="A">
-    <div class="GG" id="fila">
+    <div class="GG" id="Fila">
       <a href="https://lamovie.link/embed-plijzvm8sv3g.html" target="WILLOW"><img src="" title="1" id="I"/>1</a>
       <a href="https://lamovie.link/embed-s1g5vy3y26rn.html" target="WILLOW"><img src="" title="2" id="I"/>2</a>
       <a href="https://lamovie.link/embed-pv63uqhnlt43.html" target="WILLOW"><img src="" title="3" id="I"/>3</a>
@@ -161,47 +163,35 @@ text-align: left;
                  
                                                     
              </div><br/>                       
-         <center><button id="fullscreenButton">Pantalla Completa</button><br/>
+         <center><button id="FULL">Pantalla Completa</button><br/>
      
 <hr style="height: 10vh; border:0"/>         
   
 <i id="opaco">🔥TIERRA DE MAFIA🔥</i>        
                                   
 <script>
-var fullscreenButton = document.querySelector('#fullscreenButton');
-var iframe = document.querySelector('embed');
-
-fullscreenButton.addEventListener('click', function() {
-  if (iframe.requestFullscreen) {
-    iframe.requestFullscreen();
-  } else if (iframe.mozRequestFullScreen) { // Firefox
-    iframe.mozRequestFullScreen();
-  } else if (iframe.webkitRequestFullscreen) { // Chrome, Safari and Opera
-    iframe.webkitRequestFullscreen();
-  } else if (iframe.msRequestFullscreen) { // IE/Edge
-    iframe.msRequestFullscreen();
-  }
-});
-
+let alternar = true;
+     FULL.onclick = () => {
+       if (alternar) {
+           evento();
+       } else {
+           invento();
+       }
+       alternar = !alternar;
+ };
+</script>
+<script>
 <!-- Detectar cuando entra o sale de fullscreen -->
 document.addEventListener('fullscreenchange', function() {
   if (document.fullscreenElement) {
     <!-- Si estamos en pantalla completa, bloquear orientación horizontal -->
     if (screen.orientation && screen.orientation.lock) {
-      screen.orientation.lock('landscape');
-      EE.style.border = 'black';
-      EE.style.background = '#000';
+      screen.orientation.lock('landscape');      
     }
   } else {
     <!-- Si salimos de pantalla completa, volver a orientación vertical -->
     if (screen.orientation && screen.orientation.lock) {
       screen.orientation.lock('portrait');
-      
-   EE.style.borderTop = '.5vh solid brown';
-   EE.style.borderLeft = '2vh solid brown';
-   EE.style.borderRight = '.1vh solid brown';
-   EE.style.borderBottom = '2vh solid #800000';
-   EE.style.background = 'url(https://is.gd/ZEQ7eT)';
     }
   }
 });
@@ -236,6 +226,41 @@ document.addEventListener('fullscreenchange', function() {
    };
 });
 </script> 
+       <!-- FULLSCREEN -->
+<script>
+     function evento() {
+  document.body.style.transform = 'rotate(90deg)';    
+  EE.style.border = 'black';
+  EE.style.background = '#000';
+  EE.style.scale = '200%';
+  EE.style.transform = 'translate(2vh, 7vh)';
+  EE.style.height = '26vh';
+  FULL.style.scale = '.8';
+  FULL.style.opacity = '.3';
+  FULL.style.width = '25%';
+  FULL.style.transform = 'translate(48vh, -45vh)';
+  FULL.textContent= 'Pantalla Normal';
+  A.style.transform = 'translate(-100vh, 0vh)';
+}
+
+    function invento() {
+  document.body.style.transform = 'rotate(0deg)';    
+  EE.style.scale = '100%';
+  EE.style.transform = 'translate(0vh, 0vh)';
+  EE.style.height = '28vh';
+  EE.style.borderTop = '.5vh solid brown';
+  EE.style.borderLeft = '2vh solid brown';
+  EE.style.borderRight = '.1vh solid brown';
+  EE.style.borderBottom = '2vh solid #800000';
+  EE.style.background = 'url(https://is.gd/ZEQ7eT)';
+  FULL.style.scale = '1';
+  FULL.style.opacity = '.5';
+  FULL.style.width = '35%';
+  FULL.style.transform = 'translate(0vh, 0vh)';
+  FULL.textContent= 'Pantalla Completa';
+  A.style.transform = 'translate(0vh, 0vh)';
+}      
+</script>
 </body>
 </html>
 
