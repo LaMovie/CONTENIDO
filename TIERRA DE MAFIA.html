@@ -172,12 +172,23 @@ text-align: left;
 <script>
 let alternar = true;
      FULL.onclick = () => {
-       if (alternar) {
+  
+  if (window.innerWidth > window.innerHeight) {
+    if (alternar) { 
+       evento2();
+    } else {
+      invento2();
+  };    
+      
+       } else {  
+          if (alternar) {
            evento();
+           
        } else {
            invento();
-       }
-       alternar = !alternar;
+       }       
+   }
+   alternar = !alternar;
  };
 </script>
 <script>
@@ -196,6 +207,7 @@ document.addEventListener('fullscreenchange', function() {
   }
 });
 </script>
+       <!-- HORIZONTAL -->
 <script>
      window.onload = () => {
        if (window.innerWidth > window.innerHeight) {
@@ -244,7 +256,7 @@ document.addEventListener('fullscreenchange', function() {
    };
 });
 </script> 
-       <!-- FULLSCREEN -->
+   <!-- FULLSCREEN VERTICAL-->
 <script>
      function evento() {
   document.body.style.transform = 'rotate(90deg)';    
@@ -277,6 +289,42 @@ document.addEventListener('fullscreenchange', function() {
   FULL.style.transform = 'translate(0vh, 0vh)';
   FULL.textContent= 'Pantalla Completa';
   A.style.transform = 'translate(0vh, 0vh)';
+}      
+</script>
+   <!-- FULLSCREEN HORIZONTAL-->
+<script>
+     function evento2() {
+    EE.style.scale = '200%';
+    EE.style.transform = 'translate(0vh, 0vh)';
+    A.style.width = '50%';
+    A.style.transform = 'translate(0vh, 100vh)';
+    FULL.style.opacity = '.3';
+    FULL.style.textContent = 'Pantalla Normal';
+    FULL.style.scale = '.7';
+    FULL.style.width = '15%';
+    FULL.style.transform = 'translate(140vh, -190vh)';
+    EE.style.border = 'black';
+    EE.style.background = '#000';
+}
+
+    function invento2() {
+  document.body.style.transform = 'rotate(0deg)';
+    EE.style.scale = '100%';
+    EE.style.transform = 'translate(-60vh, 0vh)';
+    A.style.width = '50%';
+    A.style.transform = 'translate(65vh, -80vh)';
+    FULL.style.opacity = '.5';
+    FULL.style.textContent = 'Pantalla Completa';
+    FULL.style.transform = 'translate(60vh, -73vh)';
+    FULL.style.scale = '1';
+    FULL.style.width = '';
+    Hr1.style.opacity = '0';
+    Hr2.style.opacity = '0';
+    EE.style.borderTop = '.5vh solid brown';
+  EE.style.borderLeft = '2vh solid brown';
+  EE.style.borderRight = '.1vh solid brown';
+  EE.style.borderBottom = '2vh solid #800000';
+  EE.style.background = 'url(https://is.gd/ZEQ7eT)';
 }      
 </script>
 </body>
