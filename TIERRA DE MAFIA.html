@@ -242,6 +242,7 @@ document.addEventListener('fullscreenchange', function() {
 <script> 
    var LINKS = document.querySelectorAll('.GG a');
    var EMBED = document.querySelector('#EE');
+   var IMG = document.querySelectorAll('.GG img');
    
  LINKS.forEach(link => {
   link.onclick = (event) => {
@@ -252,9 +253,18 @@ document.addEventListener('fullscreenchange', function() {
       LINKS.forEach(other => {
         other.style.color = 'gold';
    });      
-        link.style.color = '#4f9';
-   };
+        link.style.color = '#4f9'; 
+  };
 });
+
+   IMG.forEach(img => {
+     img.onclick = () => {
+       IMG.forEach(otherImg => {
+        otherImg.style.filter = '';  
+   });
+      img.style.filter = 'hue-rotate(90deg)';
+      };
+   })
 </script> 
    <!-- FULLSCREEN VERTICAL-->
 <script>
