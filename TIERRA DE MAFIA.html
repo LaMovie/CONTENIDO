@@ -220,13 +220,12 @@ document.addEventListener('fullscreenchange', function() {
 <script>
      window.onload = () => {
        if (window.innerWidth > window.innerHeight) {
-    document.body.style.transform = 'rotate(0deg)';
+   document.body.style.transform = 'rotate(0deg)';
     EE.style.width = '40%';
     EE.style.height = '65vh';
     EE.style.transform = 'translate(-60vh, 0vh)';
     A.style.width = '50%';
-    A.style.transform = 'translate(65vh, -80vh)';
-    FULL.style.transform = 'translate(60vh, -73vh)';
+    A.style.transform = 'translate(65vh, -70vh)';    
     Hr1.style.opacity = '0';
     Hr2.style.opacity = '0';
     
@@ -236,7 +235,6 @@ document.addEventListener('fullscreenchange', function() {
     EE.style.transform = 'translate(0vh, 0vh)';
     A.style.width = '100%';
     A.style.transform = 'translate(0vh, 0vh)';
-    FULL.style.transform = 'translate(0vh, 0vh)';
     Hr1.style.opacity = '1';
     Hr2.style.opacity = '1';
    }
