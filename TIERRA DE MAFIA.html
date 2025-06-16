@@ -138,7 +138,7 @@ text-align: left;
 
 <hr id="Hr1"/><hr id="Hr2"/>            
         <div>
- <embed id="EE" src="https://www.yout-ube.com/watch?v=FRRGpLVGRXc&list=PLoH6NPgLlhrr8ruSP2I7ABcFu5ArvUwpO&index=8"></embed></div>
+ <iframe id="EE" src="https://www.yout-ube.com/watch?v=FRRGpLVGRXc&list=PLoH6NPgLlhrr8ruSP2I7ABcFu5ArvUwpO&index=8" marginheight="0" marginwidth="0" frameborder="0" allowfullscreen="true" allow="encrypted-media"></iframe></div>
             
          <br/>
  <div id="Total">
@@ -160,37 +160,13 @@ text-align: left;
                 </div>
 
 <hr style="height:1px; border:0"/>        
-                 
-                                                    
-             </div><br/>                       
-         <center><button id="FULL">Pantalla Completa</button><br/>
+                                                                     
+          </div><br/>                                
      
 <hr style="height: 10vh; border:0"/>         
   
 <i id="opaco">🔥TIERRA DE MAFIA🔥</i>        
-                                  
-<script>
-let alternar = true;
-     FULL.onclick = () => {
-  
-  if (window.innerWidth > window.innerHeight) {
-    if (alternar) { 
-       evento2();
-    } else {
-      invento2();
-  };    
-      
-       } else {  
-          if (alternar) {
-           evento();
-           
-       } else {
-           invento();
-       }       
-   }
-   alternar = !alternar;
- };
-</script>
+                                 
 <script>
 <!-- Detectar cuando entra o sale de fullscreen -->
 document.addEventListener('fullscreenchange', function() {
@@ -206,32 +182,6 @@ document.addEventListener('fullscreenchange', function() {
     }
   }
 });
-</script>
-       <!-- HORIZONTAL -->
-<script>
-     window.onload = () => {
-       if (window.innerWidth > window.innerHeight) {
-    document.body.style.transform = 'rotate(0deg)';
-    EE.style.width = '40%';
-    EE.style.height = '65vh';
-    EE.style.transform = 'translate(-60vh, 0vh)';
-    A.style.width = '50%';
-    A.style.transform = 'translate(65vh, -80vh)';
-    FULL.style.transform = 'translate(60vh, -73vh)';
-    Hr1.style.opacity = '0';
-    Hr2.style.opacity = '0';
-    
-         } else {
-    EE.style.width = '90%';
-    EE.style.height = '28vh';
-    EE.style.transform = 'translate(0vh, 0vh)';
-    A.style.width = '100%';
-    A.style.transform = 'translate(0vh, 0vh)';
-    FULL.style.transform = 'translate(0vh, 0vh)';
-    Hr1.style.opacity = '1';
-    Hr2.style.opacity = '1';
-   }
- };
 </script>
 <script>
   var TOTAL = document.querySelectorAll('#Total img');
@@ -266,77 +216,31 @@ document.addEventListener('fullscreenchange', function() {
       };
    })
 </script> 
-   <!-- FULLSCREEN VERTICAL-->
+      <!-- HORIZONTAL -->
 <script>
-     function evento() {
-  document.body.style.transform = 'rotate(90deg)';    
-  EE.style.border = 'black';
-  EE.style.background = '#000';
-  EE.style.scale = '200%';
-  EE.style.transform = 'translate(3vh, 10vh)';
-  EE.style.height = '26vh';
-  FULL.style.scale = '.8';
-  FULL.style.opacity = '.3';
-  FULL.style.width = '25%';
-  FULL.style.transform = 'translate(58vh, -43vh)';
-  FULL.textContent= 'Pantalla Normal';
-  A.style.transform = 'translate(-100vh, 0vh)';
-}
-
-    function invento() {
-  document.body.style.transform = 'rotate(0deg)';    
-  EE.style.scale = '100%';
-  EE.style.transform = 'translate(0vh, 0vh)';
-  EE.style.height = '28vh';
-  EE.style.borderTop = '.5vh solid brown';
-  EE.style.borderLeft = '2vh solid brown';
-  EE.style.borderRight = '.1vh solid brown';
-  EE.style.borderBottom = '2vh solid #800000';
-  EE.style.background = 'url(https://is.gd/ZEQ7eT)';
-  FULL.style.scale = '1';
-  FULL.style.opacity = '.5';
-  FULL.style.width = '35%';
-  FULL.style.transform = 'translate(0vh, 0vh)';
-  FULL.textContent= 'Pantalla Completa';
-  A.style.transform = 'translate(0vh, 0vh)';
-}      
-</script>
-   <!-- FULLSCREEN HORIZONTAL-->
-<script>
-     function evento2() {
-    EE.style.scale = '200%';
-    EE.style.transform = 'translate(0vh, 0vh)';
-    A.style.width = '50%';
-    A.style.transform = 'translate(0vh, 100vh)';
-    FULL.style.zIndex = '9999';
-    FULL.style.opacity = '.3';
-    FULL.style.textContent = 'Pantalla Normal';
-    FULL.style.scale = '.7';
-    FULL.style.width = '15%';
-    FULL.style.transform = 'translate(120vh, -180vh)';
-    EE.style.border = 'black';
-    EE.style.background = '#000';
-}
-
-    function invento2() {
-  document.body.style.transform = 'rotate(0deg)';
-    EE.style.scale = '100%';
+     window.onload = () => {
+       if (window.innerWidth > window.innerHeight) {
+    document.body.style.transform = 'rotate(0deg)';
+    EE.style.width = '40%';
+    EE.style.height = '65vh';
     EE.style.transform = 'translate(-60vh, 0vh)';
     A.style.width = '50%';
     A.style.transform = 'translate(65vh, -80vh)';
-    FULL.style.opacity = '.5';
-    FULL.style.textContent = 'Pantalla Completa';
     FULL.style.transform = 'translate(60vh, -73vh)';
-    FULL.style.scale = '1';
-    FULL.style.width = '';
     Hr1.style.opacity = '0';
     Hr2.style.opacity = '0';
-    EE.style.borderTop = '.5vh solid brown';
-  EE.style.borderLeft = '2vh solid brown';
-  EE.style.borderRight = '.1vh solid brown';
-  EE.style.borderBottom = '2vh solid #800000';
-  EE.style.background = 'url(https://is.gd/ZEQ7eT)';
-}      
+    
+         } else {
+    EE.style.width = '90%';
+    EE.style.height = '28vh';
+    EE.style.transform = 'translate(0vh, 0vh)';
+    A.style.width = '100%';
+    A.style.transform = 'translate(0vh, 0vh)';
+    FULL.style.transform = 'translate(0vh, 0vh)';
+    Hr1.style.opacity = '1';
+    Hr2.style.opacity = '1';
+   }
+ };
 </script>
 </body>
 </html>
