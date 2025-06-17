@@ -132,7 +132,7 @@ h4 {
          </div>
              </div>
 			
-			      	<div id="Oculto" class="Container" onscroll="galleryImg()">
+			      	<div id="Oculto" class="Container">
 				
 <a href="https://h5.swplayer.com/es/detail/drama/w4T1wpuJxUu5b0bHfQnU5-Money-Heist-Season-1"><img src="https://is.gd/CWRq5y"/><h4>LA CASA DE PAPEL</h4></a>			
 
@@ -162,7 +162,7 @@ h4 {
 
 <a href="https://h5.swplayer.com/es/detail/drama/rvYsv23lPziLIw5oz2KjV-The-Last-of-Us-Season-1%5BAudio-Latino%5D/1"><img src="https://is.gd/Dy0yD4"/><h4>THE LAST OF US</h4></a>
 
-<a href="https://lamovie.github.io/Scans/"><img class="A" src="https://da.gd/nJlge"/>más</a>
+<a href="https://h5.swplayer.com/es"><img class="A" src="https://da.gd/nJlge"/>más</a>
 				<br/>
 				    </div>
 				    				   </center>
@@ -175,6 +175,19 @@ h4 {
     icon: 'info'
 });
 </script> -->
+<script>
+  var ENLACE = document.querySelectorAll('#Oculto a');
+   
+  ENLACE.forEach(item => { 
+    item.onclick = (event) => {
+      event.preventDefault();
+        var URL = item.href;
+    setTimeout(() => {
+        window.location.href = URL;
+    }, 1000);
+   }
+});
+</script>
 </body>
 </html>				    				    
 				    				    
