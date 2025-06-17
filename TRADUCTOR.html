@@ -1,0 +1,109 @@
+<!DOCTYPE HTML>
+<HTML Lang="en">
+<head>
+    <meta charset="UFT-8">
+    <meta http-equiv="X-UA-Compatible" contect="IE=edge">
+    <meta name="viewport" contect="width=device-width, initial-scale=1.0">
+  <title>🌐 TRADUCTOR 🌐</title>
+<style>
+body {
+   font-family: Arial, sans-serif;
+   max-width: 600px;
+   margin: 20px auto;
+   padding: 10px;
+}
+textarea {
+   width: 100%;
+   height: 100px;
+   margin-bottom: 10px;
+}
+#resultado {
+   white-space: pre-wrap;
+   border: 1px solid #ccc;
+   padding: 10px;
+   min-height: 100px;
+   background: #f9f9f9;
+}
+</style>
+</head>
+<body>
+<center>
+     <h2>🌐 TRADUCTOR 🌐</h2>
+ 
+ <label for="textoOriginal">IDIOMA AUTOMÁTICO:</label><br/>
+  <textarea id="textoOriginal" placeholder="Escribe tu texto aquí..."></textarea>
+   
+  <label for="resultado">TRADUCIR AL:</label>  
+ 
+  <select id="idioma">
+ <option value="es">Español 🇪🇸</option>
+ <option value="en">Inglés 🇺🇸</option>
+ <option value="fr">Francés 🇫🇷</option>
+ <option value="de">Alemán 🇩🇪</option>
+<option value="it">Italiano 🇮🇹</option>
+ <option value="pt">Portugués 🇧🇷</option>
+<option value="nl">Holandés 🇳🇱</option>
+  <option value="ru">Ruso 🇷🇺</option>
+ <option value="ja">Japonés 🇯🇵</option>
+ <option value="ko">Coreano 🇰🇷</option>
+ <option value="zh-CN">Chino Simplificado 🇭🇰</option>
+ <option value="zh-TW">Chino Tradicional 🇨🇳</option>
+ <option value="ar">Árabe 🇸🇦</option>
+ <option value="he">Hebreo 🇮🇱</option>
+ <option value="hi">Hindi 🇮🇳</option>
+ <option value="tr">Turco 🇹🇷</option>
+ <option value="pl">Polaco 🇵🇱</option>
+ <option value="sv">Sueco 🇸🇪</option>
+ <option value="no">Noruego 🇳🇴</option>
+ <option value="da">Danés 🇩🇰</option>
+ <option value="fi">Finés 🇫🇮</option>
+ <option value="cs">Checo 🇨🇿</option>
+ <option value="el">Griego 🇬🇷</option>
+ <option value="hu">Húngaro 🇭🇺</option>
+ <option value="ro">Rumano 🇷🇴</option>
+ <option value="th">Tailandés 🇹🇭</option>
+ <option value="vi">Vietnamita 🇻🇳</option>
+ <option value="id">Indonesio 🇮🇩</option>
+ <option value="uk">Ucraniano 🇺🇦</option>
+ <option value="ca">Catalán 🇪🇦</option>
+    <!-- Agrega más si deseas -->
+  </select> <br><br>
+
+  <div id="resultado">Traducción...</div>
+</center>
+<script>
+    async function traducirTexto(texto, desde = "auto", hasta = "es") {
+      var res = await fetch(`https://translate.googleapis.com/translate_a/single?client=gtx&sl=${desde}&tl=${hasta}&dt=t&q=${encodeURIComponent(texto)}`);
+      var data = await res.json();
+      return data[0].map(p => p[0]).join("");
+    }
+
+    var textarea = document.getElementById("textoOriginal");
+    var resultado = document.getElementById("resultado");
+    var idioma = document.getElementById("idioma");
+
+    async function actualizarTraduccion() {
+      const texto = textarea.value.trim();
+      if (texto.length === 0) {
+        resultado.innerText = "Traducción...";
+        return;
+      }
+
+      try {
+        var traducido = await traducirTexto(texto, "auto", idioma.value);
+        resultado.innerText = traducido;
+      } catch (error) {
+        resultado.innerText = "Error al traducir.";
+        console.error("Error al traducir:", error);
+      }
+    }
+
+    textarea.addEventListener("input", actualizarTraduccion);
+    idioma.addEventListener("change", actualizarTraduccion);
+</script>
+</body>
+</html>
+
+
+
+
