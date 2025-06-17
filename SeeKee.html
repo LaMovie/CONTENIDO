@@ -224,14 +224,21 @@ h4 {
 </script>
 <script>
    var SEARCH = document.querySelectorAll('#Search, #Logo');
-   var visible = false;
    
     SEARCH.forEach(S => {
-         S.onclick = () => {
-     visible = !visible;
-   I.style.display = visible ? 'block' : 'none';
-   Logo.style.display = visible ? 'none' : 'block';
-    };
+        S.onclick = () => {
+    if (I.value === '') {
+ if (I.style.display === 'block') {
+       I.style.display = 'none';
+     Logo.style.display = 'block';
+              } else {
+       I.style.display = 'block';
+     Logo.style.display = 'none';
+        }   
+       } else {
+          Check();
+      } 
+     }
   });
    
   function Check() {
@@ -242,18 +249,20 @@ h4 {
 </body>
 </html>				  
 
-<!-- SEARCH.forEach(S => {
-        S.onclick = () => {
- if (I.style.display === 'block') {
-       I.style.display = 'none';
-     Logo.style.display = 'block';
-              } else {
-       I.style.display = 'block';
-     Logo.style.display = 'none';
-       }    
-     }
-  }); -->
+<!-- var visible = false;
+
+        SEARCH.forEach(S => {
+         S.onclick = () => {
+     visible = !visible;
+   I.style.display = visible ? 'block' : 'none';
+   Logo.style.display = visible ? 'none' : 'block';
+    };
+  }); --> 
     				    
+				    				    
+				    				    
+				    				    
+				    				    
 				    				    
 				    				    
 				    				    
