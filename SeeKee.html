@@ -4,6 +4,7 @@
     <meta charset="UTF-8"/>
     <meta http-equiv="X-UA-Compatible" contect="IE=edge"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>  
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons"/>
    <title>🧿 SeeKee 🧿</title> 
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Lacquer&display=swap');
@@ -76,10 +77,10 @@ body {
     font-weight: 600;
     color: white;
 }
-.Otros {
+#Logo {
     font-family: monospace;
     text-align: center;
-    margin-left: 15px;
+    margin-left: -12vh;
     margin-top: 15px;
     font-size: 15px;
     font-weight: 600;
@@ -89,16 +90,17 @@ h4 {
     cursor: none; 
     color: #aaa;  
 }
-.Div {
+.Bloq {
     width: 30%;
     scale: .9;
+    display: none;
     background: blue;
     border-radius: 50%;
   &:hover {
       background: red;
   }
 }
-.Div a {
+.Bloq a {
     color: orange;
     font-size: 13px;
     font-weight: bold;
@@ -120,16 +122,46 @@ h4 {
     display: flex;
     justify-content: space-between;
 }
+#I {
+    color: #fff;
+    width: 100%;
+    height: 4vh;
+    display: none;
+    background: blue;
+    margin-left: 3vh;
+    font-weight: bold;
+    border-radius: 20px;
+    border: 1px solid gray;
+    box-shadow: 0px 0px 30px orange;
+}
+#I::placeholder {
+    color: #aaa;
+}
+#I:focus {
+    outline: none;
+}
+.material-icons {
+    color: #fff;
+    transform: translateX(-1vh);
+  &:hover {
+      color: blue;
+  }
+}
 </style>
 </head>
 <body>
             <center> 
-       <div class="Todo">                                            
-<h3 class="Otros">🧿 SeeKee 🧿</h3> 
+       <div class="Todo"> 
+<form onsubmit="event.preventDefault(); Check()"> 
+  <input id="I" placeholder="Buscar..." type="text"/>
+</form>
+                                           
+<h3 id="Logo">🧿 SeeKee 🧿</h3> 
             <br/><br/>
-      <div class="Div">
+      <div class="Bloq">
   <a href="https://play.google.com/store/apps/details?id=com.hsv.freeadblockerbrowser"><span>FREE 📛</span><br/><span>📛 ADBLOCKER</span></a>
          </div>
+    <i id="Search" class="material-icons">search</i>
              </div>
 			
 			      	<div id="Oculto" class="Container">
@@ -164,7 +196,7 @@ h4 {
 
 <a href="https://h5.swplayer.com/es/detail/drama/rvYsv23lPziLIw5oz2KjV-The-Last-of-Us-Season-1%5BAudio-Latino%5D/1"><img src="https://is.gd/Dy0yD4"/><h4>THE LAST OF US</h4></a>
 
-<a href="https://h5.swplayer.com/es"><img class="A" src="https://da.gd/nJlge"/>más</a>
+<a href="https://lamovie.github.io/Scans/"><img class="A" src="https://da.gd/nJlge"/>más</a>
 				<br/>
 				    </div>
 				    				   </center>
@@ -190,8 +222,38 @@ h4 {
    }
 });
 </script>
+<script>
+   var SEARCH = document.querySelectorAll('#Search, #Logo');
+   var visible = false;
+   
+    SEARCH.forEach(S => {
+         S.onclick = () => {
+     visible = !visible;
+   I.style.display = visible ? 'block' : 'none';
+   Logo.style.display = visible ? 'none' : 'block';
+    };
+  });
+   
+  function Check() {
+   window.location.href = "https://h5.swplayer.com/es/search?keyword=" + I.value;
+     I.value = '';
+ }
+</script>
 </body>
-</html>				    				    
+</html>				  
+
+<!-- SEARCH.forEach(S => {
+        S.onclick = () => {
+ if (I.style.display === 'block') {
+       I.style.display = 'none';
+     Logo.style.display = 'block';
+              } else {
+       I.style.display = 'block';
+     Logo.style.display = 'none';
+       }    
+     }
+  }); -->
+    				    
 				    				    
 				    				    
 				    				    
