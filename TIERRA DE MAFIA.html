@@ -32,12 +32,6 @@ body {
     width: 100%;
     font-size:20px;
 }
-#opaco{
-    color:gray;
-    opacity:0.3;
-    font-weight:bold;
-    font-size:25px;
-}
 #A{
     display: grid;
     background: #000;
@@ -81,6 +75,7 @@ body {
 }
 #Fila a {
     color: gold;
+    cursor: none;
     font-weight: bold;
     text-decoration: none;
 }
@@ -130,9 +125,19 @@ text-align: left;
     border-radius: 50px;
     z-index: 9999;
 }
+#Aux {
+    color: #aaa;
+    margin-top: 5vh;
+    font-family: italy;
+    font-weight: bold;
+}
+#Aux img {    
+    float: left;
+}
 </style>
 </head>
 <body>
+<img hidden src="https://is.gd/hQp0J7"/>
             <center>    
     <img hidden src="https://is.gd/hQp0J7"/>   
 
@@ -161,11 +166,13 @@ text-align: left;
 
 <hr style="height:1px; border:0"/>        
                                                                      
-          </div><br/>                                
-     
-<hr style="height: 10vh; border:0"/>         
-  
-<i id="opaco">🔥TIERRA DE MAFIA🔥</i>        
+          </div><br/>                                     
+         
+      <div id="Aux"></div>  
+      
+</center>
+      
+<i hidden id="Title">MOBLAND</i>        
                                  
 <script>
 <!-- Detectar cuando entra o sale de fullscreen -->
@@ -228,6 +235,9 @@ document.addEventListener('fullscreenchange', function() {
     A.style.transform = 'translate(65vh, -70vh)';    
     Hr1.style.opacity = '0';
     Hr2.style.opacity = '0';
+    Aux.style.scale = '.6';
+    Aux.style.transform = 'translate(70vh, -118vh)';
+    MG.style.display = 'none';
     
          } else {
     EE.style.width = '90%';
@@ -237,8 +247,62 @@ document.addEventListener('fullscreenchange', function() {
     A.style.transform = 'translate(0vh, 0vh)';
     Hr1.style.opacity = '1';
     Hr2.style.opacity = '1';
+    Aux.style.scale = '1';
+    Aux.style.transform = 'translate(0vh, 0vh)';
+    MG.style.display = 'block';
    }
  };
+</script>
+<script>
+var API_KEY = "e29e6334";
+var tituloPredeterminado = Title.textContent;
+
+  <!-- Traducción con Google -->
+async function traducir(texto) {
+  try {
+    var res = await fetch(`https://translate.googleapis.com/translate_a/single?client=gtx&sl=en&tl=es&dt=t&q=${encodeURIComponent(texto)}`);
+    var data = await res.json();
+    return data[0][0][0]; // Texto traducido
+  } catch (error) {
+    console.error("Error al traducir:", error);
+    return texto; // Si falla, muestra el original
+  }
+}
+
+       <!-- OMDB API -->
+window.addEventListener("DOMContentLoaded", async () => {
+  var Aux = document.getElementById("Aux");
+
+  try {
+    var response = await fetch("https://www.omdbapi.com/?t=" + encodeURIComponent(tituloPredeterminado) + "&apikey=" + API_KEY);
+    var data = await response.json();
+
+    if (data.Response === "False") {
+  S.style.display = "block";
+      return;
+    }
+
+  <!-- Traducción automática -->
+    var titulo = await traducir(data.Title);
+    var sinopsis = await traducir(data.Plot);
+    var genero = await traducir(data.Genre);
+    var director = await traducir(data.Director);
+    var poster = data.Poster !== "N/A" ? data.Poster : "";
+
+ 
+    Aux.innerHTML = `
+      <div class="result-section">
+        <img id="MG" src="${poster}" alt="${titulo}" style="width: 20%; border-radius: 16px">
+     <div class="result-title">${'Tierra De Mafia'} (${2025})</div>
+        <p><strong>🎬 Género:</strong> ${genero}</p>
+        <p><strong>📝 Sinopsis:</strong> ${sinopsis}</p>
+      </div>
+    `;
+  } catch (error) {
+    console.error("Error al obtener datos de la API OMDb:", error);
+    Aux.innerHTML = "<p style='color:white;'>⚠️No Se Pudo Cargar La Información De La Serie⚠️</p>";
+  }
+});
 </script>
 </body>
 </html>
