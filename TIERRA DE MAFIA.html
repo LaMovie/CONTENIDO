@@ -132,7 +132,7 @@ text-align: left;
     font-weight: bold;
 }
 #Aux img {    
-    float: left;
+    float: left; 
 }
 </style>
 </head>
@@ -149,16 +149,16 @@ text-align: left;
  <div id="Total">
   <div id="A">
     <div class="GG" id="Fila">
-      <a href="https://lamovie.link/embed-plijzvm8sv3g.html" target="WILLOW"><img src="" title="1" id="I"/>1</a>
-      <a href="https://lamovie.link/embed-s1g5vy3y26rn.html" target="WILLOW"><img src="" title="2" id="I"/>2</a>
-      <a href="https://lamovie.link/embed-pv63uqhnlt43.html" target="WILLOW"><img src="" title="3" id="I"/>3</a>
-      <a href="https://lamovie.link/embed-lbp6v0d9ujxb.html" target="WILLOW"><img src="" title="4" id="I"/>4</a>
-      <a href="https://lamovie.link/embed-v9df6js1icby.html" target="WILLOW"><img src="" title="5" id="I"/>5</a>
-      <a href="https://lamovie.link/embed-6ipr1nvesvp6.html" target="WILLOW"><img src="" title="6" id="I"/>6</a>
-      <a href="https://lamovie.link/embed-h9ebg1ld5c8w.html" target="WILLOW"><img src="" title="7" id="I"/>7</a>
-      <a href="https://is.gd/hQp0J7" target="WILLOW"><img src="" title="8" id="I"/>8</a>
-      <a href="https://is.gd/hQp0J7" target="WILLOW"><img src="" title="9" id="I"/>9</a>
-      <a href="https://is.gd/hQp0J7" target="WILLOW"><img src="" title="10" id="I"/>10</a>
+      <a href="https://drive.google.com/file/d/1u7Jmm6YP0eFf4ySJoipOxJAhG_PupDDY/view?usp=drivesdk" target="WILLOW"><img src="" title="1" id="I"/>1</a>
+      <a href="https://drive.google.com/file/d/1wZEoTQAjF7K-MUaVbTuFxQjYV8py1LUH/view?usp=drivesdk" target="WILLOW"><img src="" title="2" id="I"/>2</a>
+      <a href="https://drive.google.com/file/d/112vaiZVIf7wSJmJ05M7K9PXFG4geH2EQ/view?usp=drivesdk" target="WILLOW"><img src="" title="3" id="I"/>3</a>
+      <a href="https://drive.google.com/file/d/1BgeTJd76vhlU3BQw2fwyKrApEFSvZhl6/view?usp=drivesdk" target="WILLOW"><img src="" title="4" id="I"/>4</a>
+      <a href="https://drive.google.com/file/d/1k-E4ZqNHgSgTpxT7TS43_xEIzuEsqKIJ/view?usp=drivesdk" target="WILLOW"><img src="" title="5" id="I"/>5</a>
+      <a href="https://drive.google.com/file/d/1iqQcqnpZGHdMpOu6RAd5HZP71zcPAbzA/view?usp=drivesdk" target="WILLOW"><img src="" title="6" id="I"/>6</a>
+      <a href="https://drive.google.com/file/d/19r62Ga6YNjOeZnY4kS1EMJxuYZS-ZLG9/view?usp=drivesdk" target="WILLOW"><img src="" title="7" id="I"/>7</a>
+      <a href="https://drive.google.com/file/d/1LOz7EDiMBOpaiGwWblKhwM8P4k5as12R/view?usp=drivesdk" target="WILLOW"><img src="" title="8" id="I"/>8</a>
+      <a href="https://drive.google.com/file/d/1u8HD_7kgQdu67JHr0z5y_a_tbqcgP4tI/view?usp=drivesdk" target="WILLOW"><img src="" title="9" id="I"/>9</a>
+      <a href="https://drive.google.com/file/d/1kkkRw_7ufcqfOu6OwdG26NxJuzo9V3Gd/view?usp=drivesdk" target="WILLOW"><img src="" title="10" id="I"/>10</a>
     </div>
   </div>                                   
              </div>   
@@ -204,8 +204,11 @@ document.addEventListener('fullscreenchange', function() {
  LINKS.forEach(link => {
   link.onclick = (event) => {
     event.preventDefault();
-    if (EMBED && link.href) {
-      EMBED.src = link.href;
+ if (link.href.includes('file')) {
+  var URL = link.href.split('view')[0];
+      EMBED.src = URL + 'preview';
+            } else {
+        EMBED.src = link.href;
     }
       LINKS.forEach(other => {
         other.style.color = 'gold';
