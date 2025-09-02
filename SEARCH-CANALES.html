@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SEARCH CHANNELS</title>
+<style>
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: start;
+    background: #000;
+    color: white;
+    font-family: Arial, sans-serif;
+}
+#I {
+    width: 80%;
+    margin: 2vh 0;
+    padding: 10px;
+    border-radius: 20px;
+    border: 2px solid gray;
+    background: transparent;
+    color: white;
+    font-weight: bold;
+}
+#I::placeholder { color: #aaa; }
+#I:focus { outline: none; }
+#Lista {
+    display: none;
+    max-height: 30vh;
+    overflow-y: auto;
+    margin: 10px 0;
+    padding: 0;
+    list-style: none;
+    border-radius: 15px;
+    border: 1px solid gray;
+    width: 80%;
+}
+#Lista li {
+    padding: 8px;
+    cursor: pointer;
+}
+#Lista li:hover {
+    background: #222;
+}
+#F {
+    width: 100%;
+    height: 60vh;
+    margin-top: 10px;
+    background: url(https://is.gd/cPBeiP);
+    background-size: cover;
+}
+#T {
+    color: #4f9;
+    opacity: .7;
+    font-weight: bold;
+}
+a {
+    color: #f00;
+    font-weight: bold;
+    text-decoration: none;
+  &:hover {
+      color: blue;
+  }
+}
+</style>
+</head>
+<body>
+  <input id="I" placeholder="Buscar..." type="text"/>
+  <ul id="Lista"></ul>
+  <iframe id="F" src="" frameborder="0" allowfullscreen="true" allow="encrypted-media"></iframe>
+  
+      <h6 id="T"></h6>
+
+<script>
+    var canales = [
+"TUDN","GOL PERU","TNT SPORTS","ESPN PREMIUM LAT","ESPN PREMIUM ARGENTINA","TYC SPORTS",
+"FOX SPORTS","FOX SPORTS 2","FOX SPORTS 3","FOX DEPORTES","ESPN LAT","ESPN ARGENTINA",
+"ESPN COLOMBIA","ESPN 2","ESPN 3","ESPN 4","ESPN 5","ESPN 6","ESPN 7","DIRECTV SPORTS",
+"DIRECTV SPORTS 2","DIRECTV SPORTS PLUS","FOX SPORTS MX","FOX SPORTS 2 MX","FOX SPORTS 3 MX",
+"ESPN MX","ESPN 2 MX","ESPN 3 MX","ESPN 4 MX","ESPN 5 MX","TVC DEPORTES","LIGA 1","LIGA 1 MAX",
+"FOX SPORTS PREMIUM","MOVISTAR DEPORTES PE","DAZN F1","DAZN LA LIGA","M. LIGA DE CAMPEONES",
+"WIN SPORTS","WIN SPORTS PLUS","BEIN SPORTS XTRA","MOVISTAR LA LIGA","NBA","MOVISTAR DEPORTES ES",
+"AZTECA DEPORTES","TNT SPORTS CHILE","MLB NETWORK","SKY SPORTS MX","SKY SPORTS BUNDESLIGA",
+"SKY SPORTS F1","AZTECA 7","CANAL 5","LATINA","AMERICA TV","SPACE","WARNER BROS TV","TNT",
+"STAR CHANNEL","CINEMAX","CINECANAL","TELEFE","EL TRECE","DISTRITO COMEDIA","TELEMUNDO MIAMI",
+"HISTORY","HISTORY 2","PASIONES","AZTECA UNO","GALAVISION","TLNOVELAS","LAS ESTRELLAS","SYFY USA",
+"CARACOL","ATV","UNIVISION","UNICABLE","FX","GOLDEN PLUS","GOLDEN EDGE","GOLDEN PREMIERE",
+"GOLDEN PREMIERE 2","TNT SERIES","CANAL SONY","AXN","UNIVERSAL TV","STUDIO UNIVERSAL","MULTIPREMIER",
+"AMC","PARAMOUNT CHANNEL","DPELICULA","MTV","COMEDY CENTRAL","NAT GEO","ANIMAL PLANET",
+"DISCOVERY CHANNEL","DISCOVERY HYH","ID INVESTIGATION","DISCOVERY A&E","DISCOVERY TLC",
+"DISCOVERY THEATER","DISCOVERY WORLD","EVERYTHING","EL GOURMET","DISNEY JUNIOR","NICK","NICK JR",
+"CARTOON NETWORK","CARTOONITO","TOONCAST","DISCOVERY KIDS","TELEMUNDO PUERTO RICO","WILLAX TV",
+"GLOBAL TV PERU","RCN","ANTENA 3","TV PUBLICA","DISNEY CHANNEL","TNT NOVELAS","UNIVERSAL CINEMA",
+"FM HOT KIDS"
+];
+
+   <!-- Insertar la lista original en el HTML -->
+var Lista = document.getElementById('Lista');
+canales.forEach(function(canal) {
+    var li = document.createElement('li');
+    li.className = 'Data';
+    li.textContent = canal; 
+    Lista.appendChild(li);
+});
+
+var input = document.getElementById('I');
+var iframe = document.getElementById('F');
+var items = Lista.querySelectorAll('.Data');
+
+
+     function Check() {
+       var canal = input.value.trim().toLowerCase();
+    if (canal) {
+        iframe.src = "https://embed.saohgdasregions.fun/embed2/" + canal + ".html";
+    T.textContent = input.value;
+    }
+       input.value = '';
+}
+
+  <!-- Filtrado en tiempo real -->
+input.addEventListener('keyup', function(e) {
+    var query = input.value.toLowerCase().trim();
+    var hasResults = false;
+
+    if (query === '') {
+        Lista.style.display = 'none';
+        return;
+    }
+
+    items.forEach(function(item) {
+        var text = item.textContent.toLowerCase();
+  if (text.includes(query)) {
+    item.style.display = 'block';
+          hasResults = true;
+      } else {
+   item.style.display = 'none';
+        }
+});
+
+    Lista.style.display = hasResults ? 'block' : 'none';
+
+    if (e.key === 'Enter') {
+           Check();
+        Lista.style.display = 'none';
+    }
+});
+
+     <!-- CLIC EN UN CANAL -->
+Lista.addEventListener('click', function(e) {
+    if (e.target.classList.contains('Data')) {
+  <!-- Reemplazar espacios por nada antes de colocar en el input -->
+        var canalSinEspacios = e.target.textContent.replace(/\s+/g, '').toLowerCase();
+        input.value = canalSinEspacios;
+  Lista.style.display = 'none';
+        Check();
+    }
+});
+</script>
+   <!-- PRECAUTION MOBILE -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script>
+       Swal.fire({
+    title: '⚠️Usar Un Bloqueador De Anuncios⚠️', 
+    html: '<a href="https://play.google.com/store/apps/details?id=com.hsv.freeadblockerbrowser" target="_blank">🔴 FreeAddBlockerBrowser 🔴</a>', 
+    icon: 'info'
+});
+</script>      
+</body>
+</html>
