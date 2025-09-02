@@ -46,9 +46,9 @@ body {
 }
 #F {
     width: 100%;
-    height: 60vh;
+    height: 50vh;
     margin-top: 10px;
-    background: url(https://is.gd/cPBeiP);
+    background: url(https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgbvSgZ1IQaHpZX_Fr8wUHyG2m9eR_7UUmmpGv2fup39h_8Cvj_jRFkuGvh5y40K-fqUii-WKcxH7r0WiAKUOr_iTzdCNcxA04vtvpIz6AhYMRrc1amAhzERzcP5NA9rP2EK-25dDLHMwIqGAxQrz2Z1pQLz8NYkXvelI5w6NUl2tS5wnl8E5wuA5VqXQ/s867/image_search_1756842507622.png);
     background-size: cover;
 }
 #T {
@@ -124,8 +124,8 @@ input.addEventListener('keyup', function(e) {
     var query = input.value.toLowerCase().trim();
     var hasResults = false;
 
-    if (query === '') {
-        Lista.style.display = 'none';
+       if (query === '') {
+  Lista.style.display = 'none';
         return;
     }
 
@@ -152,7 +152,7 @@ Lista.addEventListener('click', function(e) {
     if (e.target.classList.contains('Data')) {
   <!-- Reemplazar espacios por nada antes de colocar en el input -->
         var canalSinEspacios = e.target.textContent.replace(/\s+/g, '').toLowerCase();
-        input.value = canalSinEspacios;
+   input.value = canalSinEspacios;
   Lista.style.display = 'none';
         Check();
     }
