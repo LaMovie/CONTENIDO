@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>🔥 SPORT-TV 🔥</title>
+<style>
+body {
+    display: flex;
+    position: fixed;
+    flex-direction: column;
+    align-items: center;
+    justify-content: start;
+    background: #000;
+    color: white;
+    font-family: Arial, sans-serif;
+}
+.Total {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+    max-height: 70vh;
+    overflow-y: scroll;
+    padding: 10px;
+    height: 55vh;
+}
+.Div {
+    opacity: .9;
+    border: 2px solid gray;
+    border-radius: 10px;
+    width: 100px;
+    height: 100px;
+    text-align: center;
+    background: blue;
+    cursor: pointer;
+}
+.Div img {
+    width: 100%;
+    height: 100%;
+    border-radius: 8px;
+    background: orange;
+    transition: transform 0.3s;
+}
+.Div img:hover {
+    transform: scale(1.05);
+}
+#F {
+    width: 100%;
+    height: 30vh;
+    margin-top: 10px;
+    background: url(https://is.gd/cPBeiP);
+    background-size: cover;
+}
+#T {
+    color: #4f9;
+    opacity: .7;
+    font-weight: bold;
+}
+a {
+    color: #f00;
+    font-weight: bold;
+    text-decoration: none;
+  &:hover {
+      color: blue;
+  }
+}
+</style>
+</head>
+<body>
+   <iframe id="F" src="" frameborder="0" allowfullscreen="true" allow="encrypted-media"></iframe>
+   
+       <h5 id="T"></h5>
+       
+  <div class="Total">
+    <div class="Div"><img src="https://is.gd/70DrQC" alt="nba"/></div>
+    <div class="Div"><img src="https://is.gd/0qOze0" alt="espnpremiumargentina"/></div>
+    <div class="Div"><img src="https://is.gd/ion0eF" alt="espn2"/></div>
+    <div class="Div"><img src="https://is.gd/ucIi3n" alt="espn3"/></div>
+    <div class="Div"><img src="https://is.gd/NkYtQE" alt="espn4"/></div>
+    <div class="Div"><img src="https://is.gd/9oyHzt" alt="espn5"/></div>
+    <div class="Div"><img src="https://is.gd/hlOg3M" alt="espn6"/></div>
+    <div class="Div"><img src="https://is.gd/L7IRwi" alt="espn7"/></div>
+    <div class="Div"><img src="https://is.gd/LoDaWe" alt="skysportsf1"/></div>
+    <div class="Div"><img src="https://is.gd/ZpxRYa" alt="tntsports"/></div>
+    <div class="Div"><img src="https://is.gd/bitt4V" alt="foxsports"/></div>
+    <div class="Div"><img src="https://is.gd/QeVAxd" alt="foxsports2"/></div>
+    <div class="Div"><img src="https://is.gd/APrqVO" alt="foxsports3"/></div>
+    <div class="Div"><img src="https://is.gd/2ECjuI" alt="foxdeportes"/></div>
+    <div class="Div"><img src="https://is.gd/5hdwIO" alt="directvsports"/></div>
+    <div class="Div"><img src="https://is.gd/UJ11I6" alt="directvsports2"/></div>
+    <div class="Div"><img src="https://is.gd/jY8ovL" alt="foxsportspremium"/></div>
+    <div class="Div"><img src="https://is.gd/OTtOSc" alt="foxsportsmexico"/></div>
+    <div class="Div"><img src="https://is.gd/6ssGWR" alt="foxsports2mexico"/></div>
+    <div class="Div"><img src="https://is.gd/la9rRd" alt="foxsports3mexico"/></div>
+    <div class="Div"><img src="https://is.gd/mLxabM" alt="skysportsbundesliga"/></div>
+    <div class="Div"><img src="https://is.gd/QCC240" alt="movistarlaliga"/></div>
+    <div class="Div"><img src="https://is.gd/vLvLgA" alt="beinsportsxtra"/></div>
+    <div class="Div"><img src="https://is.gd/dJc3aG" alt="liga1"/></div>
+    <div class="Div"><img src="https://is.gd/gVKpDv" alt="liga1max"/></div>
+    <div class="Div"><img src="https://is.gd/cQYm5v" alt="espnmexico"/></div>
+    <div class="Div"><img src="https://is.gd/khp3lw" alt="mlbnetwork"/></div>
+  </div>
+  
+<script>
+    var Total = document.querySelector('.Total');
+    var iframe = document.getElementById('F');
+    var T = document.getElementById('T');
+
+    Total.onclick = function(event) {
+        if (event.target.tagName === 'IMG') {
+            var canal = event.target.alt;
+            iframe.src = "https://embed.saohgdasregions.fun/embed2/" + canal + ".html";
+            T.textContent = canal.toUpperCase();
+        }
+    };
+</script>
+    <!-- PRECAUTION MOBILE -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script>
+       Swal.fire({
+    title: '⚠️Usar Un Bloqueador De Anuncios⚠️', 
+    html: '<a href="https://play.google.com/store/apps/details?id=com.hsv.freeadblockerbrowser" target="_blank">🔴 FreeAddBlockerBrowser 🔴</a>', 
+    icon: 'info'
+});
+</script>      
+</body>
+</html>
+
+
+
+
+
