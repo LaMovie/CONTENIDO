@@ -113,11 +113,10 @@ var items = Lista.querySelectorAll('.Data');
      function Check() {
        var canal = input.value.trim().toLowerCase();
     if (canal) {
-        iframe.src = "https://embed.saohgdasregions.fun/embed2/" + canal + ".html";
-    T.textContent = input.value;
-    }
+        iframe.src = "https://embed.saohgdasregions.fun/embed2/" + canal + ".html";    
+  }
        input.value = '';
-}
+};
 
   <!-- Filtrado en tiempo real -->
 input.addEventListener('keyup', function(e) {
@@ -155,6 +154,7 @@ Lista.addEventListener('click', function(e) {
    input.value = canalSinEspacios;
   Lista.style.display = 'none';
         Check();
+          T.textContent = e.target.textContent;
     }
 });
 </script>
