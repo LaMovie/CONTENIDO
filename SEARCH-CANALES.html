@@ -67,7 +67,9 @@ a {
 </style>
 </head>
 <body>
+<form onsubmit="event.preventDefault(); Check()">
   <input id="I" placeholder="Buscar..." type="text"/>
+</form>
   <ul id="Lista"></ul>
   <iframe id="F" src="" frameborder="0" allowfullscreen="true" allow="encrypted-media"></iframe>
   
@@ -111,9 +113,10 @@ var items = Lista.querySelectorAll('.Data');
 
 
      function Check() {
-       var canal = input.value.trim().toLowerCase();
+       var canal = input.value.replace(/\s+/g, '').trim().toLowerCase();
     if (canal) {
-        iframe.src = "https://embed.saohgdasregions.fun/embed2/" + canal + ".html";    
+        iframe.src = "https://embed.saohgdasregions.fun/embed2/" + canal + ".html";  
+    T.textContent = input.value;  
   }
        input.value = '';
 };
@@ -142,7 +145,7 @@ input.addEventListener('keyup', function(e) {
 
     if (e.key === 'Enter') {
            Check();
-        Lista.style.display = 'none';
+  Lista.style.display = 'none';
     }
 });
 
