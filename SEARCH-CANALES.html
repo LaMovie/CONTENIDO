@@ -116,7 +116,7 @@ var items = Lista.querySelectorAll('.Data');
        var canal = input.value.replace(/\s+/g, '').trim().toLowerCase();
     if (canal) {
         iframe.src = "https://embed.saohgdasregions.fun/embed2/" + canal + ".html";  
-    T.textContent = input.value;  
+    T.textContent = input.value.toUpperCase();  
   }
        input.value = '';
 };
