@@ -172,8 +172,24 @@ H.textContent = NAMER.toUpperCase();
 };
 </script>
 
-      <!-- HORIZONTAL -->
+      <!-- FULL SCREEN -->
+<script>
+document.addEventListener('fullscreenchange', function() {
+  if (document.fullscreenElement) {
+    <!-- Si estamos en pantalla completa, bloquear orientación horizontal -->
+    if (screen.orientation && screen.orientation.lock) {
+      screen.orientation.lock('landscape');
+    }
+  } else {
+    <!-- Si salimos de pantalla completa, volver a orientación vertical -->
+    if (screen.orientation && screen.orientation.lock) {
+      screen.orientation.lock('portrait');
+    }
+  }
+});
+</script>
 
+      <!-- HORIZONTAL -->
 <script>
        function Handle() {
             var Orientation = (window.innerWidth > window.innerHeight) ? evento() : invento();            

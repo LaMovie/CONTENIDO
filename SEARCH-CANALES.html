@@ -161,6 +161,24 @@ Lista.addEventListener('click', function(e) {
     }
 });
 </script>
+
+       <!-- FULL SCREEN -->
+<script>
+document.addEventListener('fullscreenchange', function() {
+  if (document.fullscreenElement) {
+    <!-- Si estamos en pantalla completa, bloquear orientación horizontal -->
+    if (screen.orientation && screen.orientation.lock) {
+      screen.orientation.lock('landscape');
+    }
+  } else {
+    <!-- Si salimos de pantalla completa, volver a orientación vertical -->
+    if (screen.orientation && screen.orientation.lock) {
+      screen.orientation.lock('portrait');
+    }
+  }
+});
+</script>
+
    <!-- PRECAUTION MOBILE -->
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script>
