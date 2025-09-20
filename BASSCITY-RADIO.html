@@ -32,10 +32,18 @@ body {
 #stationName {
     bottom: 0vh;    
 }
+#I {
+    width: 100%;
+    height: 60vh;
+    border: 2px solid #aaa;
+    border-radius: 20px;
+}
 </style>
 </head>
 <body>
             <center>
+  <iframe id="I" src="" frameborder="0" allowfullscreen="true" allow="encrypted-media"></iframe>
+  
      <div id="CONTROLS">
 <h2 id="PREV" class="fa-solid fa-backward-step"></h2>
 <h2 id="PLAY" class="fas fa-play"></h2>
@@ -51,8 +59,9 @@ PAUS.style.display = 'none';
 document.body.style.background = 'blue';
   
       var STATIONS = [ 
-  {name: "HOUSETIME.FM (ALEMANIA)", url: "https://listen.housetime.fm/tunein-mp3"}, 
-  {name: "ALOFOKE 99.3", url: "https://radiordomi.com:8566/stream"}
+  {name: "📟 HOUSE-TIME.FM 📟", url: "https://listen.housetime.fm/tunein-mp3"}, 
+  {name: "📟 DEEP RADIO 📟", url: "https://25343.live.streamtheworld.com/DEEP_RADIOAAC.aac?tdsdk=js-2.9&swm=false&pname=TDSdk&pversion=2.9&banners=none&burst-time=15&sbmid=ce73d26a-ac4d-446a-de03-5af18c3ad5be"}, 
+  {name: "📻 ALOFOKE RADIO 📻", url: "https://radiordomi.com:8566/stream"}
 ];
 
      var COLORS = ['blue', 'gold', '#4f3', 'red', 'orange', 'fuchsia'];
