@@ -8,7 +8,6 @@
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Lacquer&display=swap');
 body {
-    color: gold;
     margin: 10vh 0vh;
     background: url(https://is.gd/cksQ36);
     background-size: cover;
@@ -51,13 +50,22 @@ body {
     transition: easy 2s;
     filter: grayscale(90%) blur(2px);
 }
+#stationName {
+    width: 85%;
+    scale: 1.1;
+    color: gold;
+    opacity: .9;
+    height: auto;
+    border-radius: 20px;
+    background: rgb(0,0,0,.3);
+}
 </style>
 </head>
 <body>
            <center>
   <iframe id="I" src="" frameborder="0" allowfullscreen="true" allow="encrypted-media" scrolling="no"></iframe>
   
-    <h2 id="stationName"></h2>
+    <h3 id="stationName"></h3>
     
      <div id="CONTROLS">
 <h2 id="PREV" class="fa-solid fa-backward-step"></h2>
@@ -65,7 +73,7 @@ body {
 <h2 id="PAUS"class="fa-solid fa-pause"></h2>
 <h2 id="NEXT" class="fa-solid fa-forward-step"></h2>
 </div>
-
+  
   <audio hidden id="A" src="" controls preload autoplay style="width: 100%"></audio><br/><br/>
            </center>
 <script>
