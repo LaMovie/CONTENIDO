@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+ <title>📻 BASSCITY RADIO 📻</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+<style>
+body {
+    transition: background-color 5s ease-in-out;
+}
+#PLAY, #PAUS, #NEXT, #PREV {
+    width: 10%;
+    padding: 1vh;
+    background: #fff;
+    border-radius: 50px;
+    transition: easy 3s;
+    
+  &:active {
+      scale: 1.1;
+      background: #4f9;     
+  }
+}
+#CONTROLS {
+    gap: 3vh;
+    width: 100%;    
+    bottom: 18vh;
+    display: flex;
+    position: fixed;
+    justify-content: center;
+}
+#stationName {
+    bottom: 0vh;    
+}
+</style>
+</head>
+<body>
+            <center>
+     <div id="CONTROLS">
+<h2 id="PREV" class="fa-solid fa-backward-step"></h2>
+<h2 id="PLAY" class="fas fa-play"></h2>
+<h2 id="PAUS"class="fa-solid fa-pause"></h2>
+<h2 id="NEXT" class="fa-solid fa-forward-step"></h2>
+</div>
+
+    <h2 id="stationName"></h2>
+  <audio hidden id="A" src="" controls preload autoplay style="width: 100%"></audio><br/><br/>
+           </center>
+<script>
+PAUS.style.display = 'none';
+document.body.style.background = 'blue';
+  
+      var STATIONS = [ 
+  {name: "HOUSETIME.FM (ALEMANIA)", url: "https://listen.housetime.fm/tunein-mp3"}, 
+  {name: "ALOFOKE 99.3", url: "https://radiordomi.com:8566/stream"}
+];
+
+     var COLORS = ['blue', 'gold', '#4f3', 'red', 'orange', 'fuchsia'];
+     var currentStation = 0;
+     var stationName = document.getElementById('stationName');
+     
+ 
+     function changeColor() {
+         var ALEATORIO = COLORS[Math.floor(Math.random() * COLORS.length)];
+         document.body.style.background = ALEATORIO;
+};
+  
+     
+   <!-- Cargar la estación -->
+   function loadStation(index) {
+     A.src = STATIONS[index].url;
+       stationName.innerText = STATIONS[index].name;
+         A.play();
+}
+
+        <!-- BOTONES -->
+  loadStation(currentStation);
+
+     PLAY.onclick = () => {
+         A.play(); 
+   PAUS.style.display = 'block';
+   PLAY.style.display = 'none';
+   setInterval(changeColor, 5000);
+}
+
+     PAUS.onclick = () => {
+         A.pause(); 
+   PAUS.style.display = 'none';
+   PLAY.style.display = 'block';
+}
+
+     NEXT.onclick = () => {
+ currentStation = (currentStation + 1) % STATIONS.length;
+         loadStation(currentStation);
+   PLAY.style.display = 'none';
+   PAUS.style.display = 'block';
+   setInterval(changeColor, 5000);
+}
+
+     PREV.onclick = () => {
+ currentStation = (currentStation - 1 + STATIONS.length) % STATIONS.length;
+         loadStation(currentStation);
+   PLAY.style.display = 'none';
+   PAUS.style.display = 'block';
+   setInterval(changeColor, 5000);
+}
+
+     A.onerror = () => {
+         alert('Error al cargar ó reproducir la Estación');
+         document.body.style.background = 'red';
+};
+</script>
+</body>
+</html>
+
+
+
+
