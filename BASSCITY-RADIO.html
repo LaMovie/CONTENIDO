@@ -6,13 +6,14 @@
  <title>📻 BASSCITY RADIO 📻</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 <style>
+@import url('https://fonts.googleapis.com/css2?family=Lacquer&display=swap');
 body {
     color: gold;
     background: url(https://is.gd/cksQ36);
     background-size: cover;
     background-position: center;  
     background-attachment: fixed;   
-    transition: background-color 5s ease-in-out;
+    font-family: 'Lacquer', cursive;
 }
 #PLAY, #PAUS, #NEXT, #PREV {
     width: 10%;
@@ -28,6 +29,7 @@ body {
 }
 #CONTROLS {
     gap: 3vh;
+    opacity: .9;
     width: 100%;  
     color: #f03;  
     bottom: 12vh;
@@ -62,7 +64,6 @@ body {
            </center>
 <script>
 PAUS.style.display = 'none';
-
   
       var STATIONS = [ 
   {name: "📟 HOUSE-TIME.FM 📟", url: "https://listen.housetime.fm/tunein-mp3"}, 
@@ -71,14 +72,19 @@ PAUS.style.display = 'none';
   {name: "📻 CUBAN FLOW 📻", url: "https://securestream.casthost.net:8615/stream?type=http&nocache=3942510"}
 ];
 
-     var COLORS = ['blue', 'gold', '#4f3', 'red', 'orange', 'fuchsia'];
+     var FONDOS = ['https://is.gd/nDUjPx', 'https://is.gd/cksQ36', 'https://is.gd/oRaaAm', 'https://is.gd/a8wjfL', 'https://is.gd/lkSIzM'];
+    
      var currentStation = 0;
      var stationName = document.getElementById('stationName');
      
  
      function changeColor() {
-         var ALEATORIO = COLORS[Math.floor(Math.random() * COLORS.length)];
-         document.body.style.background = ALEATORIO;
+         var ALEATORIO = FONDOS[Math.floor(Math.random() * FONDOS.length)];
+       
+document.body.style.background = 'url(' + ALEATORIO + ')';
+    document.body.style.backgroundSize = 'cover';
+    document.body.style.backgroundPosition = 'center';
+    document.body.style.backgroundAttachment = 'fixed';
 };
   
      
@@ -109,6 +115,7 @@ PAUS.style.display = 'none';
          loadStation(currentStation);
    PLAY.style.display = 'none';
    PAUS.style.display = 'block';
+   changeColor()
 }
 
      PREV.onclick = () => {
@@ -116,6 +123,7 @@ PAUS.style.display = 'none';
          loadStation(currentStation);
    PLAY.style.display = 'none';
    PAUS.style.display = 'block';
+   changeColor()
 }
 
      A.onerror = () => {
