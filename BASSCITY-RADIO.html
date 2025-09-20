@@ -7,6 +7,11 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 <style>
 body {
+    color: gold;
+    background: url(https://is.gd/cksQ36);
+    background-size: cover;
+    background-position: center;  
+    background-attachment: fixed;   
     transition: background-color 5s ease-in-out;
 }
 #PLAY, #PAUS, #NEXT, #PREV {
@@ -23,23 +28,27 @@ body {
 }
 #CONTROLS {
     gap: 3vh;
-    width: 100%;    
+    width: 100%;  
+    color: #f03;  
     bottom: 12vh;
     display: flex;
     position: fixed;
     justify-content: center;
 }
 #I {
+    opacity: 1;
     width: 100%;
     height: 60vh;
-    border: 2px solid #aaa;
-    border-radius: 20px;
+    border-radius: 20px;  
+    background: url(https://is.gd/zpebuJ);
+    background-size: cover;
+    background-position: center;  
 }
 </style>
 </head>
 <body>
-            <center>
-  <iframe id="I" src="" frameborder="0" allowfullscreen="true" allow="encrypted-media"></iframe>
+           <center>
+  <iframe id="I" src="" frameborder="0" allowfullscreen="true" allow="encrypted-media" scrolling="no"></iframe>
   
      <div id="CONTROLS">
 <h2 id="PREV" class="fa-solid fa-backward-step"></h2>
@@ -53,12 +62,13 @@ body {
            </center>
 <script>
 PAUS.style.display = 'none';
-document.body.style.background = 'blue';
+
   
       var STATIONS = [ 
   {name: "📟 HOUSE-TIME.FM 📟", url: "https://listen.housetime.fm/tunein-mp3"}, 
   {name: "📟 DEEP RADIO 📟", url: "https://25343.live.streamtheworld.com/DEEP_RADIOAAC.aac?tdsdk=js-2.9&swm=false&pname=TDSdk&pversion=2.9&banners=none&burst-time=15&sbmid=ce73d26a-ac4d-446a-de03-5af18c3ad5be"}, 
-  {name: "📻 ALOFOKE RADIO 📻", url: "https://radiordomi.com:8566/stream"}
+  {name: "📻 ALOFOKE RADIO 📻", url: "https://radiordomi.com:8566/stream"}, 
+  {name: "📻 CUBAN FLOW 📻", url: "https://securestream.casthost.net:8615/stream?type=http&nocache=3942510"}
 ];
 
      var COLORS = ['blue', 'gold', '#4f3', 'red', 'orange', 'fuchsia'];
@@ -86,7 +96,6 @@ document.body.style.background = 'blue';
          A.play(); 
    PAUS.style.display = 'block';
    PLAY.style.display = 'none';
-   setInterval(changeColor, 5000);
 }
 
      PAUS.onclick = () => {
@@ -100,7 +109,6 @@ document.body.style.background = 'blue';
          loadStation(currentStation);
    PLAY.style.display = 'none';
    PAUS.style.display = 'block';
-   setInterval(changeColor, 5000);
 }
 
      PREV.onclick = () => {
@@ -108,7 +116,6 @@ document.body.style.background = 'blue';
          loadStation(currentStation);
    PLAY.style.display = 'none';
    PAUS.style.display = 'block';
-   setInterval(changeColor, 5000);
 }
 
      A.onerror = () => {
@@ -119,6 +126,6 @@ document.body.style.background = 'blue';
 </body>
 </html>
 
-
+<!-- setInterval(changeColor, 5000); --> 
 
 
