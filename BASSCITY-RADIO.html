@@ -9,6 +9,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Lacquer&display=swap');
 body {
     color: gold;
+    margin: 10vh 0vh;
     background: url(https://is.gd/cksQ36);
     background-size: cover;
     background-position: center;  
@@ -31,16 +32,15 @@ body {
     gap: 3vh;
     opacity: .9;
     width: 100%;  
-    color: #f03;  
-    bottom: 12vh;
+    color: #f03;      
     display: flex;
     position: fixed;
     justify-content: center;
 }
 #I {
     opacity: 1;
-    width: 100%;
-    height: 60vh;
+    width: 80%;
+    height: 40vh;
     border-radius: 20px;  
     background: url(https://is.gd/zpebuJ);
     background-size: cover;
@@ -52,6 +52,8 @@ body {
            <center>
   <iframe id="I" src="" frameborder="0" allowfullscreen="true" allow="encrypted-media" scrolling="no"></iframe>
   
+    <h2 id="stationName"></h2>
+    
      <div id="CONTROLS">
 <h2 id="PREV" class="fa-solid fa-backward-step"></h2>
 <h2 id="PLAY" class="fas fa-play"></h2>
@@ -59,7 +61,6 @@ body {
 <h2 id="NEXT" class="fa-solid fa-forward-step"></h2>
 </div>
 
-    <h2 id="stationName"></h2>
   <audio hidden id="A" src="" controls preload autoplay style="width: 100%"></audio><br/><br/>
            </center>
 <script>
