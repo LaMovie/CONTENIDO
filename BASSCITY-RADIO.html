@@ -46,6 +46,11 @@ body {
     background-size: cover;
     background-position: center;  
 }
+.FILTRO {
+    scale: .9;
+    transition: easy 2s;
+    filter: grayscale(90%) blur(2px);
+}
 </style>
 </head>
 <body>
@@ -103,12 +108,14 @@ document.body.style.background = 'url(' + ALEATORIO + ')';
          A.play(); 
    PAUS.style.display = 'block';
    PLAY.style.display = 'none';
+   I.classList.remove('FILTRO');
 }
 
      PAUS.onclick = () => {
          A.pause(); 
    PAUS.style.display = 'none';
    PLAY.style.display = 'block';
+   I.classList.add('FILTRO');
 }
 
      NEXT.onclick = () => {
@@ -116,6 +123,7 @@ document.body.style.background = 'url(' + ALEATORIO + ')';
          loadStation(currentStation);
    PLAY.style.display = 'none';
    PAUS.style.display = 'block';
+   I.classList.remove('FILTRO');
    changeColor()
 }
 
@@ -124,6 +132,7 @@ document.body.style.background = 'url(' + ALEATORIO + ')';
          loadStation(currentStation);
    PLAY.style.display = 'none';
    PAUS.style.display = 'block';
+   I.classList.remove('FILTRO');
    changeColor()
 }
 
