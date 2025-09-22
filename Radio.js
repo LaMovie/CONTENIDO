@@ -79,7 +79,9 @@ document.body.style.background = 'url(' + ALEATORIO + ')';
          document.body.style.background = 'gray';
 };
 
-
+    Shazam.onclick = () => {
+    window.open("https://www.shazam.com/es-es", "_blank");
+}
 
 
 
