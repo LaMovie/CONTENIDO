@@ -79,11 +79,12 @@ document.body.style.background = 'url(' + ALEATORIO + ')';
          document.body.style.background = 'gray';
 };
 
+
 // 🔥 Reconocimiento automático cada 10s
 setInterval(recognizeFromStream, 10000);
 
 async function recognizeFromStream() {
-  var station = STATIONS[currentStation].url;
+  const station = STATIONS[currentStation].url;
   console.log("Reconociendo en:", station);
 
   try {
@@ -92,7 +93,7 @@ async function recognizeFromStream() {
     let chunks = [];
     let receivedLength = 0;
 
-    // leer ~200kb aprox
+    // leer ~100kb aprox
     while (receivedLength < 100000) {
       const { done, value } = await reader.read();
       if (done) break;
@@ -100,27 +101,50 @@ async function recognizeFromStream() {
       receivedLength += value.length;
     }
 
-    let audioBlob = new Blob(chunks, { type: "audio/mpeg" });
+    const audioBlob = new Blob(chunks, { type: "audio/mpeg" });
 
-    const formData = new FormData();
-    formData.append("api_token", "985ad3d958b81d4e8599a3f862e3f83c"); // tu API KEY
-    formData.append("file", audioBlob);
+    // --- Configuración para la API de Cyanite.ai ---
+    const access_key = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0eXBlIjoiSW50ZWdyYXRpb25BY2Nlc3NUb2tlbiIsInZlcnNpb24iOiIxLjAiLCJpbnRlZ3JhdGlvbklkIjoxODk0LCJ1c2VySWQiOjI2NDU5OSwiYWNjZXNzVG9rZW5TZWNyZXQiOiIwNDkwYTVlNzAyNzgyMzdlMjFiNzU4MzIxYjc2NTQ1ZDExMTlkZWZkZjM0NTMzMGFiYjYyNzU1MTE0ODkxMGY2IiwiaWF0IjoxNzU4NTIwNDE2fQ.-iaJu1XHqjDGTdJHk8zTUmr6TkD75V5qYGuxx_8bTDw"; // <--- REEMPLAZA TUS CLAVES
+    const access_secret = "1eb5cb18ed2d1f19e4e8913bb1a77b5cb9eef"; // <--- REEMPLAZA TUS CLAVES
+    const timestamp = Date.now();
 
-    const res = await fetch("https://api.audd.io/", {
+    // TODO: La API de Cyanite usa un token de acceso.
+    // Dependiendo del endpoint, podrías necesitar generar un token a partir de tus claves
+    // o usar una de ellas como token. Consulta su documentación.
+    const accessToken = access_secret; 
+
+    // TODO: Define la URL del endpoint para la identificación de música
+    const cyaniteApiUrl = "https://api.cyanite.ai/v1/..."; 
+
+    // TODO: El cuerpo de la petición puede ser JSON o FormData.
+    // Lo más probable es que sea JSON y que tengas que codificar el audio.
+    const body = {
+      // TODO: Define el formato de los datos que espera la API
+      // Ej: audio_file: "...", file_url: "..."
+    };
+
+    const res = await fetch(cyaniteApiUrl, {
       method: "POST",
-      body: formData
+      headers: {
+        "Authorization": `Bearer ${accessToken}`,
+        "Content-Type": "application/json", // O 'multipart/form-data'
+      },
+      body: JSON.stringify(body), // O el FormData adecuado
     });
+    
     const data = await res.json();
-    console.log(data);
+    console.log("Respuesta de la API:", data);
 
-    if (data.status === "success" && data.result) {
-      const song = data.result;
-      document.getElementById("songTitle").innerText = song.title || "Desconocido";
-      document.getElementById("songArtist").innerText = song.artist || "";
-      if (song.spotify && song.spotify.album && song.spotify.album.images.length) {
-        document.getElementById("songCover").src = song.spotify.album.images[0].url;
-        document.getElementById("songCover").style.display = "block";
-      }
+    // TODO: La estructura de la respuesta es muy diferente.
+    // Consulta la documentación para saber dónde se encuentran el título y el artista.
+    if (data.status === "success" && data.results) {
+      const song = data.results[0]; // Esto es un ejemplo
+      const title = song.title || "Desconocido";
+      const artist = song.artist || "";
+
+      document.getElementById("songTitle").innerText = title;
+      document.getElementById("songArtist").innerText = artist;
+
     } else {
       document.getElementById("songTitle").innerText = "😩";
       document.getElementById("songArtist").innerText = "";
@@ -128,9 +152,15 @@ async function recognizeFromStream() {
     }
 
   } catch (err) {
-    console.error(err);
+      document.getElementById("songTitle").innerText = "❌ Error en el servidor";
+      document.getElementById("songArtist").innerText = "";
+      document.getElementById("songCover").style.display = "none";
+      alert("Error en el reconocimiento de Cyanite.ai:", err);
   }
 }
+
+
+
 
 
 
