@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Apoya a LA MOVIE</title>
+<style>
+body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            overflow: hidden;
+            background-color: #fff;
+}
+.fondo {
+            background-image: url('https://is.gd/thprFv');
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center top; 
+            width: 100%;
+            height: 100vh;
+            position: absolute;
+}
+
+/* Estilo base para ambos botones */
+#btn-copiar {
+            padding: 18px 35px;
+            font-size: 20px;
+            font-weight: bold;
+            color: white;
+            background: #007bff;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.4);
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            text-decoration: none; 
+            display: inline-block;
+}
+#btn-copiar:hover {
+            background-color: #4f9; 
+            transform: scale(1.05);
+            color: #000;
+}
+#btn-copiar {
+            position: fixed;
+            bottom: 40px;
+            right: 30px;
+            z-index: 100;
+}
+
+/* Posición del botón IR (Centrado y oculto) */
+#btn-ir {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 102;
+            display: none;
+            padding: 18px 35px;
+            font-size: 20px;
+            font-weight: bold;
+            color: #000;
+            background: gold;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            opacity: 0;    
+    transition: opacity 1s ease;
+            box-shadow: 0 40px 15px rgba(0,0,0,0.4);
+            text-transform: uppercase;
+            text-decoration: none; 
+   &:hover {
+       background: #4f9;
+       scale: 1.1;
+   }
+}
+#toast {
+            visibility: hidden;
+            min-width: 250px;
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            border-radius: 8px;
+            padding: 16px;
+            position: fixed;
+            z-index: 101;
+            left: 50%;
+            bottom: 100px;
+            transform: translateX(-50%);
+            font-family: sans-serif;
+}
+#toast.show {
+            visibility: visible;
+            animation: fadein 0.5s, fadeout 0.5s 2.5s;
+        }
+
+@keyframes fadein { from {opacity: 0;} to {opacity: 1;} }
+@keyframes fadeout { from {opacity: 1;} to {opacity: 0;} }
+</style>
+</head>
+<body>
+
+    <div class="fondo"></div>
+
+    <button id="btn-copiar">COPIAR DATOS</button>
+
+    <a href="https://lamovie.github.io/La-Movie-Delux/+LA-MOVIE+" id="btn-ir">IR A LA MOVIE 🍿 ᴳʳᵃᶜᶦᵃˢ 🫂</a>
+
+    <div id="toast">¡Datos Copiados!</div>
+<audio autoplay src="https://archive.org/download/sergio-mendes-feat.-black-eyed-peas-mas-que-nada-mp-3-160-k-1/Donaciones.mp3"></audio>
+<script>
+        document.getElementById('btn-copiar').addEventListener('click', function() {
+            var textoACopiar = `Pablo Andrés Sepúlveda Molina
+159303454
+Mercado Pago
+Cuenta Vista
+1013014947
+sepulvedamolinap01@gmail.com`;
+
+            // Mostrar el botón oculto
+          
+            setTimeout(function() {
+    var btnIr = document.getElementById('btn-ir');
+    btnIr.style.display = 'block'; // Lo pone en el HTML
+    
+    // Un pequeño delay extra para que el navegador procese el block antes de la opacidad
+    setTimeout(function() {
+        btnIr.style.opacity = '1';
+    }, 10); 
+}, 3000);
+
+
+
+            // MÉTODO COMPATIBLE PARA MÓVILES
+            var areaTemporal = document.createElement("textarea");
+            areaTemporal.value = textoACopiar;
+            document.body.appendChild(areaTemporal);
+            areaTemporal.select();
+            areaTemporal.setSelectionRange(0, 99999); 
+
+            try {
+                var exitoso = document.execCommand('copy');
+                if(exitoso) {
+                    mostrarToast();
+                } else {
+                    alert("Error al copiar automáticamente.");
+                }
+            } catch (err) {
+                navigator.clipboard.writeText(textoACopiar).then(mostrarToast);
+            }
+
+            document.body.removeChild(areaTemporal);
+        });
+
+        function mostrarToast() {
+            var toast = document.getElementById("toast");
+            toast.className = "show";
+            setTimeout(() => { toast.className = toast.className.replace("show", ""); }, 3000);
+        }
+</script>
+</body>
+</html>
