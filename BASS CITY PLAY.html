@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html>
+<head>
+     <meta charset="UTF-8"/>
+     <meta name="viewport" content="width=device-width"/>
+<style>
+body {    
+    background: linear-gradient(135deg, #000 20%, #262626 50%, #b2166f 100%);
+}
+#Title {   
+    text-align: center;
+    color: #ccc;        
+    position: relative;
+    left: 18vh;
+    top: -40px;
+    font-weight: bold;
+    font-size: 13px;
+    font-family: comic sans;
+    background: linear-gradient(135deg, #262626 50%, #b2166f 100%);
+    border-radius:50px;
+    opacity: 0.5;
+    scale: 80%;
+    box-shadow: 0px 0px 30px #000000;
+}
+.span {
+    color: #f49536;
+}
+.date {
+    color: #b3b3b3;
+}
+.dato{ 
+    margin-top: 2vh;
+    opacity: .9;
+    position: relative;
+}
+.space {
+    color: #ccc;
+    opacity :0.3;
+}
+#inv:hover {
+    opacity: 0;
+}
+#Lista { 
+  color: #ccc; 
+  list-style: none;
+  padding: 0;
+  text-align: center;
+  margin-bottom: 10px;
+  font-weight: bold;
+}
+
+#Lista li {
+  margin-bottom: 10px;
+  font-weight: bold; 
+  background: linear-gradient(135deg, black, #b5167f, black);
+  display: block;
+  padding: 10px;
+  border-radius: 50px;
+  box-shadow: 0 01em rgba(0,0,0,0.2);             
+  transition: 1s;
+}
+ul li:nth-child(odd):hover {
+    padding-left: 20%;
+    transform: perspective(500px)rotateY(55deg);            
+}
+ul li:nth-child(even):hover {
+    padding-right: 20%;
+    transform: perspective(500px) rotateY(-55deg);            
+} 
+#P {
+    color: #4f9;
+    opacity: 0;
+    margin-top: 5vh;
+}
+#S {
+    color: #000;
+    opacity: .6;
+    display: none;
+    font-size: 10px;
+    font-weight: bold;
+    background: gray;
+    border-radius: 20px;
+}
+#Aux {
+    color: #aaa;
+    width: 100%;
+    margin-top: 5vh;
+}
+#Aux img {
+    float: left;
+}
+.I {
+    background: url(https://is.gd/Rn9kfI);
+    background-size: cover;
+    height: 250px;
+    border-radius: 10px;
+}
+a {
+    color: #000;
+    cursor: none;
+    text-decoration: none;
+}
+.M {
+    color: #ccc;
+}
+</style>
+</head>
+<body>
+<img hidden id="Photo" src="https://is.gd/LDzy7u"/>
+        
+        
+           <center>
+ <iframe class="I" id="main-video" src="" style="width:100%; aspect-ration:6/19" frameborder="0" allowfullscreen="true" allow="encrypted-media" allow="autoplay" name="WILLOW"></iframe>
+
+<B id="Title">°Blue Cam°</B>
+          
+ 
+        <div class="dato">        
+    <b><span class="span">Año:</span></b> 
+<span class="date">2026</span><br />
+      <b><span class="span">Genero:</span></b> 
+      <span class="date">Trap</span><br />
+          </div>      
+            
+             
+       <ul id="Lista">
+<li data-url="https://drive.google.com/file/d/1DgH_CSMFa-XzeLoE8XfvGbA5ALXg7pHW/view?usp=drivesdk">
+    <div>🇲🇽 Esp</div>
+  </li>
+  <li data-url="https://drive.google.com/file/d/1DFaWoPdzlmTzoy4rFonJzyKa5Kza_kGk/view?usp=drivesdk">
+    <div>🇺🇸 Lyric Video</div>
+  </li>
+</ul>
+                 </center>
+            <center>
+              <br/>
+       <div id="Aux"></div>  
+        <div class="space">
+     <h1>°BASS CITY°</h1>
+                </div>
+            
+  <button id="S">SINÓPSIS</button>
+ 
+ <p id="P">""</p><br/>    
+            </center>  
+<script>
+  var Li = document.querySelectorAll('#Lista li');
+  var I = document.getElementById('main-video');
+  
+  Li.forEach((item) => {
+    item.onclick = () => {
+   
+      var URL = item.getAttribute('data-url');
+      let Texto;
+      
+  if (URL.includes('file')) {
+     var Prefijo = 'preview';
+        Texto = URL.substring(0, URL.indexOf('view?usp')) + Prefijo;
+      } else if (URL.includes('ube.com')) {
+ var Prefijo = 'https://www.yout-';
+        Texto = Prefijo + URL.substring(URL.indexOf('ube.com'));
+      } else {
+        Texto = URL;
+      }
+
+         I.src = Texto;
+    };
+  });
+</script>
+
+<script>
+<!-- Detectar cuando entra o sale de fullscreen -->
+document.addEventListener('fullscreenchange', function() {
+  if (document.fullscreenElement) {
+    <!-- Si estamos en pantalla completa, bloquear orientación horizontal -->
+    if (screen.orientation && screen.orientation.lock) {
+      screen.orientation.lock('landscape');
+    }
+  } else {
+    <!-- Si salimos de pantalla completa, volver a orientación vertical -->
+    if (screen.orientation && screen.orientation.lock) {
+      screen.orientation.lock('portrait');
+    }
+  }
+});
+
+document.addEventListener('click', function(){
+     Title.style.zIndex = "-1";    
+});
+</script>
+        <!-- IFRAME -->
+<script>
+  var I = document.getElementById('main-video');
+  var src = I.getAttribute('src');
+
+  if (src.includes('file')) {
+    var previewSrc = src.substring(0, src.indexOf('view?')) + 'preview';
+    I.setAttribute('src', previewSrc);
+  }
+</script>
+<script>
+  S.onclick = () => {
+      P.style.opacity = (P.style.opacity === '0' || P.style.opacity === '') ? '.6' : '0';
+};
+</script>      
+<script>
+    window.onload = () => {
+     if (window.innerWidth > window.innerHeight) {
+    Title.style.marginLeft = '100vh';
+  } else {
+    Title.style.marginLeft = '0vh';
+  }
+ }
+</script>
+<script>
+var API_KEY = "e29e6334";
+var tituloPredeterminado = Title.textContent;
+
+  <!-- Traducción con Google -->
+async function traducir(texto) {
+  try {
+    var res = await fetch(`https://translate.googleapis.com/translate_a/single?client=gtx&sl=en&tl=es&dt=t&q=${encodeURIComponent(texto)}`);
+    var data = await res.json();
+    return data[0][0][0]; // Texto traducido
+  } catch (error) {
+    console.error("Error al traducir:", error);
+    return texto; // Si falla, muestra el original
+  }
+}
+
+          <!-- OMDB API -->
+window.addEventListener("DOMContentLoaded", async () => {
+  var Aux = document.getElementById("Aux");
+
+  try {
+    var response = await fetch("https://www.omdbapi.com/?t=" + encodeURIComponent(tituloPredeterminado) + "&apikey=" + API_KEY);
+    var data = await response.json();
+
+    if (data.Response === "False") {
+  S.style.display = "block";
+      return;
+    }
+
+  <!-- Traducción automática -->
+    var titulo = await traducir(data.Title);
+    var sinopsis = await traducir(data.Plot);
+    var genero = await traducir(data.Genre);
+    var director = await traducir(data.Director);
+    var poster = data.Poster !== "N/A" ? data.Poster : "";
+
+ 
+    Aux.innerHTML = `
+      <div class="result-section">
+        <img src="${poster}" alt="${titulo}" style="width: 20%; border-radius: 16px">
+     <div class="result-title">${titulo} (${data.Year})</div>
+        <p><strong>🎬 Género:</strong> ${genero}</p>
+        <p><strong>🎥 Director:</strong> ${director}</p>
+        <p><strong>📝 Sinopsis:</strong> ${sinopsis}</p>
+      </div>
+    `;
+  } catch (error) {
+    console.error("Error al obtener datos de la API OMDb:", error);
+    Aux.innerHTML = "<p style='color:white;'>No se pudo cargar la información de la película.</p>";
+  }
+});
+</script>
+</body>
+</html>
+
+
