@@ -4,6 +4,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>💾 REGISTROS</title>
+<link rel="manifest" href="manifest.json">
+
+<script>
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('./sw.js')
+      .then(reg => console.log('Registro de SW exitoso', reg))
+      .catch(err => console.warn('Error al registrar SW', err));
+  }
+</script>
+
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Roboto+Mono:wght@300;500&display=swap');
 :root {
@@ -127,7 +137,7 @@
             <center>
 
     <h1 style="font-family: 'Orbitron'; letter-spacing: 5px; text-shadow: 0 0 15px var(--neon-violet);">
-        JOE <span style="color:white">DATA</span>
+        HPN <span style="color:white">DATA</span>
     </h1>
 
 <details name="info">
