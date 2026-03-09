@@ -1,4 +1,4 @@
-const CACHE_NAME = 'v1_cache_mi_app';
+const CACHE_NAME = 'v1_cache_CODIGOS';
 const urlsToCache = [
   './',
   './REGISTROS.html',
