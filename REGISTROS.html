@@ -22,6 +22,7 @@
             --electric-purple: #7b2cbf;
             --glass: rgba(123, 44, 191, 0.1);
             --bg-dark: #05010d;
+            --danger: #ff4d4d;
         }
 
         body {
@@ -36,7 +37,6 @@
             padding: 20px;
         }
 
-        /* Panel de Registro */
         .panel-registro {
             background: var(--glass);
             padding: 15px;
@@ -68,18 +68,21 @@
             background: linear-gradient(45deg, var(--electric-purple), var(--neon-violet));
             color: white;
             border: none;
-            padding: 12px 25px;
+            padding: 10px 15px;
             border-radius: 12px;
             font-weight: bold;
             cursor: pointer;
             font-family: 'Orbitron';
-            font-size: 0.7rem;
+            font-size: 0.65rem;
             transition: 0.4s;
+            margin: 5px;
         }
 
         button:hover { transform: scale(1.05); box-shadow: 0 0 20px var(--neon-violet); }
 
-        /* Buscador */
+        .btn-danger { background: linear-gradient(45deg, #800000, var(--danger)); }
+        .btn-edit { background: #2a2a2a; border: 1px solid var(--electric-purple); }
+
         .search-box { width: 80%; max-width: 600px; margin: 10px; }
         
         #buscador {
@@ -93,89 +96,136 @@
             border-radius: 30px;
         }
 
-        /* Tabla de Resultados */
         table {
             width: 100%;
             max-width: 800px;
             margin-top: 40px;
             border-collapse: separate;
             border-spacing: 0 10px;
-            display: none; /* Oculta hasta que haya texto */
+            display: none; 
         }
 
         th { color: var(--neon-violet); font-family: 'Orbitron'; padding: 15px; text-transform: uppercase; font-size: 0.8rem; }
-        
         tr { background: rgba(255, 255, 255, 0.03); transition: 0.3s; }
         tr:hover { background: rgba(188, 19, 254, 0.1); }
-
         td { padding: 15px; text-align: center; border-top: 1px solid rgba(123, 44, 191, 0.2); border-bottom: 1px solid rgba(123, 44, 191, 0.2); }
         
         .btn-delete {
             background: transparent;
-            color: #ff4d4d;
-            border: 1px solid #ff4d4d;
+            color: var(--danger);
+            border: 1px solid var(--danger);
             padding: 5px 10px;
             font-size: 0.7rem;
             cursor: pointer;
         }
 
-        .btn-delete:hover { background: #ff4d4d; color: white; box-shadow: 0 0 10px #ff4d4d; }
+        .btn-delete:hover { background: var(--danger); color: white; }
 
-        .filtro { display: none; }
-        #no-results { display: none; color: #ff4d4d; margin-top: 25px; font-weight: bold; }
-.Sum {
-    width: 80%;
-    color: #fff;   
-    margin-bottom: 3vh;
-    background: #bc13cc; 
-    border-radius: 20px;
-    border: 2px solid #bc13f3;
-}
+        #no-results { display: none; color: var(--danger); margin-top: 25px; font-weight: bold; }
+        
+        .Sum {
+            width: 80%;
+            color: #fff;   
+            margin-bottom: 3vh;
+            background: #bc13cc; 
+            border-radius: 20px;
+            border: 2px solid #bc13f3;
+            padding: 10px;
+            cursor: pointer;
+            font-family: 'Orbitron';
+        }
+
+        .export-section {
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 1px dashed var(--electric-purple);
+        }
 </style>
 </head>
 <body>
-            <center>
+    <center>
+        <h1 style="font-family: 'Orbitron'; letter-spacing: 5px; text-shadow: 0 0 15px var(--neon-violet);">
+            HPN <span style="color:white">DATA</span>
+        </h1>
 
-    <h1 style="font-family: 'Orbitron'; letter-spacing: 5px; text-shadow: 0 0 15px var(--neon-violet);">
-        HPN <span style="color:white">DATA</span>
-    </h1>
+        <details id="menu-registro" name="info">
+            <summary class="Sum">REGISTRO Y GESTIÓN</summary>
+            <div class="panel-registro">
+                <h2>INGRESAR DATOS AL SISTEMA</h2>
+                <input type="number" id="reg-zona" placeholder="Nº ZONA">
+                <input type="number" id="reg-codigo" placeholder="CÓDIGO (9 DÍGITOS)" maxlength="9">
+                <br>
+                <button onclick="guardarDato()">ENCRIPTAR Y GUARDAR</button>
 
-<details name="info">
-  <summary class="Sum">REGISTRO</summary>
-    <div class="panel-registro">
-        <h2>INGRESAR DATOS AL SISTEMA</h2>
-        <input type="number" id="reg-zona" placeholder="Nº ZONA">
-        <input type="number" id="reg-codigo" placeholder="CÓDIGO (9 DÍGITOS)" maxlength="9">
-        <br><br>
-        <button onclick="guardarDato()">ENCRIPTAR Y GUARDAR</button>
-    </div>
-</details>
+                <div class="export-section">
+                    <h2>EXPORTAR / LIMPIAR</h2>
+                    <button onclick="descargarTXT()">DESCARGAR .TXT</button>
+                    <button onclick="descargarExcel()">DESCARGAR .CSV (EXCEL)</button>
+                    <br>
+                    <button class="btn-danger" onclick="limpiarBaseDatos()">ELIMINAR TODA LA DATA</button>
+                </div>
+            </div>
+        </details>
 
-    <div class="search-box">
-        <input type="number" id="buscador" placeholder="Buscador..." autocomplete="off">
-    </div>
+        <div class="search-box">
+            <input type="number" id="buscador" placeholder="Buscador..." autocomplete="off">
+        </div>
 
-    <div id="no-results">SISTEMA: DATOS NO LOCALIZADOS</div>
+        <div id="no-results">SISTEMA: DATOS NO LOCALIZADOS</div>
 
-    <table id="tabla-datos">
-        <thead>
-            <tr>
-                <th>UBICACIÓN</th>
-                <th>IDENTIFICADOR</th>
-                <th>ACCIONES</th>
-            </tr>
-        </thead>
-        <tbody id="lista-db"></tbody>
-    </table>
- 
-</center>
+        <table id="tabla-datos">
+            <thead>
+                <tr>
+                    <th>UBICACIÓN</th>
+                    <th>IDENTIFICADOR</th>
+                    <th>ACCIONES</th>
+                </tr>
+            </thead>
+            <tbody id="lista-db"></tbody>
+        </table>
+    </center>
+
     <script>
-        // Función de limpieza de tildes técnica
+        const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+
+        function playSound(type) {
+            const oscillator = audioCtx.createOscillator();
+            const gainNode = audioCtx.createGain();
+            oscillator.connect(gainNode);
+            gainNode.connect(audioCtx.destination);
+
+            if (type === 'save') {
+                oscillator.type = 'sine';
+                oscillator.frequency.setValueAtTime(880, audioCtx.currentTime);
+                oscillator.frequency.exponentialRampToValueAtTime(440, audioCtx.currentTime + 0.1);
+            } else if (type === 'delete') {
+                oscillator.type = 'sawtooth';
+                oscillator.frequency.setValueAtTime(150, audioCtx.currentTime);
+                oscillator.frequency.exponentialRampToValueAtTime(40, audioCtx.currentTime + 0.2);
+            }
+
+            gainNode.gain.setValueAtTime(0.1, audioCtx.currentTime);
+            gainNode.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.2);
+            oscillator.start();
+            oscillator.stop(audioCtx.currentTime + 0.2);
+
+            if (navigator.vibrate) {
+                navigator.vibrate(type === 'save' ? 50 : [100, 50, 100]);
+            }
+        }
+
+        // Nueva función para cerrar el summary
+        function cerrarSummary() {
+            const menu = document.getElementById('menu-registro');
+            if (menu) {
+                menu.removeAttribute('open');
+            }
+        }
+
         function Tildes(texto) {
             return texto.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase();
         }
 
-        // Recuperar base de datos del LocalStorage
         let baseDeDatos = JSON.parse(localStorage.getItem('misZonasViolet')) || [];
 
         function guardarDato() {
@@ -190,24 +240,52 @@
             baseDeDatos.push({ zona: zona, codigo: codigo, id: Date.now() });
             actualizarStorage();
             
+            playSound('save');
+            cerrarSummary(); // <--- CIERRA EL MENÚ
+
             document.getElementById('reg-zona').value = "";
             document.getElementById('reg-codigo').value = "";
             renderizarTabla();
-            // Limpiar buscador al registrar para evitar confusión
             document.getElementById('buscador').value = "";
             document.getElementById('tabla-datos').style.display = "none";
         }
 
+        function editarDato(id) {
+            const item = baseDeDatos.find(i => i.id === id);
+            const nuevaZona = prompt("Editar Nº ZONA:", item.zona);
+            const nuevoCodigo = prompt("Editar CÓDIGO (9 dígitos):", item.codigo);
+
+            if (nuevaZona !== null && nuevoCodigo !== null) {
+                if (nuevaZona === "" || nuevoCodigo.length !== 9) {
+                    alert("ERROR: Datos inválidos.");
+                } else {
+                    item.zona = nuevaZona;
+                    item.codigo = nuevoCodigo;
+                    actualizarStorage();
+                    renderizarTabla();
+                    playSound('save');
+                }
+            }
+        }
+
         function eliminarDato(id) {
-            if(confirm("¿Deseas eliminar este registro de forma permanente?")) {
+            if(confirm("¿Deseas eliminar este registro?")) {
                 baseDeDatos = baseDeDatos.filter(item => item.id !== id);
                 actualizarStorage();
                 renderizarTabla();
-                // Actualizar visibilidad después de borrar
-                const buscador = document.getElementById('buscador');
-                if (buscador.value === "") {
-                    document.getElementById('tabla-datos').style.display = "none";
-                }
+                verificarVisibilidad();
+                playSound('delete');
+            }
+        }
+
+        function limpiarBaseDatos() {
+            if(confirm("¿ESTÁS SEGURO? Se borrarán TODOS los registros permanentemente.")) {
+                baseDeDatos = [];
+                actualizarStorage();
+                renderizarTabla();
+                verificarVisibilidad();
+                playSound('delete');
+                cerrarSummary(); // <--- CIERRA EL MENÚ
             }
         }
 
@@ -221,27 +299,60 @@
 
             baseDeDatos.forEach(item => {
                 const row = document.createElement('tr');
-                row.classList.add('Data', 'filtro');
+                row.classList.add('Data');
                 row.innerHTML = `
                     <td style="font-weight: bold;">ZONA ${item.zona}</td>
                     <td style="color: var(--neon-violet)">${item.codigo}</td>
-                    <td><button class="btn-delete" onclick="eliminarDato(${item.id})">ELIMINAR</button></td>
+                    <td>
+                        <button class="btn-edit" onclick="editarDato(${item.id})">EDITAR</button>
+                        <button class="btn-delete" onclick="eliminarDato(${item.id})">ELIMINAR</button>
+                    </td>
                 `;
                 listaDB.appendChild(row);
             });
         }
 
-        // LÓGICA DE BÚSQUEDA EN TIEMPO REAL (EVENTO KEYUP)
+        function verificarVisibilidad() {
+            const query = document.getElementById('buscador').value;
+            if (query === "") {
+                document.getElementById('tabla-datos').style.display = "none";
+            }
+        }
+
+        // --- EXPORTACIÓN ---
+        function descargarTXT() {
+            if (baseDeDatos.length === 0) return alert("No hay datos para exportar");
+            let contenido = "REGISTROS HPN DATA\n" + "=".repeat(20) + "\n";
+            baseDeDatos.forEach(i => contenido += `ZONA: ${i.zona} | CODIGO: ${i.codigo}\n`);
+            const blob = new Blob([contenido], { type: 'text/plain' });
+            crearEnlaceDescarga(blob, "registros_hpn.txt");
+        }
+
+        function descargarExcel() {
+            if (baseDeDatos.length === 0) return alert("No hay datos para exportar");
+            let csv = "ZONA;CODIGO\n";
+            baseDeDatos.forEach(i => csv += `${i.zona};${i.codigo}\n`);
+            const blob = new Blob(["\ufeff" + csv], { type: 'text/csv;charset=utf-8;' });
+            crearEnlaceDescarga(blob, "registros_hpn.csv");
+        }
+
+        function crearEnlaceDescarga(blob, nombre) {
+            const link = document.createElement("a");
+            link.href = URL.createObjectURL(blob);
+            link.download = nombre;
+            link.click();
+        }
+
+        // --- BÚSQUEDA ---
         const inputBuscador = document.getElementById('buscador');
         const tabla = document.getElementById('tabla-datos');
         const noResults = document.getElementById('no-results');
 
-        inputBuscador.addEventListener("keyup", (e) => {
+        inputBuscador.addEventListener("keyup", () => {
             const query = Tildes(inputBuscador.value.trim());
             const filas = document.querySelectorAll(".Data");
             let encontrados = 0;
 
-            // Si el buscador está vacío, ocultamos todo como en tu código original
             if (query === "") {
                 tabla.style.display = "none";
                 noResults.style.display = "none";
@@ -251,14 +362,13 @@
             filas.forEach(fila => {
                 const textoFila = Tildes(fila.textContent);
                 if (textoFila.includes(query)) {
-                    fila.classList.remove("filtro");
+                    fila.style.display = "table-row";
                     encontrados++;
                 } else {
-                    fila.classList.add("filtro");
+                    fila.style.display = "none";
                 }
             });
 
-            // Control de visibilidad de la tabla y mensaje de error
             if (encontrados > 0) {
                 tabla.style.display = "table";
                 noResults.style.display = "none";
