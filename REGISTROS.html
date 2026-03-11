@@ -140,6 +140,8 @@
             padding-top: 15px;
             border-top: 1px dashed var(--electric-purple);
         }
+
+        #input-file { display: none; }
 </style>
 </head>
 <body>
@@ -158,7 +160,10 @@
                 <button onclick="guardarDato()">ENCRIPTAR Y GUARDAR</button>
 
                 <div class="export-section">
-                    <h2>EXPORTAR / LIMPIAR</h2>
+                    <h2>IMPORTAR / EXPORTAR</h2>
+                    <button onclick="document.getElementById('input-file').click()">IMPORTAR CSV/EXCEL</button>
+                    <input type="file" id="input-file" accept=".csv, .txt" onchange="importarArchivo(event)">
+                    <br>
                     <button onclick="descargarTXT()">DESCARGAR .TXT</button>
                     <button onclick="descargarExcel()">DESCARGAR .CSV (EXCEL)</button>
                     <br>
@@ -193,7 +198,6 @@
             const gainNode = audioCtx.createGain();
             oscillator.connect(gainNode);
             gainNode.connect(audioCtx.destination);
-
             if (type === 'save') {
                 oscillator.type = 'sine';
                 oscillator.frequency.setValueAtTime(880, audioCtx.currentTime);
@@ -203,23 +207,18 @@
                 oscillator.frequency.setValueAtTime(150, audioCtx.currentTime);
                 oscillator.frequency.exponentialRampToValueAtTime(40, audioCtx.currentTime + 0.2);
             }
-
             gainNode.gain.setValueAtTime(0.1, audioCtx.currentTime);
             gainNode.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.2);
             oscillator.start();
             oscillator.stop(audioCtx.currentTime + 0.2);
-
             if (navigator.vibrate) {
                 navigator.vibrate(type === 'save' ? 50 : [100, 50, 100]);
             }
         }
 
-        // Nueva función para cerrar el summary
         function cerrarSummary() {
             const menu = document.getElementById('menu-registro');
-            if (menu) {
-                menu.removeAttribute('open');
-            }
+            if (menu) menu.removeAttribute('open');
         }
 
         function Tildes(texto) {
@@ -231,18 +230,14 @@
         function guardarDato() {
             const zona = document.getElementById('reg-zona').value;
             const codigo = document.getElementById('reg-codigo').value;
-
             if (zona === "" || codigo.length !== 9) {
                 alert("ERROR: Datos incompletos o código inválido.");
                 return;
             }
-
             baseDeDatos.push({ zona: zona, codigo: codigo, id: Date.now() });
             actualizarStorage();
-            
             playSound('save');
-            cerrarSummary(); // <--- CIERRA EL MENÚ
-
+            cerrarSummary();
             document.getElementById('reg-zona').value = "";
             document.getElementById('reg-codigo').value = "";
             renderizarTabla();
@@ -250,11 +245,53 @@
             document.getElementById('tabla-datos').style.display = "none";
         }
 
+        // --- FUNCIÓN PARA IMPORTAR ARCHIVOS ---
+        function importarArchivo(event) {
+            const archivo = event.target.files[0];
+            if (!archivo) return;
+
+            const lector = new FileReader();
+            lector.onload = function(e) {
+                const contenido = e.target.result;
+                const lineas = contenido.split(/\r?\n/);
+                let nuevosRegistros = 0;
+
+                lineas.forEach((linea, index) => {
+                    // Saltar encabezado o líneas vacías
+                    if (index === 0 && (linea.toLowerCase().includes("zona") || linea.toLowerCase().includes("hpn"))) return;
+                    if (linea.trim() === "") return;
+
+                    // Detectar separador (coma, punto y coma o tabulación)
+                    const columnas = linea.split(/[;,]/);
+                    if (columnas.length >= 2) {
+                        const zona = columnas[0].replace(/[^0-9]/g, ""); // Extraer solo números
+                        const codigo = columnas[1].trim();
+                        
+                        if (zona && codigo.length === 9) {
+                            baseDeDatos.push({ zona: zona, codigo: codigo, id: Date.now() + nuevosRegistros });
+                            nuevosRegistros++;
+                        }
+                    }
+                });
+
+                if (nuevosRegistros > 0) {
+                    actualizarStorage();
+                    renderizarTabla();
+                    playSound('save');
+                    alert(`ÉXITO: Se han importado ${nuevosRegistros} registros.`);
+                    cerrarSummary();
+                } else {
+                    alert("ERROR: No se encontraron datos válidos. El formato debe ser ZONA;CODIGO (9 dígitos).");
+                }
+            };
+            lector.readAsText(archivo);
+            event.target.value = ''; // Resetear input
+        }
+
         function editarDato(id) {
             const item = baseDeDatos.find(i => i.id === id);
             const nuevaZona = prompt("Editar Nº ZONA:", item.zona);
             const nuevoCodigo = prompt("Editar CÓDIGO (9 dígitos):", item.codigo);
-
             if (nuevaZona !== null && nuevoCodigo !== null) {
                 if (nuevaZona === "" || nuevoCodigo.length !== 9) {
                     alert("ERROR: Datos inválidos.");
@@ -285,7 +322,7 @@
                 renderizarTabla();
                 verificarVisibilidad();
                 playSound('delete');
-                cerrarSummary(); // <--- CIERRA EL MENÚ
+                cerrarSummary();
             }
         }
 
@@ -296,7 +333,6 @@
         function renderizarTabla() {
             const listaDB = document.getElementById('lista-db');
             listaDB.innerHTML = "";
-
             baseDeDatos.forEach(item => {
                 const row = document.createElement('tr');
                 row.classList.add('Data');
@@ -314,12 +350,9 @@
 
         function verificarVisibilidad() {
             const query = document.getElementById('buscador').value;
-            if (query === "") {
-                document.getElementById('tabla-datos').style.display = "none";
-            }
+            if (query === "") document.getElementById('tabla-datos').style.display = "none";
         }
 
-        // --- EXPORTACIÓN ---
         function descargarTXT() {
             if (baseDeDatos.length === 0) return alert("No hay datos para exportar");
             let contenido = "REGISTROS HPN DATA\n" + "=".repeat(20) + "\n";
@@ -328,10 +361,14 @@
             crearEnlaceDescarga(blob, "registros_hpn.txt");
         }
 
+        // --- EXPORTACIÓN MEJORADA PARA EXCEL ---
         function descargarExcel() {
             if (baseDeDatos.length === 0) return alert("No hay datos para exportar");
-            let csv = "ZONA;CODIGO\n";
+            // Usamos punto y coma (;) para que Excel separe las columnas automáticamente en español
+            let csv = "ZONA;IDENTIFICADOR\n"; 
             baseDeDatos.forEach(i => csv += `${i.zona};${i.codigo}\n`);
+            
+            // \ufeff es el BOM de UTF-8, indispensable para que Excel no rompa los formatos
             const blob = new Blob(["\ufeff" + csv], { type: 'text/csv;charset=utf-8;' });
             crearEnlaceDescarga(blob, "registros_hpn.csv");
         }
@@ -343,7 +380,6 @@
             link.click();
         }
 
-        // --- BÚSQUEDA ---
         const inputBuscador = document.getElementById('buscador');
         const tabla = document.getElementById('tabla-datos');
         const noResults = document.getElementById('no-results');
@@ -352,13 +388,11 @@
             const query = Tildes(inputBuscador.value.trim());
             const filas = document.querySelectorAll(".Data");
             let encontrados = 0;
-
             if (query === "") {
                 tabla.style.display = "none";
                 noResults.style.display = "none";
                 return;
             }
-
             filas.forEach(fila => {
                 const textoFila = Tildes(fila.textContent);
                 if (textoFila.includes(query)) {
@@ -368,7 +402,6 @@
                     fila.style.display = "none";
                 }
             });
-
             if (encontrados > 0) {
                 tabla.style.display = "table";
                 noResults.style.display = "none";
