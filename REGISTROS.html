@@ -351,8 +351,15 @@ function guardarDato() {
         }
 
         function actualizarStorage() {
-            localStorage.setItem('misZonasViolet', JSON.stringify(baseDeDatos));
-        }
+    // Ordenar ascendentemente por el número de zona antes de guardar
+    baseDeDatos.sort((a, b) => {
+        return parseInt(a.zona) - parseInt(b.zona);
+    });
+    
+    // Guardar la lista ya ordenada
+    localStorage.setItem('misZonasViolet', JSON.stringify(baseDeDatos));
+}
+
 
         function renderizarTabla() {
             const listaDB = document.getElementById('lista-db');
