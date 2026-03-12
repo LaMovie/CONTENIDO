@@ -134,6 +134,26 @@
         }
 
         #input-file { display: none; }
+        
+input.error-duplicado {
+    border-color: #ff4d4d !important;
+    box-shadow: 0 0 15px rgba(255, 77, 77, 0.5) !important;
+    animation: sacudida 0.3s ease;
+}
+
+@keyframes sacudida {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-5px); }
+    75% { transform: translateX(5px); }
+}
+
+#msj-duplicado {
+    color: #ff4d4d;
+    font-size: 0.7rem;
+    font-family: 'Orbitron';
+    display: none;
+    margin-top: 5px;
+}
 </style>
 </head>
 <body>
@@ -158,6 +178,8 @@
                 <br>
                 <input type="number" id="reg-zona" placeholder="Nº ZONA">
                 <input type="number" id="reg-codigo" placeholder="CÓDIGO (9 DÍGITOS)" maxlength="9">
+                <br>
+    <div id="msj-duplicado">⚠️ EL IDENTIFICADOR YA EXISTE EN EL SISTEMA</div>
                 <br>
                 <button onclick="guardarDato()">ENCRIPTAR Y GUARDAR</button>
 
@@ -250,18 +272,57 @@
         // --- LÓGICA DE DATOS ---
         function cerrarSummary() { document.getElementById('menu-registro').removeAttribute('open'); }
 
-        function guardarDato() {
-            const zona = document.getElementById('reg-zona').value;
-            const codigo = document.getElementById('reg-codigo').value;
-            if (zona === "" || codigo.length !== 9) return alert("Datos incorrectos");
-            baseDeDatos.push({ zona: zona, codigo: codigo, id: Date.now() });
-            actualizarStorage();
-            playSound('save');
-            cerrarSummary();
-            renderizarTabla();
-            document.getElementById('reg-zona').value = "";
-            document.getElementById('reg-codigo').value = "";
+        // Función para verificar si el código ya existe
+function esDuplicado(codigo) {
+    return baseDeDatos.some(item => item.codigo === codigo);
+}
+
+// Función de guardado actualizada
+function guardarDato() {
+    const zona = document.getElementById('reg-zona').value;
+    const codigoInput = document.getElementById('reg-codigo');
+    const codigo = codigoInput.value;
+    const msj = document.getElementById('msj-duplicado');
+
+    if (zona === "" || codigo.length !== 9) {
+        alert("ERROR: Datos incompletos o código inválido.");
+        return;
+    }
+
+    // VALIDACIÓN DE DUPLICADOS
+    if (esDuplicado(codigo)) {
+        playSound('delete'); // Sonido de error
+        codigoInput.classList.add('error-duplicado');
+        msj.style.display = 'block';
+        
+        setTimeout(() => {
+            codigoInput.classList.remove('error-duplicado');
+            msj.style.display = 'none';
+        }, 3000);
+        return; // Detiene el registro
+    }
+
+    baseDeDatos.push({ zona: zona, codigo: codigo, id: Date.now() });
+    actualizarStorage();
+    
+    playSound('save');
+    cerrarSummary();
+    
+    document.getElementById('reg-zona').value = "";
+    codigoInput.value = "";
+    renderizarTabla();
+}
+
+// Ajuste para la función importarArchivo (dentro del bucle)
+// Solo agrega esta condición dentro de tu lineas.forEach actual:
+/*
+    if (zona && codigo.length === 9) {
+        if (!esDuplicado(codigo)) { // <-- Solo agrega si NO es duplicado
+            baseDeDatos.push({ zona: zona, codigo: codigo, id: Date.now() + nuevosRegistros });
+            nuevosRegistros++;
         }
+    }
+*/
 
         function editarDato(id) {
             const item = baseDeDatos.find(i => i.id === id);
