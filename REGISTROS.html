@@ -188,7 +188,7 @@ input.error-duplicado {
                     <button onclick="document.getElementById('input-file').click()">IMPORTAR (.CSV)</button>
                     <input type="file" id="input-file" accept=".csv, .txt" onchange="importarArchivo(event)">
                     <br>
-                    <button onclick="descargarTXT()">DESCARGAR .TXT</button>
+                    
                     <button onclick="descargarExcel()">DESCARGAR EXCEL (.CSV)</button>
                     <br>
                     <button class="btn-danger" onclick="limpiarBaseDatos()">ELIMINAR TODA LA DATA</button>
@@ -387,16 +387,6 @@ function guardarDato() {
             const link = document.createElement("a");
             link.href = URL.createObjectURL(blob);
             link.download = "HPN_DATA.csv";
-            link.click();
-        }
-
-        function descargarTXT() {
-            let txt = "REGISTROS HPN\n";
-            baseDeDatos.forEach(i => txt += `ZONA: ${i.zona} | COD: ${i.codigo}\n`);
-            const blob = new Blob([txt], { type: 'text/plain' });
-            const link = document.createElement("a");
-            link.href = URL.createObjectURL(blob);
-            link.download = "HPN_DATA.txt";
             link.click();
         }
 
