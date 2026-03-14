@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>💾 REGISTROS HPN</title>
+    <link rel="manifest" href="manifest.json">
+    <script src="https://cdn.jsdelivr.net/npm/tesseract.js@4/dist/tesseract.min.js"></script>
+    <script src="https://cdn.sheetjs.com/xlsx-0.20.0/package/dist/xlsx.full.min.min.js"></script>
+
+<script>
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('./sw.js').catch(err => console.warn('Error SW', err));
+  }
+</script>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Roboto+Mono:wght@300;500&display=swap');
+:root {
+            --neon-violet: #bc13fe;
+            --deep-purple: #240046;
+            --electric-purple: #7b2cbf;
+            --glass: rgba(123, 44, 191, 0.1);
+            --bg-dark: #05010d;
+            --danger: #ff4d4d;
+            --success: #00ff88;
+        }
+
+        body {
+            background: var(--bg-dark);
+            color: #e0aaff;
+            font-family: 'Roboto Mono', monospace;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .panel-registro {
+            background: var(--glass);
+            padding: 15px;
+            border-radius: 20px;
+            border: 1px solid var(--electric-purple);
+            box-shadow: 0 0 20px rgba(188, 19, 254, 0.1);
+            margin-bottom: 30px;
+            width: 95%;
+            max-width: 550px;
+            text-align: center;
+        }
+
+        h2 { font-family: 'Orbitron'; font-size: 0.85rem; color: var(--neon-violet); letter-spacing: 2px; }
+
+        input {
+            background: #1a0a2e;
+            border: 1px solid var(--electric-purple);
+            color: #f7dfff;
+            padding: 12px;
+            border-radius: 12px;
+            margin: 8px;
+            outline: none;
+            transition: 0.3s;
+            width: 85%;
+        }
+
+        input:focus { box-shadow: 0 0 10px var(--neon-violet); border-color: var(--neon-violet); }
+
+        button {
+            background: linear-gradient(45deg, var(--electric-purple), var(--neon-violet));
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 12px;
+            font-weight: bold;
+            cursor: pointer;
+            font-family: 'Orbitron';
+            font-size: 0.65rem;
+            transition: 0.4s;
+            margin: 5px;
+        }
+
+        button:hover { transform: scale(1.05); box-shadow: 0 0 20px var(--neon-violet); }
+
+        .btn-ocr { background: linear-gradient(45deg, #0044ff, #00ccff); border: 1px solid white; }
+        .btn-danger { background: linear-gradient(45deg, #800000, var(--danger)); }
+        .btn-edit { background: #2a2a2a; border: 1px solid var(--electric-purple); }
+
+        #camara-container { display: none; margin-top: 15px; position: relative; }
+        #video-preview { width: 100%; border-radius: 15px; border: 2px solid var(--neon-violet); box-shadow: 0 0 15px var(--neon-violet); }
+        #scanner-overlay {
+            position: absolute; top: 50%; left: 50%;
+            width: 80%; height: 2px; background: var(--danger);
+            transform: translate(-50%, -50%);
+            box-shadow: 0 0 10px var(--danger);
+            animation: scanAnim 2s infinite ease-in-out;
+        }
+        @keyframes scanAnim {
+            0%, 100% { top: 30%; }
+            50% { top: 70%; }
+        }
+
+        #ocr-status { font-size: 0.8rem; color: var(--success); margin: 10px; font-weight: bold; }
+
+        .search-box { width: 85%; max-width: 600px; margin: 10px; }
+        #buscador {
+            width: 90%; padding: 18px; background: transparent;
+            border-bottom: 3px solid var(--electric-purple);
+            color: white; font-size: 1.2rem; text-align: center; border-radius: 30px;
+        }
+
+        table { width: 100%; max-width: 800px; margin-top: 40px; border-collapse: separate; border-spacing: 0 10px; display: none; }
+        th { color: var(--neon-violet); font-family: 'Orbitron'; padding: 15px; text-transform: uppercase; font-size: 0.8rem; }
+        tr { background: rgba(255, 255, 255, 0.03); transition: 0.3s; }
+        tr:hover { background: rgba(188, 19, 254, 0.1); }
+        td { padding: 15px; text-align: center; border-top: 1px solid rgba(123, 44, 191, 0.2); border-bottom: 1px solid rgba(123, 44, 191, 0.2); }
+
+        .Sum {
+            width: 80%; color: #fff; margin-bottom: 3vh; background: #bc13cc; 
+            border-radius: 20px; border: 2px solid #bc13f3; padding: 10px;
+            cursor: pointer; font-family: 'Orbitron';
+        }
+
+        .export-section { margin-top: 15px; padding-top: 15px; border-top: 1px dashed var(--electric-purple); }
+        #input-file { display: none; }
+        
+        /* Estilos de error Duplicado */
+        input.error-duplicado {
+            border-color: #ff4d4d !important;
+            box-shadow: 0 0 15px rgba(255, 77, 77, 0.5) !important;
+            animation: sacudida 0.3s ease;
+        }
+        @keyframes sacudida {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-5px); }
+            75% { transform: translateX(5px); }
+        }
+        #msj-duplicado { color: #ff4d4d; font-size: 0.7rem; font-family: 'Orbitron'; display: none; margin-top: 5px; font-weight: bold; }
+</style>
+</head>
+<body>
+    <center>
+        <h1 style="font-family: 'Orbitron'; letter-spacing: 5px; text-shadow: 0 0 15px var(--neon-violet);">
+            HPN <span style="color:white">DATA</span>
+        </h1>
+
+        <details id="menu-registro" name="info">
+            <summary class="Sum">REGISTRO Y GESTIÓN</summary>
+            <div class="panel-registro">
+                <h2>INGRESAR DATOS</h2>
+                
+                <button class="btn-ocr" onclick="iniciarEscaner()">📷 ESCANEAR CÓDIGO DE BARRAS</button>
+                <div id="camara-container">
+                    <div id="scanner-overlay"></div>
+                    <video id="video-preview" autoplay playsinline></video>
+                    <div id="ocr-status">Buscando código...</div>
+                    <button class="btn-danger" onclick="detenerCamara()">CANCELAR</button>
+                </div>
+
+                <br>
+                <input type="number" id="reg-zona" placeholder="Nº ZONA">
+                <input type="number" id="reg-codigo" placeholder="CÓDIGO (9 DÍGITOS)" maxlength="9">
+                <div id="msj-duplicado">⚠️ IDENTIFICADOR YA REGISTRADO</div>
+                <br>
+                <button onclick="guardarDato()">ENCRIPTAR Y GUARDAR</button>
+
+                <div class="export-section">
+                    <h2>GESTIÓN DE ARCHIVOS</h2>
+                    <button onclick="document.getElementById('input-file').click()">IMPORTAR (.CSV)</button>
+                    <input type="file" id="input-file" accept=".csv, .txt" onchange="importarArchivo(event)">
+                    <br>
+                    <button onclick="descargarExcel()">DESCARGAR .XLSX (EXCEL)</button>
+                    <br>
+                    <button class="btn-danger" onclick="limpiarBaseDatos()">ELIMINAR TODA LA DATA</button>
+                </div>
+            </div>
+        </details>
+
+        <div class="search-box">
+            <input type="number" id="buscador" placeholder="Buscador..." autocomplete="off">
+        </div>
+
+        <div id="no-results" style="display:none; color:var(--danger);">DATOS NO ENCONTRADOS</div>
+
+        <table id="tabla-datos">
+            <thead>
+                <tr>
+                    <th>UBICACIÓN</th>
+                    <th>IDENTIFICADOR</th>
+                    <th>ACCIONES</th>
+                </tr>
+            </thead>
+            <tbody id="lista-db"></tbody>
+        </table>
+    </center>
+
+    <script>
+        const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+        let streamCamara = null;
+        let baseDeDatos = JSON.parse(localStorage.getItem('misZonasViolet')) || [];
+        let intervalScanner = null;
+
+        // --- SISTEMA DE ESCANEO ---
+        async function iniciarEscaner() {
+            const container = document.getElementById('camara-container');
+            const video = document.getElementById('video-preview');
+            container.style.display = 'block';
+            try {
+                streamCamara = await navigator.mediaDevices.getUserMedia({ video: { facingMode: "environment" } });
+                video.srcObject = streamCamara;
+                if ('BarcodeDetector' in window) {
+                    const detector = new BarcodeDetector();
+                    intervalScanner = setInterval(async () => {
+                        try {
+                            const barcodes = await detector.detect(video);
+                            if (barcodes.length > 0) procesarCodigoEscaneado(barcodes[0].rawValue);
+                        } catch (e) {}
+                    }, 500);
+                }
+            } catch (err) { alert("Error de cámara: " + err); }
+        }
+
+        function detenerCamara() {
+            if (streamCamara) {
+                streamCamara.getTracks().forEach(track => track.stop());
+                clearInterval(intervalScanner);
+                document.getElementById('camara-container').style.display = 'none';
+            }
+        }
+
+        function procesarCodigoEscaneado(codigo) {
+            const limpio = codigo.replace(/\D/g, "");
+            if (limpio.length >= 9) {
+                document.getElementById('reg-codigo').value = limpio.substring(0, 9);
+                playSound('save');
+                detenerCamara();
+            }
+        }
+
+        // --- AUDIO Y VIBRACIÓN ---
+        function playSound(type) {
+            const osc = audioCtx.createOscillator();
+            const gain = audioCtx.createGain();
+            osc.connect(gain); gain.connect(audioCtx.destination);
+            osc.type = type === 'save' ? 'sine' : 'sawtooth';
+            osc.frequency.setValueAtTime(type === 'save' ? 880 : 200, audioCtx.currentTime);
+            gain.gain.setValueAtTime(0.1, audioCtx.currentTime);
+            osc.start(); osc.stop(audioCtx.currentTime + 0.2);
+            if (navigator.vibrate) navigator.vibrate(type === 'save' ? 60 : 150);
+        }
+
+        // --- LÓGICA DE DATOS ---
+        function cerrarSummary() { document.getElementById('menu-registro').removeAttribute('open'); }
+
+        function esDuplicado(codigo) {
+            return baseDeDatos.some(item => item.codigo === codigo);
+        }
+
+        function actualizarStorage() {
+            // ORDEN ASCENDENTE POR ZONA
+            baseDeDatos.sort((a, b) => parseInt(a.zona) - parseInt(b.zona));
+            localStorage.setItem('misZonasViolet', JSON.stringify(baseDeDatos));
+        }
+
+        function guardarDato() {
+            const zona = document.getElementById('reg-zona').value;
+            const codigoInput = document.getElementById('reg-codigo');
+            const codigo = codigoInput.value;
+            const msj = document.getElementById('msj-duplicado');
+
+            if (zona === "" || codigo.length !== 9) {
+                alert("ERROR: Datos incompletos o código inválido.");
+                return;
+            }
+
+            if (esDuplicado(codigo)) {
+                playSound('delete');
+                codigoInput.classList.add('error-duplicado');
+                msj.style.display = 'block';
+                setTimeout(() => {
+                    codigoInput.classList.remove('error-duplicado');
+                    msj.style.display = 'none';
+                }, 3000);
+                return;
+            }
+
+            baseDeDatos.push({ zona: zona, codigo: codigo, id: Date.now() });
+            actualizarStorage();
+            playSound('save');
+            cerrarSummary();
+            document.getElementById('reg-zona').value = "";
+            codigoInput.value = "";
+            renderizarTabla();
+        }
+
+        function renderizarTabla() {
+            const listaDB = document.getElementById('lista-db');
+            listaDB.innerHTML = "";
+            baseDeDatos.forEach(item => {
+                const row = document.createElement('tr');
+                row.className = 'Data';
+                row.innerHTML = `
+                    <td style="font-weight:bold">ZONA ${item.zona}</td>
+                    <td style="color:var(--neon-violet)">${item.codigo}</td>
+                    <td>
+                        <button class="btn-edit" onclick="editarDato(${item.id})">EDITAR</button>
+                        <button class="btn-danger" style="padding: 10px 15px;" onclick="eliminarDato(${item.id})">ELIMINAR</button>
+                    </td>
+                `;
+                listaDB.appendChild(row);
+            });
+        }
+
+        function editarDato(id) {
+            const item = baseDeDatos.find(i => i.id === id);
+            const nz = prompt("Editar Zona:", item.zona);
+            const nc = prompt("Editar Código:", item.codigo);
+            if (nz && nc.length === 9) {
+                item.zona = nz; item.codigo = nc;
+                actualizarStorage(); renderizarTabla(); playSound('save');
+            }
+        }
+
+        function eliminarDato(id) {
+            if(confirm("¿Eliminar registro?")) {
+                baseDeDatos = baseDeDatos.filter(i => i.id !== id);
+                actualizarStorage(); renderizarTabla(); playSound('delete');
+            }
+        }
+
+        function limpiarBaseDatos() {
+            if(confirm("¿BORRAR TODO?")) {
+                baseDeDatos = []; actualizarStorage();
+                renderizarTabla(); playSound('delete'); cerrarSummary();
+            }
+        }
+
+        // --- IMPORTACIÓN / EXPORTACIÓN ---
+        function descargarExcel() {
+            if (baseDeDatos.length === 0) return alert("No hay datos");
+            const encabezados = ["ZONA", "IDENTIFICADOR"];
+            const filas = baseDeDatos.map(i => [i.zona, i.codigo]);
+            const datos = [encabezados, ...filas];
+            const hoja = XLSX.utils.aoa_to_sheet(datos);
+            const libro = XLSX.utils.book_new();
+            XLSX.utils.book_append_sheet(libro, hoja, "HPN_DATA");
+            XLSX.writeFile(libro, "Registros_HPN.xlsx");
+        }
+
+        function importarArchivo(e) {
+            const reader = new FileReader();
+            reader.onload = (ev) => {
+                const lineas = ev.target.result.split(/\r?\n/);
+                let nuevos = 0;
+                lineas.forEach(l => {
+                    const col = l.split(/[;,]/);
+                    if (col.length >= 2) {
+                        const z = col[0].replace(/\D/g,'');
+                        const c = col[1].trim();
+                        if (z && c.length === 9 && !esDuplicado(c)) {
+                            baseDeDatos.push({zona:z, codigo:c, id:Date.now() + Math.random()});
+                            nuevos++;
+                        }
+                    }
+                });
+                actualizarStorage(); renderizarTabla();
+                alert(`Importados: ${nuevos}`); cerrarSummary();
+            };
+            reader.readAsText(e.target.files[0]);
+        }
+
+        // --- BUSCADOR ---
+        document.getElementById('buscador').addEventListener('keyup', function() {
+            const q = this.value.trim();
+            const filas = document.querySelectorAll('.Data');
+            const tabla = document.getElementById('tabla-datos');
+            const noResults = document.getElementById('no-results');
+            let hay = 0;
+
+            if (q === "") { 
+                tabla.style.display = 'none'; 
+                noResults.style.display = 'none'; 
+                return; 
+            }
+
+            filas.forEach(f => {
+                if (f.innerText.includes(q)) { f.style.display = ''; hay++; }
+                else f.style.display = 'none';
+            });
+
+            tabla.style.display = hay > 0 ? 'table' : 'none';
+            noResults.style.display = hay > 0 ? 'none' : 'block';
+        });
+
+        window.onload = renderizarTabla;
+    </script>
+</body>
+</html>
