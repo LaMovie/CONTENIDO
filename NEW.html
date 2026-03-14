@@ -6,7 +6,7 @@
     <title>💾 REGISTROS HPN</title>
     <link rel="manifest" href="manifest.json">
     <script src="https://cdn.jsdelivr.net/npm/tesseract.js@4/dist/tesseract.min.js"></script>
-    <script src="https://cdn.sheetjs.com/xlsx-0.20.0/package/dist/xlsx.full.min.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
 
 <script>
   if ('serviceWorker' in navigator) {
@@ -64,8 +64,6 @@
             width: 85%;
         }
 
-        input:focus { box-shadow: 0 0 10px var(--neon-violet); border-color: var(--neon-violet); }
-
         button {
             background: linear-gradient(45deg, var(--electric-purple), var(--neon-violet));
             color: white;
@@ -80,26 +78,13 @@
             margin: 5px;
         }
 
-        button:hover { transform: scale(1.05); box-shadow: 0 0 20px var(--neon-violet); }
-
         .btn-ocr { background: linear-gradient(45deg, #0044ff, #00ccff); border: 1px solid white; }
         .btn-danger { background: linear-gradient(45deg, #800000, var(--danger)); }
         .btn-edit { background: #2a2a2a; border: 1px solid var(--electric-purple); }
 
         #camara-container { display: none; margin-top: 15px; position: relative; }
-        #video-preview { width: 100%; border-radius: 15px; border: 2px solid var(--neon-violet); box-shadow: 0 0 15px var(--neon-violet); }
-        #scanner-overlay {
-            position: absolute; top: 50%; left: 50%;
-            width: 80%; height: 2px; background: var(--danger);
-            transform: translate(-50%, -50%);
-            box-shadow: 0 0 10px var(--danger);
-            animation: scanAnim 2s infinite ease-in-out;
-        }
-        @keyframes scanAnim {
-            0%, 100% { top: 30%; }
-            50% { top: 70%; }
-        }
-
+        #video-preview { width: 100%; border-radius: 15px; border: 2px solid var(--neon-violet); }
+        
         #ocr-status { font-size: 0.8rem; color: var(--success); margin: 10px; font-weight: bold; }
 
         .search-box { width: 85%; max-width: 600px; margin: 10px; }
@@ -110,10 +95,9 @@
         }
 
         table { width: 100%; max-width: 800px; margin-top: 40px; border-collapse: separate; border-spacing: 0 10px; display: none; }
-        th { color: var(--neon-violet); font-family: 'Orbitron'; padding: 15px; text-transform: uppercase; font-size: 0.8rem; }
+        th { color: var(--neon-violet); font-family: 'Orbitron'; padding: 15px; font-size: 0.8rem; }
         tr { background: rgba(255, 255, 255, 0.03); transition: 0.3s; }
-        tr:hover { background: rgba(188, 19, 254, 0.1); }
-        td { padding: 15px; text-align: center; border-top: 1px solid rgba(123, 44, 191, 0.2); border-bottom: 1px solid rgba(123, 44, 191, 0.2); }
+        td { padding: 15px; text-align: center; border-top: 1px solid rgba(123, 44, 191, 0.2); }
 
         .Sum {
             width: 80%; color: #fff; margin-bottom: 3vh; background: #bc13cc; 
@@ -124,7 +108,6 @@
         .export-section { margin-top: 15px; padding-top: 15px; border-top: 1px dashed var(--electric-purple); }
         #input-file { display: none; }
         
-        /* Estilos de error Duplicado */
         input.error-duplicado {
             border-color: #ff4d4d !important;
             box-shadow: 0 0 15px rgba(255, 77, 77, 0.5) !important;
@@ -149,9 +132,8 @@
             <div class="panel-registro">
                 <h2>INGRESAR DATOS</h2>
                 
-                <button class="btn-ocr" onclick="iniciarEscaner()">📷 ESCANEAR CÓDIGO DE BARRAS</button>
+                <button class="btn-ocr" onclick="iniciarEscaner()">📷 ESCANEAR CÓDIGO</button>
                 <div id="camara-container">
-                    <div id="scanner-overlay"></div>
                     <video id="video-preview" autoplay playsinline></video>
                     <div id="ocr-status">Buscando código...</div>
                     <button class="btn-danger" onclick="detenerCamara()">CANCELAR</button>
@@ -169,7 +151,7 @@
                     <button onclick="document.getElementById('input-file').click()">IMPORTAR (.CSV)</button>
                     <input type="file" id="input-file" accept=".csv, .txt" onchange="importarArchivo(event)">
                     <br>
-                    <button onclick="descargarExcel()">DESCARGAR .XLSX (EXCEL)</button>
+                    <button onclick="descargarExcel()">DESCARGAR EXCEL (.XLSX)</button>
                     <br>
                     <button class="btn-danger" onclick="limpiarBaseDatos()">ELIMINAR TODA LA DATA</button>
                 </div>
@@ -237,7 +219,6 @@
             }
         }
 
-        // --- AUDIO Y VIBRACIÓN ---
         function playSound(type) {
             const osc = audioCtx.createOscillator();
             const gain = audioCtx.createGain();
@@ -249,7 +230,6 @@
             if (navigator.vibrate) navigator.vibrate(type === 'save' ? 60 : 150);
         }
 
-        // --- LÓGICA DE DATOS ---
         function cerrarSummary() { document.getElementById('menu-registro').removeAttribute('open'); }
 
         function esDuplicado(codigo) {
@@ -257,7 +237,6 @@
         }
 
         function actualizarStorage() {
-            // ORDEN ASCENDENTE POR ZONA
             baseDeDatos.sort((a, b) => parseInt(a.zona) - parseInt(b.zona));
             localStorage.setItem('misZonasViolet', JSON.stringify(baseDeDatos));
         }
@@ -335,16 +314,28 @@
             }
         }
 
-        // --- IMPORTACIÓN / EXPORTACIÓN ---
+        // --- CORRECCIÓN DESCARGA EXCEL ---
         function descargarExcel() {
-            if (baseDeDatos.length === 0) return alert("No hay datos");
-            const encabezados = ["ZONA", "IDENTIFICADOR"];
-            const filas = baseDeDatos.map(i => [i.zona, i.codigo]);
-            const datos = [encabezados, ...filas];
-            const hoja = XLSX.utils.aoa_to_sheet(datos);
-            const libro = XLSX.utils.book_new();
-            XLSX.utils.book_append_sheet(libro, hoja, "HPN_DATA");
-            XLSX.writeFile(libro, "Registros_HPN.xlsx");
+            if (baseDeDatos.length === 0) {
+                alert("No hay datos para exportar.");
+                return;
+            }
+
+            try {
+                const headers = ["ZONA", "IDENTIFICADOR"];
+                const rows = baseDeDatos.map(i => [i.zona, i.codigo]);
+                const worksheetData = [headers, ...rows];
+                
+                const wb = XLSX.utils.book_new();
+                const ws = XLSX.utils.aoa_to_sheet(worksheetData);
+                
+                XLSX.utils.book_append_sheet(wb, ws, "HPN_DATA");
+                XLSX.writeFile(wb, "HPN_REGISTROS.xlsx");
+                
+                playSound('save');
+            } catch (err) {
+                alert("Error al generar el archivo Excel. Asegúrate de estar conectado a internet para cargar la librería.");
+            }
         }
 
         function importarArchivo(e) {
@@ -369,7 +360,6 @@
             reader.readAsText(e.target.files[0]);
         }
 
-        // --- BUSCADOR ---
         document.getElementById('buscador').addEventListener('keyup', function() {
             const q = this.value.trim();
             const filas = document.querySelectorAll('.Data');
