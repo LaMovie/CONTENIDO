@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>HPN DATA - Sistema Inteligente</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+    <style>
+        body { font-family: 'Segoe UI', sans-serif; padding: 15px; background-color: #f0f2f5; }
+        .container { max-width: 1000px; margin: auto; background: white; padding: 20px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
+        .header { display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid #3498db; margin-bottom: 15px; padding-bottom: 10px; }
+        .setup-box { background: #f8f9fa; border: 2px solid #bdc3c7; padding: 15px; border-radius: 8px; margin-bottom: 20px; }
+        textarea { width: 100%; height: 150px; padding: 10px; border-radius: 5px; border: 1px solid #ccc; font-family: monospace; font-size: 11px; margin-top: 10px; box-sizing: border-box; }
+        .btn { padding: 10px 18px; border: none; border-radius: 6px; cursor: pointer; font-weight: bold; }
+        .btn-load { background: #3498db; color: white; margin-top: 10px; width: 100%; }
+        .btn-excel { background: #27ae60; color: white; margin-bottom: 15px; }
+        table { width: 100%; border-collapse: collapse; }
+        th { background: #2c3e50; color: white; padding: 10px; text-align: left; font-size: 13px; }
+        td { border: 1px solid #eee; padding: 8px; font-size: 12px; }
+        input[type="number"] { width: 100%; box-sizing: border-box; padding: 5px; border: 2px solid #3498db; border-radius: 4px; text-align: center; font-weight: bold; }
+        .empty-msg { text-align: center; padding: 30px; color: #7f8c8d; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h3>HPN DATA - CONCEPCIÓN</h3>
+        <button class="btn" style="background:#95a5a6; color:white; font-size:12px;" onclick="document.getElementById('setup').style.display='block'">+ Cargar TXT</button>
+    </div>
+
+    <div id="setup" class="setup-box" style="display:none;">
+        <strong>Pega los datos aquí:</strong>
+        <textarea id="txtInput" placeholder="Pega el texto de la planilla aquí..."></textarea>
+        <button class="btn btn-load" onclick="procesarYGuardar()">REEMPLAZAR PROYECTO Y CARGAR TABLA</button>
+        <button class="btn" style="width:100%; margin-top:5px;" onclick="document.getElementById('setup').style.display='none'">Cerrar</button>
+    </div>
+
+    <div id="vistaProyecto">
+        <button class="btn btn-excel" onclick="descargarExcel()">⬇️ Descargar Excel (.xlsx)</button>
+        <table>
+            <thead>
+                <tr>
+                    <th style="width:15%">Código</th>
+                    <th style="width:55%">Descripción</th>
+                    <th style="width:10%">Stock</th>
+                    <th style="width:20%; background:#27ae60">Conseguido</th>
+                </tr>
+            </thead>
+            <tbody id="tablaBody"></tbody>
+        </table>
+    </div>
+</div>
+
+<script>
+    window.onload = function() { renderizarTabla(); };
+
+    function procesarYGuardar() {
+        const rawText = document.getElementById('txtInput').value.trim();
+        if (!rawText) return alert("Pega los datos primero.");
+
+        const lineas = rawText.split('\n');
+        const nuevoInventario = [];
+
+        lineas.forEach(linea => {
+            const partes = linea.trim().split(/\s+/); // Divide por cualquier espacio
+            if (partes.length >= 2) {
+                const codigo = partes[0]; // El primero es el código
+                const req = partes[partes.length - 1]; // El último es la cantidad
+                const desc = partes.slice(1, -1).join(" "); // Todo lo del medio es descripción
+
+                nuevoInventario.push({ cod: codigo, desc: desc, req: req, cons: "" });
+            }
+        });
+
+        if (nuevoInventario.length > 0) {
+            localStorage.setItem('hpn_database', JSON.stringify(nuevoInventario));
+            document.getElementById('setup').style.display = 'none';
+            renderizarTabla();
+        } else {
+            alert("No se pudo reconocer el formato. Asegúrate de que cada línea tenga Código, Nombre y Cantidad.");
+        }
+    }
+
+    function renderizarTabla() {
+        const datos = JSON.parse(localStorage.getItem('hpn_database')) || [];
+        const body = document.getElementById('tablaBody');
+        body.innerHTML = "";
+
+        if(datos.length === 0) {
+            body.innerHTML = "<tr><td colspan='4' class='empty-msg'>No hay datos. Haz clic en '+ Cargar TXT'</td></tr>";
+            return;
+        }
+
+        datos.forEach((item, index) => {
+            const fila = document.createElement('tr');
+            fila.innerHTML = `
+                <td>${item.cod}</td>
+                <td>${item.desc}</td>
+                <td>${item.req}</td>
+                <td><input type="number" value="${item.cons}" onchange="actualizarIndividual(${index}, this.value)"></td>
+            `;
+            body.appendChild(fila);
+        });
+    }
+
+    function actualizarIndividual(index, valor) {
+        const datos = JSON.parse(localStorage.getItem('hpn_database'));
+        datos[index].cons = valor;
+        localStorage.setItem('hpn_database', JSON.stringify(datos));
+    }
+
+    function descargarExcel() {
+        const datos = JSON.parse(localStorage.getItem('hpn_database')) || [];
+        if (datos.length === 0) return alert("No hay datos.");
+        const matriz = [["Código", "Descripción", "Stock Requerido", "Conseguido"]];
+        datos.forEach(item => { matriz.push([item.cod, item.desc, item.req, item.cons]); });
+        const ws = XLSX.utils.aoa_to_sheet(matriz);
+        const wb = XLSX.utils.book_new();
+        XLSX.utils.book_append_sheet(wb, ws, "Inventario");
+        XLSX.writeFile(wb, "HPN_Inventario_Final.xlsx");
+    }
+</script>
+</body>
+</html>
