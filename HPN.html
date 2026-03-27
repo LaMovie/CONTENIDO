@@ -98,25 +98,34 @@
         }
 
         function guardarDato() {
-            const cont = document.getElementById('reg-contenedor').value.trim();
-            const zona = document.getElementById('reg-zona').value.trim();
-            const codInput = document.getElementById('reg-codigo');
-            let cod = codInput.value.trim().padStart(9, '0');
+            const inputCont = document.getElementById('reg-contenedor');
+            const inputZona = document.getElementById('reg-zona');
+            const inputCod = document.getElementById('reg-codigo');
+
+            const cont = inputCont.value.trim();
+            const zona = inputZona.value.trim();
+            let cod = inputCod.value.trim().padStart(9, '0');
 
             if (!zona || cod.length !== 9) { alert("Zona y código de 9 dígitos requeridos."); return; }
             
-            // Manualmente sí validamos duplicados para evitar errores del usuario
             if (baseDeDatos.some(i => i.codigo === cod && i.zona === zona)) {
                 playSound('error');
-                codInput.classList.add('error-duplicado');
+                inputCod.classList.add('error-duplicado');
                 document.getElementById('msj-duplicado').style.display = 'block';
-                setTimeout(() => { codInput.classList.remove('error-duplicado'); document.getElementById('msj-duplicado').style.display = 'none'; }, 3000);
+                setTimeout(() => { inputCod.classList.remove('error-duplicado'); document.getElementById('msj-duplicado').style.display = 'none'; }, 3000);
                 return;
             }
 
             baseDeDatos.push({ contenedor: cont || "-", zona: zona, codigo: cod, id: Date.now() });
-            actualizarStorage(); renderizarTabla(); playSound('save');
-            codInput.value = "";
+            actualizarStorage(); 
+            renderizarTabla(); 
+            playSound('save');
+
+            // --- AQUÍ ESTÁ EL CAMBIO SOLICITADO: LIMPIEZA TOTAL ---
+            inputCont.value = "";
+            inputZona.value = "";
+            inputCod.value = "";
+            inputCont.focus(); // Devuelve el cursor al primer campo automáticamente
         }
 
         function renderizarTabla() {
@@ -153,14 +162,13 @@
                         }
 
                         if (z && co.length === 9) {
-                            // NO validamos duplicados aquí para permitir que lea TODO el Excel
                             baseDeDatos.push({ contenedor: c || "-", zona: z, codigo: co, id: Date.now() + Math.random() });
                             contador++;
                         }
                     });
 
                     actualizarStorage(); renderizarTabla();
-                    alert(`IMPORTACIÓN EXITOSA: Se cargaron ${contador} registros (incluyendo repetidos).`);
+                    alert(`IMPORTACIÓN EXITOSA: Se cargaron ${contador} registros.`);
                     document.getElementById('menu-registro').removeAttribute('open');
                 } catch (err) { alert("Error al leer Excel."); }
             };
@@ -168,12 +176,11 @@
             e.target.value = '';
         }
 
-        // --- FUNCIONES DE CÁMARA Y LINTERNA ---
         async function iniciarEscaner() {
             document.getElementById('camara-container').style.display = 'block';
             try {
                 streamCamara = await navigator.mediaDevices.getUserMedia({ 
-                    video: { facingMode: "environment", focusMode: "continuous" } 
+                    video: { facingMode: "environment" } 
                 });
                 document.getElementById('video-preview').srcObject = streamCamara;
             } catch (err) { alert("No se pudo acceder a la cámara."); }
@@ -183,12 +190,7 @@
             if (!streamCamara) return;
             const track = streamCamara.getVideoTracks()[0];
             const capabilities = track.getCapabilities();
-
-            if (!capabilities.torch) {
-                alert("Tu dispositivo no permite controlar la linterna desde el navegador.");
-                return;
-            }
-
+            if (!capabilities.torch) { alert("Sin linterna disponible."); return; }
             linternaEncendida = !linternaEncendida;
             try {
                 await track.applyConstraints({ advanced: [{ torch: linternaEncendida }] });
@@ -202,7 +204,6 @@
             linternaEncendida = false;
         }
 
-        // Buscador
         document.getElementById('buscador').addEventListener('input', function() {
             clearTimeout(timeoutBusqueda);
             const q = this.value.trim();
