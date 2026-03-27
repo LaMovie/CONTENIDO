@@ -3,186 +3,84 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>💾 REGISTROS HPN</title>
+    <title>💾 HPN DATA PRO - LINTERNA</title>
     <link rel="manifest" href="manifest.json">
-    
-    <script src="https://cdn.jsdelivr.net/npm/tesseract.js@4/dist/tesseract.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
-
-    <script>
-      if ('serviceWorker' in navigator) {
-        navigator.serviceWorker.register('./sw.js').catch(err => console.warn('Error SW', err));
-      }
-    </script>
 
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Roboto+Mono:wght@300;500;700&family=Inter:wght@400;700&display=swap');
-        
-        :root {
-            --neon-violet: #bc13fe;
-            --electric-purple: #7b2cbf;
-            --glass: rgba(123, 44, 191, 0.1);
-            --bg-dark: #05010d;
-            --danger: #ff4d4d;
-        }
-
-        body {
-            background: var(--bg-dark);
-            color: #e0aaff;
-            font-family: 'Inter', sans-serif;
-            margin: 0;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            min-height: 100vh;
-            padding: 20px;
-        }
-
-        .panel-registro {
-            background: var(--glass);
-            padding: 20px;
-            border-radius: 25px;
-            border: 1px solid var(--electric-purple);
-            box-shadow: 0 0 20px rgba(188, 19, 254, 0.1);
-            margin-bottom: 30px;
-            width: 95%;
-            max-width: 600px;
-            text-align: center;
-        }
-
-        h1, h2, .Sum { font-family: 'Orbitron', sans-serif; }
-        
-        input {
-            background: #1a0a2e;
-            border: 1px solid var(--electric-purple);
-            color: #f7dfff;
-            padding: 12px;
-            border-radius: 15px;
-            margin: 8px;
-            width: 85%;
-            font-size: 1rem;
-            outline: none;
-            transition: 0.3s;
-        }
-
-        input.error-duplicado {
-            border-color: var(--danger) !important;
-            box-shadow: 0 0 15px rgba(255, 77, 77, 0.5) !important;
-            animation: sacudida 0.3s ease;
-        }
-        @keyframes sacudida {
-            0%, 100% { transform: translateX(0); }
-            25% { transform: translateX(-5px); }
-            75% { transform: translateX(5px); }
-        }
-
-        #msj-duplicado { 
-            color: var(--danger); 
-            font-size: 0.75rem; 
-            font-family: 'Orbitron'; 
-            display: none; 
-            margin-top: 5px; 
-            font-weight: bold; 
-        }
-
-        .num-legible {
-            font-family: 'Roboto Mono', monospace;
-            font-weight: 700;
-            color: #ffffff;
-            font-size: 1.1rem;
-        }
-
-        button {
-            background: linear-gradient(45deg, var(--electric-purple), var(--neon-violet));
-            color: white; border: none; padding: 10px 18px; border-radius: 12px;
-            font-weight: bold; cursor: pointer;
-            font-family: 'Orbitron'; font-size: 0.65rem; transition: 0.4s; margin: 5px;
-        }
-
+        :root { --neon-violet: #bc13fe; --electric-purple: #7b2cbf; --glass: rgba(123, 44, 191, 0.1); --bg-dark: #05010d; --danger: #ff4d4d; }
+        body { background: var(--bg-dark); color: #e0aaff; font-family: 'Inter', sans-serif; margin: 0; display: flex; flex-direction: column; align-items: center; min-height: 100vh; padding: 20px; }
+        .panel-registro { background: var(--glass); padding: 20px; border-radius: 25px; border: 1px solid var(--electric-purple); box-shadow: 0 0 20px rgba(188, 19, 254, 0.1); margin-bottom: 30px; width: 95%; max-width: 600px; text-align: center; }
+        h1, .Sum { font-family: 'Orbitron', sans-serif; }
+        input { background: #1a0a2e; border: 1px solid var(--electric-purple); color: #f7dfff; padding: 12px; border-radius: 15px; margin: 8px; width: 85%; font-size: 1rem; outline: none; }
+        input.error-duplicado { border-color: var(--danger) !important; animation: sacudida 0.3s ease; }
+        @keyframes sacudida { 0%, 100% { transform: translateX(0); } 25% { transform: translateX(-5px); } 75% { transform: translateX(5px); } }
+        #msj-duplicado { color: var(--danger); font-size: 0.75rem; font-family: 'Orbitron'; display: none; margin-top: 5px; font-weight: bold; }
+        .num-legible { font-family: 'Roboto Mono', monospace; font-weight: 700; color: #ffffff; font-size: 1.1rem; }
+        button { background: linear-gradient(45deg, var(--electric-purple), var(--neon-violet)); color: white; border: none; padding: 10px 18px; border-radius: 12px; font-weight: bold; cursor: pointer; font-family: 'Orbitron'; font-size: 0.65rem; transition: 0.4s; margin: 5px; }
         button:hover { transform: scale(1.05); box-shadow: 0 0 15px var(--neon-violet); }
-
-        .btn-ocr { background: linear-gradient(45deg, #0044ff, #00ccff); border: 1px solid white; }
         .btn-danger { background: linear-gradient(45deg, #800000, var(--danger)); }
         .btn-edit { background: #2a2a2a; border: 1px solid var(--electric-purple); }
-
+        .btn-linterna { background: linear-gradient(45deg, #ffd700, #ffa500); color: black; }
         .search-box { width: 90%; max-width: 600px; margin: 15px; }
-        #buscador {
-            width: 85%; padding: 10px; background: transparent;
-            border-bottom: 3px solid var(--electric-purple);
-            color: white; font-size: 1.4rem; text-align: center; border-radius: 35px;
-            font-family: 'Roboto Mono', monospace;
-        }
-
+        #buscador { width: 90%; padding: 18px; background: transparent; border-bottom: 3px solid var(--electric-purple); color: white; font-size: 1.4rem; text-align: center; border-radius: 35px; font-family: 'Roboto Mono', monospace; }
         table { width: 100%; max-width: 900px; margin-top: 25px; border-collapse: separate; border-spacing: 0 10px; display: none; }
         th { color: var(--neon-violet); padding: 12px; font-size: 0.75rem; font-family: 'Orbitron'; }
         tr { background: rgba(255, 255, 255, 0.04); border-radius: 15px; }
         td { padding: 15px; text-align: center; border-top: 1px solid rgba(123, 44, 191, 0.2); }
-
-        .Sum {
-            width: 85%; color: #fff; margin-bottom: 25px; background: #bc13cc; 
-            border-radius: 25px; border: 2px solid #bc13f3; padding: 12px;
-            cursor: pointer; text-align: center; font-size: 0.9rem;
-        }
-
+        .Sum { width: 85%; color: #fff; margin-bottom: 25px; background: #bc13cc; border-radius: 25px; border: 2px solid #bc13f3; padding: 12px; cursor: pointer; text-align: center; font-size: 0.9rem; }
         #no-results { color: var(--danger); font-family: 'Orbitron'; font-weight: bold; display: none; margin-top: 20px; }
+        #camara-container { display:none; margin-top:15px; position: relative; }
+        video { width: 100%; border-radius: 15px; border: 2px solid var(--neon-violet); }
     </style>
 </head>
 <body>
 
-    <h1 style="font-family: 'Orbitron'; letter-spacing: 5px; text-shadow: 0 0 15px var(--neon-violet);">
-        HPN <span style="color:white">DATA</span>
-    </h1>
+    <h1 style="letter-spacing: 5px; text-shadow: 0 0 15px var(--neon-violet);">HPN <span style="color:white">DATA</span></h1>
 
     <details id="menu-registro">
         <summary class="Sum">REGISTRO Y GESTIÓN</summary>
         <div class="panel-registro">
-            <button class="btn-ocr" onclick="iniciarEscaner()">📷 ESCANEAR CÓDIGO</button>
-            <div id="camara-container" style="display:none; margin-top:15px;">
-                <video id="video-preview" autoplay playsinline style="width:100%; border-radius:15px; border: 2px solid var(--neon-violet);"></video>
-                <button class="btn-danger" onclick="detenerCamara()">CANCELAR</button>
+            <button onclick="iniciarEscaner()" style="background: #0044ff;">📷 ACTIVAR CÁMARA</button>
+            <div id="camara-container">
+                <video id="video-preview" autoplay playsinline></video>
+                <div style="margin-top:10px;">
+                    <button id="btn-flash" class="btn-linterna" onclick="toggleLinterna()">🔦 LINTERNA: OFF</button>
+                    <button class="btn-danger" onclick="detenerCamara()">CERRAR</button>
+                </div>
             </div>
 
-            <br>
+            <br><br>
             <input type="text" id="reg-contenedor" placeholder="LUGAR / CONTENEDOR">
             <input type="number" id="reg-zona" placeholder="Nº ZONA">
             <input type="number" id="reg-codigo" placeholder="CÓDIGO (9 DÍGITOS)">
             <div id="msj-duplicado">⚠️ IDENTIFICADOR YA REGISTRADO</div>
-            
             <br><br>
             <button onclick="guardarDato()">GUARDAR REGISTRO</button>
-
             <div style="margin-top:20px; border-top: 1px dashed var(--electric-purple); padding-top:15px;">
-                <button onclick="document.getElementById('input-file').click()">📥 IMPORTAR .XLSX</button>
+                <button onclick="document.getElementById('input-file').click()">📥 IMPORTAR EXCEL (LEE TODO)</button>
                 <input type="file" id="input-file" accept=".xlsx, .xls" onchange="importarArchivo(event)" style="display:none">
-                <button onclick="descargarExcel()">📤 DESCARGAR .XLSX</button>
+                <button onclick="descargarExcel()">📤 DESCARGAR EXCEL</button>
                 <br>
                 <button class="btn-danger" onclick="limpiarBaseDatos()">ELIMINAR TODA LA DATA</button>
             </div>
         </div>
     </details>
 
-    <div class="search-box">
-        <input type="number" id="buscador" placeholder="Buscador..." autocomplete="off">
-    </div>
-
+    <div class="search-box"><input type="number" id="buscador" placeholder="Buscador..." autocomplete="off"></div>
     <div id="no-results">DATOS NO ENCONTRADOS</div>
 
     <table id="tabla-datos">
-        <thead>
-            <tr>
-                <th>CONTENEDOR</th>
-                <th>ZONA</th>
-                <th>CÓDIGO</th>
-                <th>ACCIONES</th>
-            </tr>
-        </thead>
+        <thead><tr><th>CONTENEDOR</th><th>ZONA</th><th>CÓDIGO</th><th>ACCIONES</th></tr></thead>
         <tbody id="lista-db"></tbody>
     </table>
 
     <script>
         const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-        let streamCamara = null;
         let baseDeDatos = JSON.parse(localStorage.getItem('hpn_v3_data')) || [];
+        let streamCamara = null;
+        let linternaEncendida = false;
         let timeoutBusqueda;
 
         function playSound(type) {
@@ -192,20 +90,10 @@
             osc.frequency.setValueAtTime(type === 'save' ? 880 : 200, audioCtx.currentTime);
             gain.gain.setValueAtTime(0.05, audioCtx.currentTime);
             osc.start(); osc.stop(audioCtx.currentTime + 0.15);
-            if (navigator.vibrate) navigator.vibrate(type === 'save' ? 60 : 150);
-        }
-
-        function esDuplicado(codigo) {
-            return baseDeDatos.some(item => String(item.codigo) === String(codigo));
         }
 
         function actualizarStorage() {
-            baseDeDatos.sort((a, b) => {
-                const contA = (a.contenedor || "").toLowerCase();
-                const contB = (b.contenedor || "").toLowerCase();
-                if (contA !== contB) return contA.localeCompare(contB);
-                return (parseInt(a.zona) || 0) - (parseInt(b.zona) || 0);
-            });
+            baseDeDatos.sort((a, b) => (parseInt(a.zona) || 0) - (parseInt(b.zona) || 0));
             localStorage.setItem('hpn_v3_data', JSON.stringify(baseDeDatos));
         }
 
@@ -213,31 +101,22 @@
             const cont = document.getElementById('reg-contenedor').value.trim();
             const zona = document.getElementById('reg-zona').value.trim();
             const codInput = document.getElementById('reg-codigo');
-            const cod = codInput.value.trim();
-            const msj = document.getElementById('msj-duplicado');
+            let cod = codInput.value.trim().padStart(9, '0');
 
-            if (!zona || cod.length !== 9) {
-                alert("Complete los campos. El código debe ser de 9 dígitos.");
-                return;
-            }
-
-            if (esDuplicado(cod)) {
+            if (!zona || cod.length !== 9) { alert("Zona y código de 9 dígitos requeridos."); return; }
+            
+            // Manualmente sí validamos duplicados para evitar errores del usuario
+            if (baseDeDatos.some(i => i.codigo === cod && i.zona === zona)) {
                 playSound('error');
                 codInput.classList.add('error-duplicado');
-                msj.style.display = 'block';
-                setTimeout(() => { 
-                    codInput.classList.remove('error-duplicado'); 
-                    msj.style.display = 'none'; 
-                }, 3000);
+                document.getElementById('msj-duplicado').style.display = 'block';
+                setTimeout(() => { codInput.classList.remove('error-duplicado'); document.getElementById('msj-duplicado').style.display = 'none'; }, 3000);
                 return;
             }
 
             baseDeDatos.push({ contenedor: cont || "-", zona: zona, codigo: cod, id: Date.now() });
-            actualizarStorage();
-            playSound('save');
+            actualizarStorage(); renderizarTabla(); playSound('save');
             codInput.value = "";
-            renderizarTabla();
-            document.getElementById('menu-registro').removeAttribute('open');
         }
 
         function renderizarTabla() {
@@ -246,37 +125,9 @@
             baseDeDatos.forEach(item => {
                 const row = document.createElement('tr');
                 row.className = 'Data';
-                row.innerHTML = `
-                    <td style="color:#aaa; font-size: 0.8rem;">${item.contenedor}</td>
-                    <td class="num-legible" style="color:var(--neon-violet)">${item.zona}</td>
-                    <td class="num-legible">${item.codigo}</td>
-                    <td>
-                        <button class="btn-edit" onclick="editarDato(${item.id})">EDITAR</button>
-                        <button class="btn-danger" onclick="eliminarDato(${item.id})">ELIMINAR</button>
-                    </td>
-                `;
+                row.innerHTML = `<td style="color:#aaa; font-size: 0.8rem;">${item.contenedor}</td><td class="num-legible" style="color:var(--neon-violet)">${item.zona}</td><td class="num-legible">${item.codigo}</td><td><button class="btn-edit" onclick="editarDato(${item.id})">EDITAR</button><button class="btn-danger" onclick="eliminarDato(${item.id})">ELIMINAR</button></td>`;
                 lista.appendChild(row);
             });
-        }
-
-        function editarDato(id) {
-            const item = baseDeDatos.find(i => i.id === id);
-            const nc = prompt("Editar Contenedor:", item.contenedor);
-            const nz = prompt("Editar Nº Zona:", item.zona);
-            const nco = prompt("Editar Código (9 dígitos):", item.codigo);
-            if (nz && nco && nco.length === 9) {
-                item.contenedor = nc || "-";
-                item.zona = nz;
-                item.codigo = nco;
-                actualizarStorage(); renderizarTabla(); playSound('save');
-            }
-        }
-
-        function eliminarDato(id) {
-            if(confirm("¿Seguro que deseas ELIMINAR este registro?")) {
-                baseDeDatos = baseDeDatos.filter(i => i.id !== id);
-                actualizarStorage(); renderizarTabla(); playSound('error');
-            }
         }
 
         function importarArchivo(e) {
@@ -288,96 +139,97 @@
                     const data = new Uint8Array(ev.target.result);
                     const workbook = XLSX.read(data, { type: 'array' });
                     const sheet = workbook.Sheets[workbook.SheetNames[0]];
-                    const json = XLSX.utils.sheet_to_json(sheet, { header: 1 });
-                    let nuevos = 0;
+                    const json = XLSX.utils.sheet_to_json(sheet, { header: 1, defval: "" });
+
+                    let contador = 0;
                     json.forEach((col, idx) => {
-                        if (idx === 0 && isNaN(col[0]) && isNaN(col[1])) return;
-                        let c, z, co;
+                        if (idx === 0 && isNaN(col[1])) return; 
+                        
+                        let c = "-", z = "", co = "";
                         if (col.length >= 3) {
-                            c = String(col[0] || "").trim();
-                            z = String(col[1] || "").replace(/\D/g,'');
-                            co = String(col[2] || "").trim();
-                        } else if (col.length === 2) {
-                            c = "-"; 
-                            z = String(col[0] || "").replace(/\D/g,'');
-                            co = String(col[1] || "").trim();
+                            c = String(col[0]).trim(); z = String(col[1]).replace(/\D/g,''); co = String(col[2]).replace(/\D/g,'').padStart(9, '0');
+                        } else {
+                            z = String(col[0]).replace(/\D/g,''); co = String(col[1]).replace(/\D/g,'').padStart(9, '0');
                         }
-                        if (z && co.length === 9 && !esDuplicado(co)) {
-                            baseDeDatos.push({ contenedor: c, zona: z, codigo: co, id: Date.now() + Math.random() });
-                            nuevos++;
+
+                        if (z && co.length === 9) {
+                            // NO validamos duplicados aquí para permitir que lea TODO el Excel
+                            baseDeDatos.push({ contenedor: c || "-", zona: z, codigo: co, id: Date.now() + Math.random() });
+                            contador++;
                         }
                     });
+
                     actualizarStorage(); renderizarTabla();
-                    alert(`IMPORTACIÓN EXITOSA: ${nuevos} registros añadidos.`);
+                    alert(`IMPORTACIÓN EXITOSA: Se cargaron ${contador} registros (incluyendo repetidos).`);
                     document.getElementById('menu-registro').removeAttribute('open');
-                } catch (e) { alert("Error al procesar el Excel."); }
+                } catch (err) { alert("Error al leer Excel."); }
             };
             reader.readAsArrayBuffer(file);
             e.target.value = '';
         }
 
-        function descargarExcel() {
-            if (baseDeDatos.length === 0) return alert("No hay datos");
-            const rows = baseDeDatos.map(i => [i.contenedor, i.zona, i.codigo]);
-            const ws = XLSX.utils.aoa_to_sheet([["CONTENEDOR", "ZONA", "CODIGO"], ...rows]);
-            const wb = XLSX.utils.book_new();
-            XLSX.utils.book_append_sheet(wb, ws, "Inventario");
-            XLSX.writeFile(wb, "HPN_DATA.xlsx");
-            playSound('save');
-        }
-
-        // --- BUSCADOR OPTIMIZADO CON DEBOUNCE ---
-        document.getElementById('buscador').addEventListener('input', function() {
-            clearTimeout(timeoutBusqueda);
-            const q = this.value.trim();
-            const tabla = document.getElementById('tabla-datos');
-            const noRes = document.getElementById('no-results');
-
-            if (q === "") { 
-                tabla.style.display = 'none'; 
-                noRes.style.display = 'none';
-                return; 
-            }
-
-            // Esperar 300ms antes de ejecutar la búsqueda
-            timeoutBusqueda = setTimeout(() => {
-                const filas = document.querySelectorAll('.Data');
-                let hay = 0;
-                
-                // Procesar en bloque para mejorar rendimiento
-                filas.forEach(f => {
-                    const texto = f.textContent || f.innerText;
-                    if (texto.includes(q)) {
-                        f.style.display = '';
-                        hay++;
-                    } else {
-                        f.style.display = 'none';
-                    }
-                });
-
-                tabla.style.display = hay > 0 ? 'table' : 'none';
-                noRes.style.display = hay > 0 ? 'none' : 'block';
-            }, 300);
-        });
-
+        // --- FUNCIONES DE CÁMARA Y LINTERNA ---
         async function iniciarEscaner() {
             document.getElementById('camara-container').style.display = 'block';
-            streamCamara = await navigator.mediaDevices.getUserMedia({ video: { facingMode: "environment" } });
-            document.getElementById('video-preview').srcObject = streamCamara;
+            try {
+                streamCamara = await navigator.mediaDevices.getUserMedia({ 
+                    video: { facingMode: "environment", focusMode: "continuous" } 
+                });
+                document.getElementById('video-preview').srcObject = streamCamara;
+            } catch (err) { alert("No se pudo acceder a la cámara."); }
+        }
+
+        async function toggleLinterna() {
+            if (!streamCamara) return;
+            const track = streamCamara.getVideoTracks()[0];
+            const capabilities = track.getCapabilities();
+
+            if (!capabilities.torch) {
+                alert("Tu dispositivo no permite controlar la linterna desde el navegador.");
+                return;
+            }
+
+            linternaEncendida = !linternaEncendida;
+            try {
+                await track.applyConstraints({ advanced: [{ torch: linternaEncendida }] });
+                document.getElementById('btn-flash').innerText = linternaEncendida ? "🔦 LINTERNA: ON" : "🔦 LINTERNA: OFF";
+            } catch (e) { console.error(e); }
         }
 
         function detenerCamara() {
             if (streamCamara) streamCamara.getTracks().forEach(t => t.stop());
             document.getElementById('camara-container').style.display = 'none';
+            linternaEncendida = false;
         }
 
-        function limpiarBaseDatos() {
-            if(confirm("⚠️ ¿BORRAR TODA LA DATA?")) {
-                baseDeDatos = []; localStorage.removeItem('hpn_v3_data');
-                renderizarTabla(); playSound('error');
-            }
+        // Buscador
+        document.getElementById('buscador').addEventListener('input', function() {
+            clearTimeout(timeoutBusqueda);
+            const q = this.value.trim();
+            timeoutBusqueda = setTimeout(() => {
+                const filas = document.querySelectorAll('.Data');
+                let hay = 0;
+                filas.forEach(f => {
+                    if (f.textContent.includes(q)) { f.style.display = ''; hay++; }
+                    else f.style.display = 'none';
+                });
+                document.getElementById('tabla-datos').style.display = (q !== "" && hay > 0) ? 'table' : 'none';
+                document.getElementById('no-results').style.display = (q !== "" && hay === 0) ? 'block' : 'none';
+            }, 300);
+        });
+
+        function editarDato(id) {
+            const item = baseDeDatos.find(i => i.id === id);
+            const nc = prompt("Contenedor:", item.contenedor), nz = prompt("Zona:", item.zona), nco = prompt("Código:", item.codigo);
+            if (nz && nco && nco.length === 9) { item.contenedor = nc || "-"; item.zona = nz; item.codigo = nco; actualizarStorage(); renderizarTabla(); }
         }
 
+        function eliminarDato(id) { if(confirm("¿Eliminar?")) { baseDeDatos = baseDeDatos.filter(i => i.id !== id); actualizarStorage(); renderizarTabla(); } }
+        function descargarExcel() {
+            const ws = XLSX.utils.aoa_to_sheet([["CONTENEDOR", "ZONA", "CODIGO"], ...baseDeDatos.map(i => [i.contenedor, i.zona, i.codigo])]);
+            const wb = XLSX.utils.book_new(); XLSX.utils.book_append_sheet(wb, ws, "Data"); XLSX.writeFile(wb, "HPN_REPORT.xlsx");
+        }
+        function limpiarBaseDatos() { if(confirm("¿BORRAR TODO?")) { baseDeDatos = []; localStorage.removeItem('hpn_v3_data'); renderizarTabla(); } }
         window.onload = renderizarTabla;
     </script>
 </body>
