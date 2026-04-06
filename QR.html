@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Generador de QR</title>
+    <!-- Cargamos la librería desde un CDN -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+<style>
+body { 
+   display: flex;    
+   padding: 50px;
+   background: #000;
+   align-items: center; 
+   flex-direction: column;
+   font-family: sans-serif;     
+}
+input { 
+   color: #fff;
+   width: 300px;
+   padding: 10px;  
+   outline: none;
+   background: blue;
+   font-weight: bold;
+   border-radius: 20px;
+   margin-bottom: 20px; 
+   border: 1px solid #ccc;  
+ &::placeholder {
+     color: #aaa;
+ }
+}
+button {
+    color: #000;
+    background: #aaa;
+    font-weight: bold;
+    border-radius: 20px;
+}
+#contenedorQR { 
+   margin-top: 20px; 
+}
+</style>
+</head>
+<body>
+    <h2>Convertir Enlace a QR</h2>
+        
+    <input type="text" id="enlace" placeholder="Pega tu enlace aquí (ej: https://google.com)">
+    <button onclick="generarQR()">Generar Código QR</button>
+
+    <div id="contenedorQR"></div>
+
+<script>
+ <!-- Inicializamos la instancia de QRCode una sola vez -->
+        const contenedor = document.getElementById("contenedorQR");
+        const qr = new QRCode(contenedor, {
+            width: 200,
+            height: 200,
+            colorDark: "#000000",
+            colorLight: "#ffffff",
+            correctLevel: QRCode.CorrectLevel.H
+        });
+
+        function generarQR() {
+            const url = document.getElementById("enlace").value;
+
+      if (url.trim() === "") {
+             alert("Por favor, ingresa un enlace válido.");
+ contenedorQR.style.border = "";
+                return;
+            } else {
+ contenedorQR.style.border = "2px solid #fff";
+            }
+
+ <!-- Limpia el QR anterior y genera el nuevo -->
+            qr.clear();
+            qr.makeCode(url);
+        }
+</script>
+</body>
+</html>
