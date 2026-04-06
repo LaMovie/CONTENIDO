@@ -42,8 +42,9 @@ button {
 </head>
 <body>
     <h2>Convertir Enlace a QR</h2>
-        
+<form onsubmit="event.preventDefault(); generarQR()"/>       
     <input type="text" id="enlace" placeholder="Pega tu enlace aquí (ej: https://google.com)">
+</form>
     <button onclick="generarQR()">Generar Código QR</button>
 
     <div id="contenedorQR"></div>
