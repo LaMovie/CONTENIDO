@@ -1,101 +1,203 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-     <meta charset="UTF-8"
+     <meta charset="UTF-8">
      <meta http-equiv="X-UA-Compatible" content="IE-edge">
-     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
      <title>🍿LA MOVIE APK🍿</title>
 <style>   
 @import url('https://fonts.googleapis.com/css2?family=Lacquer&display=swap');
-body {
-    position: fixed;
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    width: 100%;
+    overflow: hidden; 
     background: #000;
-    font-weight: bold;
     font-family: 'Lacquer', cursive;
--webkit-animation:puff-in-hor 1s cubic-bezier(.47,0,.745,.715) both;animation:puff-in-hor 1.5s cubic-bezier(.47,0,.745,.715) both}@-webkit-keyframes puff-in-hor{0%{-webkit-transform:scaleX(2);transform:scaleX(2);-webkit-filter:blur(4px);filter:blur(4px);opacity:0}100%{-webkit-transform:scaleX(1);transform:scaleX(1);-webkit-filter:blur(0px);filter:blur(0px);opacity:1}}@keyframes puff-in-hor{0%{-webkit-transform:scaleX(2);transform:scaleX(2);-webkit-filter:blur(4px);filter:blur(4px);opacity:0}100%{-webkit-transform:scaleX(1);transform:scaleX(1);-webkit-filter:blur(0px);filter:blur(0px);opacity:1}
-}   
+}
+
+/* Fondo de pantalla completa */
+.MainContainer {
+    width: 100vw;
+    height: 100vh;
+    background: url(https://is.gd/L4PVt2);
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    animation: puff-in-hor 1.5s cubic-bezier(.47,0,.745,.715) both;
+}
+
+@keyframes puff-in-hor {
+    0% { transform: scaleX(2); filter: blur(4px); opacity: 0; }
+    100% { transform: scaleX(1); filter: blur(0px); opacity: 1; }
+}
+
+/* Botón flotante superior */
 #H2 {
     color: #0a0;
-    padding: 1%;
-    z-index: 9999;
-    margin: 10vh 18vh;
-    position: absolute;
+    padding: 5px 15px;
+    margin-top: 20px;
     border-radius: 10px;
     background: #4fff49;
     border: 2px solid #fff;
-    box-shadow: 0px 0px 30px #fff;
-  &:hover {
-     scale: 1.1;
-     color: #aaa;
-     background: blue;
-     border: 2px solid #aaa;
-  }
-} 
-h1 {    
-    height: 6vh;     
-    transition: .5s;
-    text-align: center;
-    border-radius: 20px; 
-    background-size: cover;   
-    background-position: center;
-    box-shadow: 0px 0px 30px red;
-    background: url(https://bit.ly/3RmINlu);     
-  &:hover {
-        scale: 120%;
-        color: #4f3;
-        background: #000;
-        border: 1px solid blue;
-        box-shadow: 0px 0px 30px blue;
-  }
+    box-shadow: 0px 0px 20px #fff;
+    font-size: 1.2rem;
+    cursor: pointer;
+    z-index: 10;
 }
+
+#H2:hover {
+    scale: 1.1;
+    background: blue;
+    color: #aaa;
+}
+
+/* Contenedor de botones compactos */
 .Descargar {
-     scale: 90%;
-     width: 100vw;
-     height: 100vh;
-     display: flex;
-     font-size: 10px;    
-     align-items: center;
-     border-radius: 20px;
-     justify-content: center;
-     background:  url(https://is.gd/L4PVt2);
-     background-size: cover;
-     background-position: center;
+    margin-top: 20px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
 }
-ul li {
-    padding: .1vh;
+
+ul {
+    padding: 0;
+    margin: 0;
     list-style: none;
+    text-align: center;
 }
-a {
-    color: #ff8;    
-    text-decoration: none;  
-}
-#D {
+
+ul li h1 {    
+    font-size: 1.1rem; 
+    padding: 10px 20px;
+    margin: 10px 0;
+    transition: .5s;
+    border-radius: 20px; 
+    background: url(https://bit.ly/3RmINlu);     
+    background-size: cover;
+    box-shadow: 0px 0px 20px red;
     color: #fff;
 }
+
+ul li h1:hover {
+    scale: 1.1;
+    color: #4f3;
+    box-shadow: 0px 0px 30px blue;
+}
+
+a { text-decoration: none; }
+
+/* DIV de Descripción con Scroll Interno */
+#D {
+    flex: 1; 
+    width: 90%;
+    max-width: 500px;
+    margin: 20px 0;
+    padding: 20px;
+    background: rgba(0, 0, 0, 0.7); 
+    backdrop-filter: blur(10px);
+    border-radius: 20px 20px 0 0;
+    border: 1px solid rgba(255, 0, 0, 0.3);
+    overflow-y: auto; 
+    color: #fff;
+    text-align: center;
+    transition: background 0.3s ease; /* Transición suave */
+}
+
+#D h3 {
+    color: #ffea00;
+    font-size: 1.5rem;
+    margin-bottom: 15px;
+}
+
+#D p {
+    font-family: 'Roboto', sans-serif;
+    font-weight: normal;
+    line-height: 1.5;
+    font-size: 1rem;
+    margin-bottom: 15px;
+}
+
+.highlight { color: #4fff49; font-weight: bold; }
+
+/* Estilo del botón de la descripción */
+#S {
+    border-radius: 20px;
+    font-weight: bold;
+    background: gold;
+    color: #000;
+    width: 80%;
+    padding: 10px;
+    cursor: pointer;
+    outline: none;
+    list-style: none; /* Quita la flecha por defecto en algunos navegadores */
+}
+
+/* Scrollbar personalizado */
+#D::-webkit-scrollbar { width: 5px; }
+#D::-webkit-scrollbar-thumb { background: red; border-radius: 10px; }
 </style>     
 </head>
 <body>
-     <h2 id="H2">DESCARGAS</h2>
-<div class="Descargar">
-     <ul>    
-<li id="L"><a href="https://lamovie.github.io/-INICIO/LA%20MOVIE%20LITE.apk"><h1>🔥 La Movie Lite APK 🔥</h1></a></li>
-<li><a href="https://archive.org/download/la-movie_202508/LA%20MOVIE%20%F0%9F%8D%BF.apk"><h1>🍿 La Movie APK 🍿</h1></a></li><br/><br/>   
-  </ul>
-</div>  
-         <div id="D">
-<h1>🍿 La Movie es un centro de streaming gratuito: Tu Pasaporte al Entretenimiento Infinito.
-Explora un universo de emociones con la mejor selección de cine y televisión. Desde los estrenos más esperados como Stranger Things 5 y El Conjuro 4, hasta los clásicos de la comedia como Aída y los animes más potentes. Acción, terror, documentales y TV en vivo, todo en un solo lugar. ¡Dale play a tu próxima obsesión en La Movie!
-¿Buscas adrenalina, sustos o una buena maratón de series? Lo tenemos todo. Navega por nuestras categorías exclusivas de Terror, Acción, Ciencia Ficción y Anime. Además, disfruta de acceso a Free-TV, canales en vivo y los documentales más impactantes del momento. Actualizamos nuestro catálogo constantemente con pre-estrenos mundiales para que nunca te quedes sin nada que ver.
-Olvídate de buscar por horas. En La Movie De Joe hemos curado para ti lo mejor de la gran pantalla y el streaming: desde el caos de The Boys hasta la magia de Avatar. Con secciones dedicadas al Anime, contenido para adultos y televisión online, somos la parada obligatoria para los verdaderos amantes del contenido digital. ¡Tu pantalla, tus reglas!</h1>
+
+<div class="MainContainer">
+    <h2 id="H2">DESCARGAS</h2>
+
+    <div class="Descargar">
+        <ul>    
+            <li><a href="https://lamovie.github.io/-INICIO/LA%20MOVIE%20LITE.apk"><h1>🔥 La Movie Premium APK 🔥</h1></a></li>
+            <li><a href="https://archive.org/download/la-movie_202508/LA%20MOVIE%20%F0%9F%8D%BF.apk"><h1>🍿 La Movie APK 🍿</h1></a></li>
+        </ul>
     </div>  
- 
+
+    <div id="D">
+        <center>
+            <details id="detailsBox" open>
+                <summary id="S">💊 DESCRIPCIÓN 💊</summary>
+                
+                <h3>🍿 TU PASAPORTE AL ENTRETENIMIENTO INFINITO</h3>
+        <p>Explora un universo de emociones con la mejor selección de cine y televisión. Desde los estrenos más esperados como <span class="highlight">Stranger Things 5</span> y <span class="highlight">El Conjuro 4</span>, hasta los clásicos de la comedia como <span class="highlight">Aída</span> y los animes más potentes.</p>
+        
+        <p>Acción, terror, documentales y TV en vivo, todo en un solo lugar. ¡Dale play a tu próxima obsesión en La Movie!</p>
+        
+        <p>¿Buscas adrenalina, sustos o una buena maratón de series? Lo tenemos todo. Navega por nuestras categorías exclusivas de Terror, Acción, Ciencia Ficción y Anime. Además, disfruta de acceso a Free-TV, canales en vivo y los documentales más impactantes del momento.</p>
+        
+        <p>Actualizamos nuestro catálogo constantemente con pre-estrenos mundiales para que nunca te quedes sin nada que ver. Olvídate de buscar por horas. En <span class="highlight">La Movie De Joe</span> hemos curado para ti lo mejor de la gran pantalla y el streaming: desde el caos de <span class="highlight">The Boys</span> hasta la magia de <span class="highlight">Avatar</span>.</p>
+        
+        <p>Con secciones dedicadas al Anime, contenido para adultos y televisión online, somos la parada obligatoria para los verdaderos amantes del contenido digital. ¡Tu pantalla, tus reglas!</p>
+            </details>
+        </center>
+    </div>  
+</div>
+
 <script>
-  H2.onclick = () => {
-    window.location.href = 'https://lamovie.github.io/-INICIO/LA%20MOVIE%20LITE.apk';
-  }
+    // Acción del botón superior
+    H2.onclick = () => {
+        window.location.href = 'https://lamovie.github.io/-INICIO/LA%20MOVIE%20LITE.apk';
+    }
+
+    // Lógica para alternar el fondo de la caja D
+    const cajaD = document.getElementById('D');
+    const det = document.getElementById('detailsBox');
+
+    det.addEventListener('toggle', () => {
+        if (det.open) {
+            // Estilos cuando está ABIERTO
+            cajaD.style.background = "rgba(0, 0, 0, 0.7)";
+            cajaD.style.backdropFilter = "blur(10px)";
+            cajaD.style.border = "1px solid rgba(255, 0, 0, 0.3)";
+        } else {
+            // Estilos cuando está CERRADO
+            cajaD.style.background = "transparent";
+            cajaD.style.backdropFilter = "none";
+            cajaD.style.border = "none";
+        }
+    });
 </script>
 </body>
 </html>
-
-
-
