@@ -150,7 +150,7 @@ input.addEventListener('keyup', function(e) {
 });
 
      <!-- CLIC EN UN CANAL -->
-Lista.addEventListener('click', function(e) {
+Lista.onclick = (e) => {
     if (e.target.classList.contains('Data')) {
   <!-- Reemplazar espacios por nada antes de colocar en el input -->
         var canalSinEspacios = e.target.textContent.replace(/\s+/g, '').toLowerCase();
@@ -159,7 +159,7 @@ Lista.addEventListener('click', function(e) {
         Check();
           T.textContent = e.target.textContent;
     }
-});
+}; 
 </script>
 
        <!-- FULL SCREEN -->
