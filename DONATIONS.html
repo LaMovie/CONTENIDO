@@ -1,164 +1,81 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Apoya a LA MOVIE</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>💳 DONATIONS 💳</title>     
 <style>
-body, html {
-            margin: 0;
-            padding: 0;
-            height: 100%;
-            overflow: hidden;
-            background-color: #fff;
+body {
+    background: url(https://bit.ly/3WekaZh);
+    background-size: cover;
+    background-position: center;
 }
-.fondo {
-            background-image: url('https://is.gd/thprFv');
-            background-size: contain;
-            background-repeat: no-repeat;
-            background-position: center top; 
-            width: 100%;
-            height: 100vh;
-            position: absolute;
+.modal {  
+  top: 0;
+  left: 0;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  display: block;
+  overflow: auto;
+  position: fixed;
+  background: rgb(0,0,0,.5);
 }
-
-/* Estilo base para ambos botones */
-#btn-copiar {
-            padding: 18px 35px;
-            font-size: 20px;
-            font-weight: bold;
-            color: white;
-            background: #007bff;
-            border: none;
-            border-radius: 50px;
-            cursor: pointer;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.4);
-            transition: all 0.3s ease;
-            text-transform: uppercase;
-            text-decoration: none; 
-            display: inline-block;
+.modal-contenido {
+  top: 0%;
+  width: 80%;  
+  padding: 20px;
+  margin: 15% auto;
+  position: relative;
+  border-radius: 20px;
+  border: 1px solid #888;
+  background-color: #000;  
+  box-shadow: 10px 10px 0px black;
 }
-#btn-copiar:hover {
-            background-color: #4f9; 
-            transform: scale(1.05);
-            color: #000;
+.modal-contenido:hover { scale: 105%; }
+#Label { color: gray; opacity: .8; position: relative; }
+#Imgg { width: 30%; height: auto; }
+#Imgg:hover { scale: 150%; }
+#H { color: #aaa; font-family: serif; }
+#U { color: #4f3; opacity: .5; }
+.btn-pago {
+    background: #009ee3;
+    color: white;
+    border: none;
+    padding: 10px;
+    border-radius: 20px;
+    font-weight: bold;
+    cursor: none;
+    margin-top: 15px;
+    width: 90%;
+    box-shadow: 0 0 15px #009ee3;
 }
-#btn-copiar {
-            position: fixed;
-            bottom: 40px;
-            right: 30px;
-            z-index: 100;
-}
-
-/* Posición del botón IR (Centrado y oculto) */
-#btn-ir {
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            z-index: 102;
-            display: none;
-            padding: 18px 35px;
-            font-size: 20px;
-            font-weight: bold;
-            color: #000;
-            background: gold;
-            border: none;
-            border-radius: 50px;
-            cursor: pointer;
-            opacity: 0;    
-    transition: opacity 1s ease;
-            box-shadow: 0 40px 15px rgba(0,0,0,0.4);
-            text-transform: uppercase;
-            text-decoration: none; 
-   &:hover {
-       background: #4f9;
-       scale: 1.1;
-   }
-}
-#toast {
-            visibility: hidden;
-            min-width: 250px;
-            background-color: #333;
-            color: #fff;
-            text-align: center;
-            border-radius: 8px;
-            padding: 16px;
-            position: fixed;
-            z-index: 101;
-            left: 50%;
-            bottom: 100px;
-            transform: translateX(-50%);
-            font-family: sans-serif;
-}
-#toast.show {
-            visibility: visible;
-            animation: fadein 0.5s, fadeout 0.5s 2.5s;
-        }
-
-@keyframes fadein { from {opacity: 0;} to {opacity: 1;} }
-@keyframes fadeout { from {opacity: 1;} to {opacity: 0;} }
-</style>
+.btn-pago:hover { scale: .8; background: #f00; }
+</style>     
 </head>
-<body>
+<body>      
+<center>
+  <div class="modal" id="Modal">
+    <h2 id="H">Contenido Premium</h2>
+    <h4 id="U">📼 ¡Gracias por tu apoyo! 🫂 📼</h4>
+    <div class="modal-contenido"> 
+      <img id="Imgg" src="https://bit.ly/49X0ijf"/><br/>
+      <label id="Label">Ayudanos con tu aporte</label><br/><br/>
+      
+      <button class="btn-pago" onclick="window.open('https://link.mercadopago.cl/estampablillo', '_blank')">👉🏽DONACIÓN AQUÍ 💳</button>   
+    </div>
+  </div>
+</center>         
 
-    <div class="fondo"></div>
-
-    <button id="btn-copiar">COPIAR DATOS</button>
-
-    <a href="https://lamovie.github.io/La-Movie-Delux/+LA-MOVIE+" id="btn-ir">IR A LA MOVIE 🍿 ᴳʳᵃᶜᶦᵃˢ 🫂</a>
-
-    <div id="toast">¡Datos Copiados!</div>
-<audio autoplay src="https://archive.org/download/sergio-mendes-feat.-black-eyed-peas-mas-que-nada-mp-3-160-k-1/Donaciones.mp3"></audio>
 <script>
-        document.getElementById('btn-copiar').addEventListener('click', function() {
-            var textoACopiar = `Pablo Andrés Sepúlveda Molina
-159303454
-Mercado Pago
-Cuenta Vista
-1013014947
-sepulvedamolinap01@gmail.com`;
+var textos = ["🔥 Donaciones y Soporte", "🪙 Ayuda al soprte 🪙", "¡Gracias por tu apoyo! 🫂"];
 
-            // Mostrar el botón oculto
-          
-            setTimeout(function() {
-    var btnIr = document.getElementById('btn-ir');
-    btnIr.style.display = 'block'; // Lo pone en el HTML
+   let index = 0;
+  setInterval(() => {
     
-    // Un pequeño delay extra para que el navegador procese el block antes de la opacidad
-    setTimeout(function() {
-        btnIr.style.opacity = '1';
-    }, 10); 
-}, 3000);
-
-
-
-            // MÉTODO COMPATIBLE PARA MÓVILES
-            var areaTemporal = document.createElement("textarea");
-            areaTemporal.value = textoACopiar;
-            document.body.appendChild(areaTemporal);
-            areaTemporal.select();
-            areaTemporal.setSelectionRange(0, 99999); 
-
-            try {
-                var exitoso = document.execCommand('copy');
-                if(exitoso) {
-                    mostrarToast();
-                } else {
-                    alert("Error al copiar automáticamente.");
-                }
-            } catch (err) {
-                navigator.clipboard.writeText(textoACopiar).then(mostrarToast);
-            }
-
-            document.body.removeChild(areaTemporal);
-        });
-
-        function mostrarToast() {
-            var toast = document.getElementById("toast");
-            toast.className = "show";
-            setTimeout(() => { toast.className = toast.className.replace("show", ""); }, 3000);
-        }
+    U.textContent = textos[index];
+    index = (index + 1) % textos.length;
+}, 2500);
 </script>
 </body>
 </html>
