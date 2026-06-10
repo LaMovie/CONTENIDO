@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+body {    
+    background: #000;
+}
+#H {    
+    color: gold;
+    margin: 15vh 0;
+    text-align: center;
+}
+</style>
+</head>
+<body>
+        <h1 id="H"></h1>
+    
+<script>
+var userLanguage = navigator.language || navigator.userLanguage;
+
+if (userLanguage.startsWith('es')) {
+   
+    H.textContent = "EL USUARIO HABLA ESPAÑOL 🇪🇸";
+    H.style.color = 'gold';
+           } else if (userLanguage.startsWith('pt')) {
+   
+    H.textContent = "EL USUARIO HABLA PORTUGUÉS 🇧🇷";
+    H.style.color = '#4f9';
+           } else {
+    H.textContent = "EL USUARIO HABLA INGLES 🇺🇸";
+    H.style.color = 'red';
+}
+</script> 
+</body>
+</html>
+
+
+
+
+
+
