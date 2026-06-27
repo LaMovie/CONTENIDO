@@ -16,7 +16,7 @@ body {
 .Container {
     gap: 20px;     
     display: grid;
-    margin-top: 5vh;
+    margin-top: 13vh;
     overflow-x: auto;
     padding-left: 15px;
     text-align: center;
@@ -81,35 +81,17 @@ body {
     font-family: monospace;
     text-align: center;
     margin-left: -12vh;
-    margin-top: 15px;
+    margin-top: 25px;
     font-size: 15px;
     font-weight: 600;
     color: white;
 }
+#Search {
+    margin-top: 20px;
+}
 h4 {
     cursor: none; 
     color: #aaa;  
-}
-.Bloq {
-    width: 30%;
-    scale: .9;
-    display: none;
-    background: blue;
-    border-radius: 50%;
-  &:hover {
-      background: red;
-  }
-}
-.Bloq a {
-    color: orange;
-    font-size: 13px;
-    font-weight: bold;
-    text-decoration: none;
-    text-shadow: 5px 10px 20px red;
-  &:hover {
-      color: #4f9;
-      text-shadow: 5px 10px 20px gold;
-  }
 }
 .A {
     color: blue;
@@ -119,16 +101,22 @@ h4 {
   }
 }
 .Todo {
+    gap: 13vh;
+    width: 100%;
+    height: 12vh;
+    z-index: 9999;
     display: flex;
-    justify-content: space-between;
+    position: fixed;  
+    margin-top: -13vh;  
+    background: #000;
 }
 #I {
     color: #fff;
-    width: 100%;
+    width: 90%;
     height: 6vh;
+    margin: 3vh;
     display: none;
-    background: blue;
-    margin-left: 3vh;
+    background: blue;    
     font-weight: bold;
     border-radius: 20px;
     border: 1px solid gray;
@@ -158,9 +146,7 @@ h4 {
                                            
 <h3 id="Logo">🧿 La Movie 🧿</h3> 
             <br/><br/>
-      <div class="Bloq">
-  <a href="https://play.google.com/store/apps/details?id=com.hsv.freeadblockerbrowser"><span>FREE 📛</span><br/><span>📛 ADBLOCKER</span></a>
-         </div>
+     
     <i id="Search" class="material-icons">search</i>
              </div>
 			
