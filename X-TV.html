@@ -23,7 +23,7 @@ body {
     margin-top: 5vh;
     margin-left: -1vh;       
 }
-.contenedor img{
+.contenedor img {
     width: 100%;
     height: 80%;
     background: orange;
@@ -51,8 +51,14 @@ body {
 }
 @media screen and (max-width: 990px) {
 .contenedor {
-     grid-template-columns: 1fr;
+        grid-template-columns: 1fr;
  }
+}
+#Vid {
+    width: 100%;
+    margin-top: 3vh;    
+    height: 30vh;
+    border-radius: 10px;       
 }
 h6 {
     color: #4f9;
@@ -66,20 +72,6 @@ a {
   &:hover {
       color: blue;
   }
-}
-#All {
-    width: 95%; 
-    height: 35vh; 
-    overflow: hidden; 
-    position: relative;
-}  
-#All iframe {
-    position: absolute;
-    top: -28vh;    
-    left: -1vh;  
-    width: calc(95% + 5vh); 
-    height: calc(100% + 50vh);     
-    border: none;
 }
 #FULL {    
     width: 20%;
@@ -101,14 +93,6 @@ a {
     align-items: center;
     justify-content: space-between;
 }
-#X {
-    width: 100%;
-    height: 37vh;
-    z-index: 9999;
-    display: block;
-    position: fixed;
-    background: transparent;
-}
 </style>
 <style>
 body{-webkit-animation:puff-in-hor 1s cubic-bezier(.47,0,.745,.715) both;animation:puff-in-hor 1.5s cubic-bezier(.47,0,.745,.715) both}@-webkit-keyframes puff-in-hor{0%{-webkit-transform:scaleX(2);transform:scaleX(2);-webkit-filter:blur(4px);filter:blur(4px);opacity:0}100%{-webkit-transform:scaleX(1);transform:scaleX(1);-webkit-filter:blur(0px);filter:blur(0px);opacity:1}}@keyframes puff-in-hor{0%{-webkit-transform:scaleX(2);transform:scaleX(2);-webkit-filter:blur(4px);filter:blur(4px);opacity:0}100%{-webkit-transform:scaleX(1);transform:scaleX(1);-webkit-filter:blur(0px);filter:blur(0px);opacity:1}}
@@ -116,16 +100,15 @@ body{-webkit-animation:puff-in-hor 1s cubic-bezier(.47,0,.745,.715) both;animati
 </head>
 <body>      
              <center>
-<div id="X"></div>
          <div id="All">
-  <iframe id="Vid" src="https://imagenuniversaltv.net:3771/live/iutvlive.m3u8" frameborder="0" allowfullscreen="true" allow="encrypted-media" scrolling="true" name="WILLOW"></iframe> 
-    </div><br/>
-
+  <iframe id="Vid" src="https://imagenuniversaltv.net:3771/live/iutvlive.m3u8" style="width:100%; aspect-ration:16/9" frameborder="0" allowfullscreen="true" allow="encrypted-media" scrolling="true" name="WILLOW"></iframe> 
+  </div><br/>
+     
 <div id="FF"> 
    <h6 id="H">• UNIVERSAL</h6>
        <button id="FULL">Pantalla Completa</button>
-</div>      
-      
+</div> 
+     
     <div class="contenedor">
        <div id="Grid">
        
@@ -290,9 +273,6 @@ h6 {
     left: -60vh;
     position: relative;
 }
-#X {
-    display: none;
-}
 </style>     
 `;        document.head.append(style);
 } 
@@ -334,14 +314,6 @@ h6 {
     left: 0;
     position: relative;
 }
-#X {
-    width: 100%;
-    height: 37vh;
-    z-index: 9999;
-    display: block;
-    position: fixed;
-    background: transparent;
-}
 </style>   
 `;        document.head.append(style);
 }
@@ -353,7 +325,14 @@ h6 {
 </script>
 
       <!-- PRECAUTION MOBILE -->
-   
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script>
+       Swal.fire({
+    title: '⚠️Usar Un Bloqueador De Anuncios⚠️', 
+    html: '<a href="https://play.google.com/store/apps/details?id=com.hsv.freeadblockerbrowser" target="_blank">🔴 FreeAddBlockerBrowser 🔴</a>', 
+    icon: 'info'
+});
+</script>    
 </body>
 </html>
 
