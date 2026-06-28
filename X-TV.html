@@ -166,7 +166,7 @@ body{-webkit-animation:puff-in-hor 1s cubic-bezier(.47,0,.745,.715) both;animati
  if (event.target.tagName === 'IMG') {
     var NAMER = event.target.alt;
     var CANAL = NAMER.replace(/\s+/g, '').toLowerCase();
-            Vid.src = "https://regionales.saohgdasregions.fun/stream.php?canal=" + CANAL;
+            Vid.src = "https://embed.saohgdasregions.fun/embed2/" + CANAL + ".html";
 H.textContent = NAMER.toUpperCase();
   }
 };
@@ -284,9 +284,14 @@ h6 {
 </script>
 
       <!-- PRECAUTION MOBILE -->
-<!-- src="https://cdn.jsdelivr.net/npm/sweetalert2@11" -->
-
-<!-- https://play.google.com/store/apps/details?id=com.hsv.freeadblockerbrowser -->    
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script>
+       Swal.fire({
+    title: '⚠️Usar Un Bloqueador De Anuncios⚠️', 
+    html: '<a href="https://play.google.com/store/apps/details?id=com.hsv.freeadblockerbrowser" target="_blank">🔴 FreeAddBlockerBrowser 🔴</a>', 
+    icon: 'info'
+});
+</script>    
 </body>
 </html>
 
