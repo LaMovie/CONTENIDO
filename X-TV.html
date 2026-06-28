@@ -19,7 +19,7 @@ body {
     flex-direction: column;
     grid-template-columns: repeat(4, 1fr);
 }
-.contenedor{
+.contenedor {
     margin-top: 5vh;
     margin-left: -1vh;       
 }
@@ -30,7 +30,7 @@ body {
     transition: 1.5s;
     border-radius: 20px;
 }
-.contenedor img:hover{    
+.contenedor img:hover {    
     transform: scale(2) perspective(500px)rotateY(50deg);
     padding-left: 10px;
     box-sizing: border-box;
@@ -51,14 +51,8 @@ body {
 }
 @media screen and (max-width: 990px) {
 .contenedor {
-        grid-template-columns: 1fr;
+     grid-template-columns: 1fr;
  }
-}
-#Vid {
-    width: 100%;
-    margin-top: 3vh;    
-    height: 30vh;
-    border-radius: 10px;       
 }
 h6 {
     color: #4f9;
@@ -73,6 +67,48 @@ a {
       color: blue;
   }
 }
+#All {
+    width: 95%; 
+    height: 35vh; 
+    overflow: hidden; 
+    position: relative;
+}  
+#All iframe {
+    position: absolute;
+    top: -28vh;    
+    left: -1vh;  
+    width: calc(95% + 5vh); 
+    height: calc(100% + 50vh);     
+    border: none;
+}
+#FULL {    
+    width: 20%;
+    color: #000;
+    opacity: 0.5;
+    padding: 1px;
+    font-size: 10px; 
+    background: gray;
+    font-weight: bold;       
+    border-radius: 50px;
+  &:hover {
+      color: #fff;
+      background: blue;
+  }
+}
+#FF {
+    display: flex;
+    margin-left: 4vh;
+    align-items: center;
+    justify-content: space-between;
+}
+#X {
+    width: 100%;
+    height: 37vh;
+    z-index: 9999;
+    display: block;
+    position: fixed;
+    background: transparent;
+}
 </style>
 <style>
 body{-webkit-animation:puff-in-hor 1s cubic-bezier(.47,0,.745,.715) both;animation:puff-in-hor 1.5s cubic-bezier(.47,0,.745,.715) both}@-webkit-keyframes puff-in-hor{0%{-webkit-transform:scaleX(2);transform:scaleX(2);-webkit-filter:blur(4px);filter:blur(4px);opacity:0}100%{-webkit-transform:scaleX(1);transform:scaleX(1);-webkit-filter:blur(0px);filter:blur(0px);opacity:1}}@keyframes puff-in-hor{0%{-webkit-transform:scaleX(2);transform:scaleX(2);-webkit-filter:blur(4px);filter:blur(4px);opacity:0}100%{-webkit-transform:scaleX(1);transform:scaleX(1);-webkit-filter:blur(0px);filter:blur(0px);opacity:1}}
@@ -80,11 +116,16 @@ body{-webkit-animation:puff-in-hor 1s cubic-bezier(.47,0,.745,.715) both;animati
 </head>
 <body>      
              <center>
+<div id="X"></div>
          <div id="All">
-  <iframe id="Vid" src="https://imagenuniversaltv.net:3771/live/iutvlive.m3u8" style="width:100%; aspect-ration:16/9" frameborder="0" allowfullscreen="true" allow="encrypted-media" scrolling="true" name="WILLOW"></iframe> 
-  </div><br/>
-     <h6 id="H">UNIVERSAL</h6>
-     
+  <iframe id="Vid" src="https://imagenuniversaltv.net:3771/live/iutvlive.m3u8" frameborder="0" allowfullscreen="true" allow="encrypted-media" scrolling="true" name="WILLOW"></iframe> 
+    </div><br/>
+
+<div id="FF"> 
+   <h6 id="H">• UNIVERSAL</h6>
+       <button id="FULL">Pantalla Completa</button>
+</div>      
+      
     <div class="contenedor">
        <div id="Grid">
        
@@ -152,7 +193,7 @@ body{-webkit-animation:puff-in-hor 1s cubic-bezier(.47,0,.745,.715) both;animati
 
 <a href="https://stream.4fun.tv:8888/hls/4f.m3u8" target="WILLOW"><img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgw99z9hHVlSEBnbUUdRi854xs2ax7TotRLC4Lnw3tWP-PJswMEbEMvITsjpTQ0H9FRMdfzx8_g5Gz2j-hVVteuaTw9Z-oFStwg53Ph_7o_c8hjxuZVHChwiQuFKfiBG33CHpQ5a2GOUknBN2SfBLnc6upESGC1tUGF7Yvwppri71iI4nz78Hmqm3iFGCk/s268/image_search_1781255206490.png" alt="4FUN TV"/></a> 
 
-<a href="https://live.obslivestream.com/autenticatvmux/index.m3u8" target="WILLOW"><img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhcf4YXBqmHAx6l_e1hBt4OCVc7TIFAd9e2nx6D5-SRRDZECgzUz8sz00nWrnTn47jvQdpNSWMupAL27LPtc-M7Nby9-A5Us20v6IxCcSfKkR-GjlSPEIzbK_Pt3FpFkNxDiC24BH1-q6spy4dTT7x9zvhVd5U8d8O31FZT9QdVI91cUOcgJRePZiJ-gw/s671/image_search_1756685024740.webp" alt="AUTÉNTICA TV"/></a> 
+<a href="https://d63fabad.wurl.com/master/f36d25e7e52f1ba8d7e56eb859c636563214f541/UmFrdXRlblRWLWVzX0ZJRkFQbHVzU3BhbmlzaF9ITFM/playlist.m3u8" target="WILLOW"><img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhcf4YXBqmHAx6l_e1hBt4OCVc7TIFAd9e2nx6D5-SRRDZECgzUz8sz00nWrnTn47jvQdpNSWMupAL27LPtc-M7Nby9-A5Us20v6IxCcSfKkR-GjlSPEIzbK_Pt3FpFkNxDiC24BH1-q6spy4dTT7x9zvhVd5U8d8O31FZT9QdVI91cUOcgJRePZiJ-gw/s671/image_search_1756685024740.webp" alt="FIFA SPAIN"/></a> 
 
 <a href="https://5ce9406b73c33.streamlock.net/RSD/ngrp:livestream_all/playlist.m3u8" target="WILLOW"><img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEg4tZ6JSX8yZ-D9W4bfD74h3TwyVDZ_EifzPSGF-fPe0OQ7KsaROttI8IHoO1d5f8Syc1x-wTdE3Q1svrivsGaIX8bXMH36q5noNu8phya7Bfnwduy-acdLyPe6u8EE7Yx9xqxVRoGVPzdrG-9uDLbjG4Ehlk-TNbjOLIiJm6sDo3k35r1oZd3JKow5OWw/s640/image_search_1781255171823.jpg" alt="STUDIO DELTA"/></a> 
     
@@ -167,12 +208,29 @@ body{-webkit-animation:puff-in-hor 1s cubic-bezier(.47,0,.745,.715) both;animati
     var NAMER = event.target.alt;
     var CANAL = NAMER.replace(/\s+/g, '').toLowerCase();
             Vid.src = "https://embed.saohgdasregions.fun/embed2/" + CANAL + ".html";
-H.textContent = NAMER.toUpperCase();
+    H.textContent = '• ' + NAMER.toUpperCase();
   }
 };
 </script>
 
-      <!-- FULL SCREEN -->
+       <!-- FULL SCREEN -->
+<script>
+var iframe = document.querySelector('iframe');
+
+      FULL.onclick = () => {
+  if (iframe.requestFullscreen) {
+    iframe.requestFullscreen();
+  } else if (iframe.mozRequestFullScreen) { // Firefox
+    iframe.mozRequestFullScreen();
+  } else if (iframe.webkitRequestFullscreen) { // Chrome, Safari and Opera
+    iframe.webkitRequestFullscreen();
+  } else if (iframe.msRequestFullscreen) { // IE/Edge
+    iframe.msRequestFullscreen();
+  }
+};
+</script>
+
+   <!-- DETECTAR FULL SCREEN -->
 <script>
 document.addEventListener('fullscreenchange', function() {
   if (document.fullscreenElement) {
@@ -232,6 +290,9 @@ h6 {
     left: -60vh;
     position: relative;
 }
+#X {
+    display: none;
+}
 </style>     
 `;        document.head.append(style);
 } 
@@ -273,6 +334,14 @@ h6 {
     left: 0;
     position: relative;
 }
+#X {
+    width: 100%;
+    height: 37vh;
+    z-index: 9999;
+    display: block;
+    position: fixed;
+    background: transparent;
+}
 </style>   
 `;        document.head.append(style);
 }
@@ -284,14 +353,7 @@ h6 {
 </script>
 
       <!-- PRECAUTION MOBILE -->
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-<script>
-       Swal.fire({
-    title: '⚠️Usar Un Bloqueador De Anuncios⚠️', 
-    html: '<a href="https://play.google.com/store/apps/details?id=com.hsv.freeadblockerbrowser" target="_blank">🔴 FreeAddBlockerBrowser 🔴</a>', 
-    icon: 'info'
-});
-</script>    
+   
 </body>
 </html>
 
