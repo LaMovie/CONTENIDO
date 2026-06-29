@@ -31,8 +31,7 @@ body {
     border-radius: 20px;
 }
 .contenedor img:hover {    
-    transform: scale(2) perspective(500px)rotateY(50deg);
-    padding-left: 10px;
+    scale: 1.5;
     box-sizing: border-box;
     box-shadow: 0 0 30px black;
     border: 2px solid green;  
@@ -93,6 +92,13 @@ a {
     align-items: center;
     justify-content: space-between;
 }
+#MG {
+    width: 40px;
+    opacity: .8;
+    height: 40px;
+    border-radius: 8px;
+    object-fit: cover;
+}
 </style>
 <style>
 body{-webkit-animation:puff-in-hor 1s cubic-bezier(.47,0,.745,.715) both;animation:puff-in-hor 1.5s cubic-bezier(.47,0,.745,.715) both}@-webkit-keyframes puff-in-hor{0%{-webkit-transform:scaleX(2);transform:scaleX(2);-webkit-filter:blur(4px);filter:blur(4px);opacity:0}100%{-webkit-transform:scaleX(1);transform:scaleX(1);-webkit-filter:blur(0px);filter:blur(0px);opacity:1}}@keyframes puff-in-hor{0%{-webkit-transform:scaleX(2);transform:scaleX(2);-webkit-filter:blur(4px);filter:blur(4px);opacity:0}100%{-webkit-transform:scaleX(1);transform:scaleX(1);-webkit-filter:blur(0px);filter:blur(0px);opacity:1}}
@@ -104,9 +110,10 @@ body{-webkit-animation:puff-in-hor 1s cubic-bezier(.47,0,.745,.715) both;animati
   <iframe id="Vid" src="https://imagenuniversaltv.net:3771/live/iutvlive.m3u8" style="width:100%; aspect-ration:16/9" frameborder="0" allowfullscreen="true" allow="encrypted-media" scrolling="true" name="WILLOW"></iframe> 
   </div><br/>
      
-<div id="FF"> 
-   <h6 id="H">• UNIVERSAL</h6>
-       <button id="FULL">Pantalla Completa</button>
+<div id="FF">    
+   <img id="MG" src="https://is.gd/39uqMg"/>
+     <h6 id="H">• UNIVERSAL</h6>
+        <button id="FULL">Pantalla Completa</button>
 </div> 
      
     <div class="contenedor">
@@ -186,8 +193,18 @@ body{-webkit-animation:puff-in-hor 1s cubic-bezier(.47,0,.745,.715) both;animati
   </div>
           </center>               
 <script>
+ var IMGS = document.querySelectorAll("#Grid img");
+ 
   Grid.onclick = (event) => {
  if (event.target.tagName === 'IMG') {
+    IMGS.forEach(img => {
+      img.style.border = "";
+    });
+    
+    event.target.style.border = "4px solid #4f9";
+    
+    MG.src = event.target.src;
+   
     var NAMER = event.target.alt;
     var CANAL = NAMER.replace(/\s+/g, '').toLowerCase();
             Vid.src = "https://embed.saohgdasregions.fun/embed2/" + CANAL + ".html";
