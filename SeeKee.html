@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" contect="IE=edge"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>  
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons"/>
-   <title>🧿 La Movie 🧿</title> 
+   <title>🧿 LA MOVIE 🧿</title> 
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Lacquer&display=swap');
 body {
@@ -44,6 +44,7 @@ body {
  }
 }
 .Container a {
+    cursor: none;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -144,7 +145,7 @@ h4 {
   <input id="I" placeholder="Buscar..." type="text"/>
 </form>
                                            
-<h3 id="Logo">🧿 La Movie 🧿</h3> 
+<h3 id="Logo">🧿 LA MOVIE 🧿</h3> 
             <br/><br/>
      
     <i id="Search" class="material-icons">search</i>
@@ -152,24 +153,6 @@ h4 {
 			
 			      	<div id="Oculto" class="Container">
 				
-<a href="https://h5.swplayer.com/es/search?keyword=Ficci%C3%B3n"><img src="https://is.gd/Sbv1VE"/><h4>FICCIÓN</h4></a>
-
-<a href="https://h5.swplayer.com/es/search?keyword=Terror"><img src="https://is.gd/dxQ8fa"/><h4>TERROR</h4></a>			
-
-<a href="https://h5.swplayer.com/es/search?keyword=Action"><img src="https://is.gd/Qpjf7w"/><h4>ACCIÓN</h4></a>
-
-<a href="https://h5.swplayer.com/es/search?keyword=Comedy"><img src="https://is.gd/3u2xzy"/><h4>COMEDY</h4></a>
-
-<a href="https://h5.swplayer.com/es/search?keyword=Animacion"><img src="https://is.gd/SUXJgs"/><h4>ANIMACIÓN</h4></a>
-
-<a href="https://h5.swplayer.com/es/search?keyword=Series%20duras"><img src="https://is.gd/DSiGA7"/><h4>SERIES</h4></a>
-
-<a href="https://h5.swplayer.com/es/search?keyword=horror"><img src="https://is.gd/fezxy8"/><h4>THRILLER</h4></a>
-
-<a href="https://h5.swplayer.com/es/search?keyword=documental"><img src="https://da.gd/W0k8wE"/><h4>DOCUMENTAL</h4></a>
-
-<a href="https://h5.swplayer.com/es/search?keyword=suspenso"><img src="https://is.gd/5jEUPi"/><h4>SUSPENSO</h4></a>
-
 <a href="https://h5.swplayer.com/es/detail/drama/w4T1wpuJxUu5b0bHfQnU5-Money-Heist-Season-1"><img src="https://is.gd/CWRq5y"/><h4>LA CASA DE PAPEL</h4></a>			
 
 <a href="https://h5.swplayer.com/es/detail/drama/QTUVOLeIYWjsO8Fv2PcxM-Family-Guy-Season-1"><img src="https://is.gd/kHXiIO"/><h4>FAMILY GUY</h4></a>
@@ -188,6 +171,8 @@ h4 {
 
 <a href="https://h5.swplayer.com/es/detail/drama/uf5jenYNRHVO6dKZpo3JY-Game-of-Thrones-Season-1/1"><img src="https://is.gd/g9JTwV"/><h4>JUEGO DE TRONOS</h4></a>
 
+<a href="https://h5.swplayer.com/es/detail/drama/OFDa9VoaIcTId4fEz1pqr-Invincibleanime-Season-1[Audio-Latino]"><img src="https://da.gd/yCc59f"/><h4>INVENCIBLE</h4></a>
+
 <a href="https://h5.swplayer.com/es/detail/movie/kL3SvPkWfniVKPIPhXcdc-Final-Destination"><img src="https://is.gd/eL0Agd"/><h4>DESTINO FINAL</h4></a>
 
 <a href="https://h5.swplayer.com/es/detail/drama/br2opIQsBK8hepOpdQEDI-Vis-a-vis-Season-1"><img src="https://is.gd/SzVweD"/><h4>VIS A VIS</h4></a>
@@ -204,15 +189,7 @@ h4 {
 				<br/>
 				    </div>
 				    				   </center>
-		   	<!-- PRECAUTION MOBILE -->
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
- <!-- <script>
-       Swal.fire({
-    title: '⚠️ Instala El Navegador Para Bloquear Al 100% Los Anuncios ⚠️ Entra Al Link🔗', 
-    html: '<a class="A" href="https://play.google.com/store/apps/details?id=com.hsv.freeadblockerbrowser" target="_blank"><span>👉🏽 FREE 📛</span><br/><span>📛 ADBLOCKER 👈🏽</span></a>', 
-    icon: 'info'
-});
-</script> -->
+	
 <script>
   var ENLACE = document.querySelectorAll('#Oculto a');
    
@@ -229,7 +206,16 @@ h4 {
 <script>
    var SEARCH = document.querySelectorAll('#Search, #Logo');
    
-    SEARCH.forEach(S => {
+     SEARCH.forEach(S => {
+        S.onclick = () => {
+  window.location.href = 'go:DUCK';
+     }
+  });
+</script>
+</body>
+</html>				  
+
+<!-- SEARCH.forEach(S => {
         S.onclick = () => {
     if (I.value === '') {
  if (I.style.display === 'block') {
@@ -244,15 +230,13 @@ h4 {
       } 
             I.focus();
      }
-  });
-   
-  function Check() {
+  });   
+  
+        function Check() {
    window.location.href = "https://h5.swplayer.com/es/search?keyword=" + I.value;
      I.value = '';
- }
-</script>
-</body>
-</html>				  
+ } -->
+
 
 <!-- var visible = false;
 
@@ -262,7 +246,7 @@ h4 {
    I.style.display = visible ? 'block' : 'none';
    Logo.style.display = visible ? 'none' : 'block';
     };
-  }); --> 
+  });  --> 
     				    
 				    				    
 				    				    
