@@ -208,15 +208,6 @@ h4 {
    
      SEARCH.forEach(S => {
         S.onclick = () => {
-  window.location.href = 'go:DUCK';
-     }
-  });
-</script>
-</body>
-</html>				  
-
-<!-- SEARCH.forEach(S => {
-        S.onclick = () => {
     if (I.value === '') {
  if (I.style.display === 'block') {
        I.style.display = 'none';
@@ -233,10 +224,16 @@ h4 {
   });   
   
         function Check() {
-   window.location.href = "https://h5.swplayer.com/es/search?keyword=" + I.value;
-     I.value = '';
- } -->
-
+   isMobile = /Mobi|Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+  
+  var domain = isMobile ? 'go:DUCK' : 'https://www.google.com/search?q=site:sololatino.net+';
+    
+    window.location.href = domain + I.value;
+          I.value = '';
+ } 
+</script>
+</body>
+</html>				  
 
 <!-- var visible = false;
 
