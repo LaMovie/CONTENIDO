@@ -226,9 +226,9 @@ h4 {
         function Check() {
    isMobile = /Mobi|Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
   
-  var domain = isMobile ? 'go:DUCK' : 'https://www.google.com/search?q=site:sololatino.net+';
+  var domain = isMobile ? 'go:DUCK' : 'https://www.google.com/search?q=site:sololatino.net+' + I.value;
     
-    window.location.href = domain + I.value;
+    window.location.href = domain;
           I.value = '';
  } 
 </script>
