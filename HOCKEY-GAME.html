@@ -242,7 +242,7 @@ body {
      
     <div class="game-container"> 
         <canvas id="gameCanvas"></canvas> 
-        <div class="game-status" id="gameStatus">Touch the ball to start!</div> 
+        <div class="game-status" id="gameStatus">Toca La Bola Para Comenzar!</div> 
     </div> 
      
     <div class="game-over" id="gameOver"> 
@@ -319,11 +319,11 @@ window.addEventListener("load", function() {
         gameStatusElement.classList.remove("ai-serve"); 
          
         if (nextServer === "player") { 
-            gameStatusElement.textContent = "Touch the ball to serve!"; 
+            gameStatusElement.textContent = "Toca La Bola!"; 
             gameStatusElement.style.display = "block"; 
             gameStatusElement.style.top = "70%"; 
         } else if (nextServer === "ai") { 
-            gameStatusElement.textContent = "Computer serves next..."; 
+            gameStatusElement.textContent = "🪓 Maldición 😡..."; 
             gameStatusElement.style.display = "block"; 
             gameStatusElement.style.top = "30%"; 
              
@@ -340,7 +340,7 @@ window.addEventListener("load", function() {
                 } 
             }, 1500); 
         } else { 
-            gameStatusElement.textContent = "Touch the ball to start!"; 
+            gameStatusElement.textContent = "Toca La Bola Para Iniciar!"; 
             gameStatusElement.style.display = "block"; 
         } 
     } 
