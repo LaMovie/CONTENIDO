@@ -225,7 +225,7 @@ body {
 <body> 
     <div class="controls"> 
         <button id="restart-btn" class="control-btn">Restart</button> 
-        <button id="pause-btn" class="control-btn">Pause</button> 
+        <button id="pause-btn" class="control-btn">7 Puntos</button> 
     </div> 
      
     <div class="score-container"> 
@@ -511,7 +511,7 @@ window.addEventListener("load", function() {
                 gameState.lastScorer = "ai"; 
                 updateScoreDisplay(); 
                 if (gameState.aiPaddle.score >= gameState.winningScore) { 
-                    endGame("Computer Wins!"); 
+  endGame("🪓 ES HACHA MUCHACHA!"); 
                 } else { 
                     resetBall("player"); // AI scored, so Player serves next 
                 } 
