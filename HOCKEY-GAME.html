@@ -1,5 +1,5 @@
 <!DOCTYPE html> 
-<html lang="en"> 
+<html lang="es"> 
 <head> 
     <meta charset="UTF-8"> 
     <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
@@ -220,7 +220,7 @@ body {
         padding: 0 10px; 
     } 
 }
-</style>
+</style> 
 </head> 
 <body> 
     <div class="controls"> 
@@ -242,12 +242,12 @@ body {
      
     <div class="game-container"> 
         <canvas id="gameCanvas"></canvas> 
-        <div class="game-status" id="gameStatus">Toca La Bola Para Comenzar!</div> 
+        <div class="game-status" id="gameStatus">Toca La Bola Para Iniciar!</div> 
     </div> 
      
     <div class="game-over" id="gameOver"> 
         <h2 id="winnerText">Game Over</h2> 
-        <button id="restart-game" class="restart-btn">Jugar Denuevo</button> 
+        <button id="restart-game" class="restart-btn">Jugar Denuevo!</button> 
     </div> 
      
 <script>
@@ -323,7 +323,7 @@ window.addEventListener("load", function() {
             gameStatusElement.style.display = "block"; 
             gameStatusElement.style.top = "70%"; 
         } else if (nextServer === "ai") { 
-            gameStatusElement.textContent = "🪓 Maldición 😡..."; 
+            gameStatusElement.textContent = "🪓 Maldición 😡"; 
             gameStatusElement.style.display = "block"; 
             gameStatusElement.style.top = "30%"; 
              
@@ -494,7 +494,7 @@ window.addEventListener("load", function() {
                 gameState.lastScorer = "player"; 
                 updateScoreDisplay(); 
                 if (gameState.playerPaddle.score >= gameState.winningScore) { 
-       endGame("🧋 GANASTES!"); 
+     endGame("🧋 GANASTES!"); 
                 } else { 
                     resetBall("ai"); // Player scored, so AI serves next 
                 } 
@@ -683,7 +683,7 @@ window.addEventListener("load", function() {
         resetBall(); 
         updateScoreDisplay(); 
         document.getElementById("gameOver").style.display = "none"; 
-        document.getElementById("pause-btn").textContent = "7 Puntos; 
+        document.getElementById("pause-btn").textContent = "7 Puntos"; 
     } 
      
     // Toggle pause state 
@@ -749,6 +749,10 @@ window.addEventListener("load", function() {
 </script> 
 </body> 
 </html>
+
+
+
+
 
 
 
