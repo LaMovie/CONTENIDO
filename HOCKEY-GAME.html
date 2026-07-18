@@ -494,7 +494,7 @@ window.addEventListener("load", function() {
                 gameState.lastScorer = "player"; 
                 updateScoreDisplay(); 
                 if (gameState.playerPaddle.score >= gameState.winningScore) { 
-                    endGame("Player Wins!"); 
+       endGame("🧋 GANASTES!"); 
                 } else { 
                     resetBall("ai"); // Player scored, so AI serves next 
                 } 
@@ -511,7 +511,7 @@ window.addEventListener("load", function() {
                 gameState.lastScorer = "ai"; 
                 updateScoreDisplay(); 
                 if (gameState.aiPaddle.score >= gameState.winningScore) { 
-  endGame("🪓 ES HACHA MUCHACHA!"); 
+  endGame("🪓 Es Hacha Muchacha!"); 
                 } else { 
                     resetBall("player"); // AI scored, so Player serves next 
                 } 
@@ -683,7 +683,7 @@ window.addEventListener("load", function() {
         resetBall(); 
         updateScoreDisplay(); 
         document.getElementById("gameOver").style.display = "none"; 
-        document.getElementById("pause-btn").textContent = "Pause"; 
+        document.getElementById("pause-btn").textContent = "7 Puntos; 
     } 
      
     // Toggle pause state 
@@ -697,7 +697,7 @@ window.addEventListener("load", function() {
             document.getElementById("gameStatus").style.display = "block"; 
             document.getElementById("gameStatus").style.top = "50%"; 
         } else { 
-            pauseBtn.textContent = "Pause"; 
+            pauseBtn.textContent = "7 Puntos"; 
             document.getElementById("gameStatus").style.display = "none"; 
         } 
     } 
