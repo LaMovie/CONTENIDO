@@ -101,21 +101,25 @@ a {
     <div class="Div"><img src="https://is.gd/cQYm5v" alt="espn mexico"/></div>
     <div class="Div"><img src="https://is.gd/khp3lw" alt="mlb network"/></div>
   </div>
+ 
+ <!-- <script type='text/javascript' src='https://embed.saohgdasregions.fun/embed2.js'></script> -->
   
 <script>
     var Total = document.querySelector('.Total');
     var iframe = document.getElementById('F');
     var T = document.getElementById('T');
 
- Total.onclick = function(event) {
+ Total.onclick = (event) => {
  if (event.target.tagName === 'IMG') {
     var NAMER = event.target.alt;
     var CANAL = NAMER.replace(/\s+/g, '').toLowerCase();
-            iframe.src = "https://embed.saohgdasregions.fun/embed2/" + CANAL + ".html";
+            iframe.src = "https://embed.saohgdasregions.fun/embed2/" + CANAL + ".php";
 T.textContent = NAMER.toUpperCase();
   }
 };
-</script>
+
+document.write('<iframe allowfullscreen width="'+width+'" height="'+height+'" scrolling="no" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" allowtransparency="true" src="https://embed.saohgdasregions.fun/embed2/'+id+'.php"></iframe>');
+</script> 
 
       <!-- FULL SCREEN -->
 <script>
@@ -135,14 +139,7 @@ document.addEventListener('fullscreenchange', function() {
 </script>
 
     <!-- PRECAUTION MOBILE -->
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-<script>
-       Swal.fire({
-    title: '⚠️Usar Un Bloqueador De Anuncios⚠️', 
-    html: '<a href="https://play.google.com/store/apps/details?id=com.hsv.freeadblockerbrowser" target="_blank">🔴 FreeAddBlockerBrowser 🔴</a>', 
-    icon: 'info'
-});
-</script>      
+   
 </body>
 </html>
 
