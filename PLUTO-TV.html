@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+body {    
+    background: black;    
+}
+#Lista {
+    gap: 12px;
+    padding: 0px;  
+    display: grid;
+    list-style: none;
+    font-weight: bold;    
+    grid-template-columns: repeat(3, 1fr);
+}
+#Lista li {
+    width: 13vh;
+    height: 13vh;
+    display: flex;
+    background: #007;    
+    border-radius: 20px;
+    border: 1px solid gray;
+    align-items: center;
+    justify-content: center;
+   
+   &:hover {
+     color: #4f9;
+ }
+}
+a {
+    color: gold;
+    cursor: none;
+    text-decoration: none;
+}
+#F {
+    width: 100%;
+    height: 30vh;
+    margin-top: 3vh;
+    aspect-ration: 6/19;
+    border-radius: 20px;
+    border: .5px solid #aaa;
+}
+#H {
+    color: gray;
+}
+</style>
+</head>
+<body>
+<center>
+    <iframe id="F" src="" frameborder="1" allowfullscreen="true" allow="encrypted-media" allow="autoplay"></iframe>    
+        
+      <h4 id="H">FREE TV</h4>
+      <ul id="Lista"></ul>
+              
+</center>
+<script>
+ var CH = [
+  {name: "SOUTH PARK", url: "https://pluto.tv/live-tv/south-park-pvt2?utm_source=plutotv&utm_medium=share&utm_campaign=1000201&utm_content=1000735"}, 
+  {name: "AVATAR", url: "https://pluto.tv/latam/live-tv/6759ee82bd523200083b4f0f?utm_source=plutotv&utm_medium=share&utm_campaign=1000201&utm_content=1000735"},
+  {name: "REDBULL BATALLAS", url: "https://pluto.tv/latam/live-tv/67813f893886aa863497733d?utm_source=plutotv&utm_medium=share&utm_campaign=1000201&utm_content=1000735"}, 
+  {name: "BOB ESPONJA", url: "https://pluto.tv/latam/live-tv/6254598f5083f800076d8563?utm_source=plutotv&utm_medium=share&utm_campaign=1000201&utm_content=1000735"}, 
+  {name: "MTV CLASSIC", url: "https://pluto.tv/latam/live-tv/66a11a21a79dea0008aa90ca?utm_source=plutotv&utm_medium=share&utm_campaign=1000201&utm_content=1000735"}, 
+  {name: "COMEDY CENTER", url: "https://pluto.tv/latam/live-tv/5ffcc21a432945000762d06b?utm_source=plutotv&utm_medium=share&utm_campaign=1000201&utm_content=1000735"}, 
+  {name: "HUNTER x HUNTER", url: "https://pluto.tv/latam/live-tv/65d916a2f7f0af0008b6540d?utm_source=plutotv&utm_medium=share&utm_campaign=1000201&utm_content=1000735"}, 
+  {name: "ENCHUFE TV", url: "https://pluto.tv/latam/live-tv/699763d184235f26d5056002?utm_source=plutotv&utm_medium=share&utm_campaign=1000201&utm_content=1000735"}, 
+  {name: "ANIME", url: "https://pluto.tv/latam/live-tv/5dcde17bf6591d0009839e02?utm_source=plutotv&utm_medium=share&utm_campaign=1000201&utm_content=1000735"}
+ ];
+
+ CH.forEach(canal => {
+    let li = document.createElement('li');
+    li.innerHTML = `<a class="DATA" href="${canal.url}">${canal.name}</a>`;
+    Lista.appendChild(li);  
+ });
+
+
+    var LIST = document.querySelectorAll('#Lista li');
+    
+   LIST.forEach(lis => {
+       lis.onclick = (e) => {    
+     e.preventDefault();  
+          LIST.forEach(other => {
+   other.style.border = '';
+  other.style.color = 'gold'; 
+  other.style.background = '#007';
+      })
+     var Enlace = e.target.href;
+     var Titulo = e.target.textContent;
+  lis.style.color = '#007';
+  lis.style.background = 'black';
+lis.style.border = '2px solid #4f9';
+        F.src = Enlace;
+        H.textContent = Titulo;
+     }
+ })
+</script>
+</body>
+</html>
+
+
+
