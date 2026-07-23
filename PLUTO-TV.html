@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <style>
 body {    
-    background: black;    
+    background: #000016;    
 }
 #Lista {
     gap: 12px;
@@ -16,22 +16,22 @@ body {
     grid-template-columns: repeat(3, 1fr);
 }
 #Lista li {
+    color: gold;
     width: 13vh;
     height: 13vh;
     display: flex;
     background: #001;    
-    border-radius: 20px;
-    border: 1px solid #4f9;
+    border-radius: 20px;    
     align-items: center;
-    justify-content: center;
-    box-shadow: 0 0 10px #4f9;
+    justify-content: center;    
    
    &:hover {
      color: #4f9;
  }
 }
 a {
-    color: gold;
+    color: inherit; 
+ /* Hereda El Color Del Padre */
     cursor: none;
     text-decoration: none;
 }
@@ -53,14 +53,14 @@ a {
     <iframe id="F" src="https://pluto.tv/live-tv/south-park-pvt2?utm_source=plutotv&utm_medium=share&utm_campaign=1000201&utm_content=1000735" frameborder="1" allowfullscreen="true" allow="encrypted-media" allow="autoplay"></iframe>    
         
       <h4 id="H">FREE TV</h4>
-      <ul id="Lista"></ul>
+       <ul id="Lista"></ul>
               
 </center>
 <script>
  var CH = [
   {name: "SOUTH PARK", url: "https://pluto.tv/live-tv/south-park-pvt2?utm_source=plutotv&utm_medium=share&utm_campaign=1000201&utm_content=1000735"}, 
   {name: "AVATAR", url: "https://pluto.tv/latam/live-tv/6759ee82bd523200083b4f0f?utm_source=plutotv&utm_medium=share&utm_campaign=1000201&utm_content=1000735"},
-  {name: "REDBULL BATALLAS", url: "https://pluto.tv/latam/live-tv/67813f893886aa863497733d?utm_source=plutotv&utm_medium=share&utm_campaign=1000201&utm_content=1000735"}, 
+  {name: "REDBULL TV", url: "https://pluto.tv/latam/live-tv/67813f893886aa863497733d?utm_source=plutotv&utm_medium=share&utm_campaign=1000201&utm_content=1000735"}, 
   {name: "BOB ESPONJA", url: "https://pluto.tv/latam/live-tv/6254598f5083f800076d8563?utm_source=plutotv&utm_medium=share&utm_campaign=1000201&utm_content=1000735"}, 
   {name: "MTV CLASSIC", url: "https://pluto.tv/latam/live-tv/66a11a21a79dea0008aa90ca?utm_source=plutotv&utm_medium=share&utm_campaign=1000201&utm_content=1000735"}, 
   {name: "COMEDY CENTER", url: "https://pluto.tv/latam/live-tv/5ffcc21a432945000762d06b?utm_source=plutotv&utm_medium=share&utm_campaign=1000201&utm_content=1000735"}, 
@@ -78,19 +78,20 @@ a {
 
     var LIST = document.querySelectorAll('#Lista li');
     
-   LIST.forEach(lis => {
-       lis.onclick = (e) => {    
+ LIST.forEach(lis => {
+   lis.onclick = (e) => {    
      e.preventDefault();  
-          LIST.forEach(other => {
+       LIST.forEach(other => {
    other.style.border = '';
   other.style.color = 'gold'; 
   other.style.background = '#001';
       });
-     var Enlace = e.target.href;
-     var Titulo = e.target.textContent;
-  lis.style.color = 'gold';
-  lis.style.background = '#007';
-lis.style.border = '2px solid #4f9';
+ var Enlace = e.target.href;
+ var Titulo = e.target.textContent;
+     lis.style.color = '#4f3';
+  lis.style.background = '#000';
+lis.style.borderTop = '1px solid #4f3';
+lis.style.borderBottom = '.1px solid #4f3';
         F.src = Enlace;
         H.textContent = Titulo;
      }
