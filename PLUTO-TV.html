@@ -19,11 +19,12 @@ body {
     width: 13vh;
     height: 13vh;
     display: flex;
-    background: #007;    
+    background: #001;    
     border-radius: 20px;
-    border: 1px solid gray;
+    border: 1px solid #4f9;
     align-items: center;
     justify-content: center;
+    box-shadow: 0 0 10px #4f9;
    
    &:hover {
      color: #4f9;
@@ -49,7 +50,7 @@ a {
 </head>
 <body>
 <center>
-    <iframe id="F" src="" frameborder="1" allowfullscreen="true" allow="encrypted-media" allow="autoplay"></iframe>    
+    <iframe id="F" src="https://pluto.tv/live-tv/south-park-pvt2?utm_source=plutotv&utm_medium=share&utm_campaign=1000201&utm_content=1000735" frameborder="1" allowfullscreen="true" allow="encrypted-media" allow="autoplay"></iframe>    
         
       <h4 id="H">FREE TV</h4>
       <ul id="Lista"></ul>
@@ -83,18 +84,26 @@ a {
           LIST.forEach(other => {
    other.style.border = '';
   other.style.color = 'gold'; 
-  other.style.background = '#007';
-      })
+  other.style.background = '#001';
+      });
      var Enlace = e.target.href;
      var Titulo = e.target.textContent;
-  lis.style.color = '#007';
-  lis.style.background = 'black';
+  lis.style.color = 'gold';
+  lis.style.background = '#007';
 lis.style.border = '2px solid #4f9';
         F.src = Enlace;
         H.textContent = Titulo;
      }
  })
 </script>
+   <!-- PRECAUTION MOBILE -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script>
+       Swal.fire({
+    title: '⚠️Usar Solo Chrome Para Escuchar El Audio⚠️',     
+    icon: 'info'
+});
+</script>    
 </body>
 </html>
 
