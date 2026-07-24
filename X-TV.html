@@ -183,12 +183,12 @@ body{-webkit-animation:puff-in-hor 1s cubic-bezier(.47,0,.745,.715) both;animati
 
 <a href="https://stream.4fun.tv:8888/hls/4f.m3u8" target="WILLOW"><img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgw99z9hHVlSEBnbUUdRi854xs2ax7TotRLC4Lnw3tWP-PJswMEbEMvITsjpTQ0H9FRMdfzx8_g5Gz2j-hVVteuaTw9Z-oFStwg53Ph_7o_c8hjxuZVHChwiQuFKfiBG33CHpQ5a2GOUknBN2SfBLnc6upESGC1tUGF7Yvwppri71iI4nz78Hmqm3iFGCk/s268/image_search_1781255206490.png" alt="4FUN TV"/></a> 
 
-<a href="https://d63fabad.wurl.com/master/f36d25e7e52f1ba8d7e56eb859c636563214f541/UmFrdXRlblRWLWVzX0ZJRkFQbHVzU3BhbmlzaF9ITFM/playlist.m3u8" target="WILLOW"><img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhcf4YXBqmHAx6l_e1hBt4OCVc7TIFAd9e2nx6D5-SRRDZECgzUz8sz00nWrnTn47jvQdpNSWMupAL27LPtc-M7Nby9-A5Us20v6IxCcSfKkR-GjlSPEIzbK_Pt3FpFkNxDiC24BH1-q6spy4dTT7x9zvhVd5U8d8O31FZT9QdVI91cUOcgJRePZiJ-gw/s671/image_search_1756685024740.webp" alt="FIFA SPAIN"/></a> 
-
-<a href="https://5ce9406b73c33.streamlock.net/RSD/ngrp:livestream_all/playlist.m3u8" target="WILLOW"><img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEg4tZ6JSX8yZ-D9W4bfD74h3TwyVDZ_EifzPSGF-fPe0OQ7KsaROttI8IHoO1d5f8Syc1x-wTdE3Q1svrivsGaIX8bXMH36q5noNu8phya7Bfnwduy-acdLyPe6u8EE7Yx9xqxVRoGVPzdrG-9uDLbjG4Ehlk-TNbjOLIiJm6sDo3k35r1oZd3JKow5OWw/s640/image_search_1781255171823.jpg" alt="STUDIO DELTA"/></a> 
+<a href="https://d63fabad.wurl.com/master/f36d25e7e52f1ba8d7e56eb859c636563214f541/UmFrdXRlblRWLWVzX0ZJRkFQbHVzU3BhbmlzaF9ITFM/playlist.m3u8" target="WILLOW"><img src="https://is.gd/ion0eF" alt="FIFA SPAIN"/></a> 
     
 
-<a href="https://cloudvideo.servers10.com:8081/impactotv/index.m3u8" target="WILLOW"><img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjCS0RQ83carhXkc66jSJnCPKXb-HRe4SLupAgXuXnGJi2ogF4oBqYY1JFB-DHDA7bce0k7-sJKaKKqPR8y4INUV7GzHA895NXvHlfytyVCbuawdx7ZHqtxFIDbSkTMjnW152jOuuyChrk6nwcsj6bAtCyaghcs1Y1UhfMS4bbcHlQjKI2PGpuSHPddKg/s900/image_search_1756683180691.jpg" alt="LILO & STITCH"/></a>                     
+<a href="https://cloudvideo.servers10.com:8081/impactotv/index.m3u8" target="WILLOW"><img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjCS0RQ83carhXkc66jSJnCPKXb-HRe4SLupAgXuXnGJi2ogF4oBqYY1JFB-DHDA7bce0k7-sJKaKKqPR8y4INUV7GzHA895NXvHlfytyVCbuawdx7ZHqtxFIDbSkTMjnW152jOuuyChrk6nwcsj6bAtCyaghcs1Y1UhfMS4bbcHlQjKI2PGpuSHPddKg/s900/image_search_1756683180691.jpg" alt="LILO & STITCH"/></a>      
+
+<a href="https://lamovie.github.io/CONTENIDO/SEARCH-CANALES.html" target="WILLOW"><img src="https://da.gd/nJlge" alt="🔗"/></a>                
      </div>
   </div>
           </center>      
@@ -197,23 +197,33 @@ body{-webkit-animation:puff-in-hor 1s cubic-bezier(.47,0,.745,.715) both;animati
                
 <script>
  var IMGS = document.querySelectorAll("#Grid img");
- 
-  Grid.onclick = (event) => {
- if (event.target.tagName === 'IMG') {
+
+Grid.onclick = (event) => {
+  if (event.target.tagName === 'IMG') {
+    
+    var NAMER = event.target.alt;
+
+    if (NAMER === '🔗') {
+       var Enlace = event.target.closest('a');
+ window.location.href = Enlace.href;            
+          return; 
+  // Detenemos la ejecución aquí para que no intente cargar el iframe
+    }
+
+   
     IMGS.forEach(img => {
       img.style.border = "";
     });
     
     event.target.style.border = "4px solid #4f9";
-    
     MG.src = event.target.src;
    
-    var NAMER = event.target.alt;
     var CANAL = NAMER.replace(/\s+/g, '').toLowerCase();
-            Vid.src = "https://embed.saohgdasregions.fun/embed2/" + CANAL + ".php";
+    Vid.src = "https://embed.saohgdasregions.fun/embed2/" + CANAL + ".php";
 H.textContent = NAMER.toUpperCase();
   }
 }; 
+
 
 document.write('<iframe allowfullscreen width="'+width+'" height="'+height+'" scrolling="no" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" allowtransparency="true" src="https://embed.saohgdasregions.fun/embed2/'+id+'.php"></iframe>');
 </script>
