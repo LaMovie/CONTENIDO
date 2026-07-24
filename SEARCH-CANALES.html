@@ -64,6 +64,20 @@ a {
       color: blue;
   }
 }
+#FULL {    
+    width: 20%;
+    color: #000;
+    opacity: 0.5;
+    padding: 1px;
+    font-size: 10px; 
+    background: gray;
+    font-weight: bold;       
+    border-radius: 50px;
+  &:hover {
+      color: #fff;
+      background: #004;
+  }
+}
 </style>
 </head>
 <body>
@@ -74,6 +88,8 @@ a {
   <iframe id="F" src="" frameborder="0" allowfullscreen="true" allow="encrypted-media"></iframe>
   
       <h5 id="T"></h5>
+      
+<button id="FULL">Pantalla Completa</button>
 
 <script type='text/javascript' src='https://embed.saohgdasregions.fun/embed2.js'></script>
 <script>
@@ -164,7 +180,7 @@ Lista.onclick = (e) => {
 }; 
 </script>
 
-       <!-- FULL SCREEN -->
+    <!-- DETECTAR FULL SCREEN -->
 <script>
 document.addEventListener('fullscreenchange', function() {
   if (document.fullscreenElement) {
@@ -180,5 +196,21 @@ document.addEventListener('fullscreenchange', function() {
   }
 });
 </script>    
+      <!-- FULL SCREEN -->
+<script>
+var iframe = document.querySelector('iframe');
+
+      FULL.onclick = () => {
+  if (iframe.requestFullscreen) {
+    iframe.requestFullscreen();
+  } else if (iframe.mozRequestFullScreen) { // Firefox
+    iframe.mozRequestFullScreen();
+  } else if (iframe.webkitRequestFullscreen) { // Chrome, Safari and Opera
+    iframe.webkitRequestFullscreen();
+  } else if (iframe.msRequestFullscreen) { // IE/Edge
+    iframe.msRequestFullscreen();
+  }
+};
+</script>
 </body>
 </html>
