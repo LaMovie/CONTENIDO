@@ -221,16 +221,30 @@ h4 {
       } 
             I.focus();
      }
-  });   
+  });           
+</script>
+     <!-- FUNCION INTENT -->
+<script>
+// Función maestra que fuerza el menú de aplicaciones de Android
+
+  function abrirFuera(urlDestino) {
+      // Le quitamos el https:// a la URL para armar el Intent
+      
+      var urlSinProtocolo = urlDestino.replace("https://", "");
+      
+    var intentURL = "intent://" + urlSinProtocolo + "#Intent;scheme=https;action=android.intent.action.VIEW;end;";
+      
+  window.location.href = intentURL;
+    }
+
+       function Check() {
+      isMobile = /Mobi|Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
   
-        function Check() {
-   isMobile = /Mobi|Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
-  
-  var domain = isMobile ? 'go:SET' : 'https://www.google.com/search?q=site:sololatino.net+' + I.value;
+  var domain = isMobile ? 'https//lamovie.github.io/SeeKee/PLATAFORMAS.html' : 'https://www.google.com/search?q=site:sololatino.net+' + I.value;
     
-    window.location.href = domain;
-          I.value = '';
- } 
+      abrirFuera(domain);
+          I.value = "";
+    }
 </script>
 </body>
 </html>				  
