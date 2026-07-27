@@ -1,7 +1,8 @@
 <!DOCTYPE html>
-<html>
+<html lang="es">
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="referrer" content="no-referrer"/>
 <head>
   <title>📜 JUEGO DE TRONOS 📜</title>
 <style>
@@ -152,11 +153,11 @@ text-align: left;
 
 <hr id="Hr1"/><hr id="Hr2"/>            
         <div>
- <embed id="EE" src="https://okpeliz.com/?player_tv=163&s=1&e=1&sv=embedru&tv=true"></embed></div>
+ <embed id="EE" src="https://eng.okpeliz.com/embed/1399-1-1"></embed></div>
             
          <br/>
   <div id="Total">
-       <details name="info" onclick="playSound()">
+      <details name="info" onclick="playSound()">
   <summary class="summary">🍿 TEMP 1 🍿</summary>
   <div id="A">
     <div class="GG" data-season="1" id="fila">
@@ -397,7 +398,34 @@ text-align: left;
 <hr style="height: 10vh; border:0"/>         
   
 <i id="opaco">🔥JUEGO DE TRONOS🔥</i>        
-                                  
+
+
+<script> 
+  var EMBED = document.querySelector('#EE');
+  var LINKS = document.querySelectorAll('.E');
+
+  LINKS.forEach(link => {
+    link.onclick = (event) => {
+      if (event.target.tagName === 'IMG') {
+   var NAMER = event.target.title; 
+        var SEASON = link.closest('.GG').dataset.season + '-'; 
+        
+        EMBED.src = 'https://eng.okpeliz.com/embed/1399-' + SEASON + NAMER;
+     };
+
+    LINKS.forEach(other => {
+        other.style.color = 'gold';
+ });
+      link.style.color = '#4f9';
+    };
+  });
+</script>   
+<script>
+  var TOTAL = document.querySelectorAll('#Total img');
+    TOTAL.forEach(total => {
+       total.src = 'https://is.gd/g9JTwV';          
+ });
+</script>                               
 <script>
 var fullscreenButton = document.querySelector('#fullscreenButton');
 var iframe = document.querySelector('embed');
@@ -441,32 +469,6 @@ document.addEventListener('fullscreenchange', function() {
        EE.style.height = '200px';
    }
  };
-</script>
-<script>
-  var TOTAL = document.querySelectorAll('#Total img');
-    TOTAL.forEach(total => {
-       total.src = 'https://is.gd/g9JTwV';          
- });
-</script>
-<script> 
-  var EMBED = document.querySelector('#EE');
-  var LINKS = document.querySelectorAll('.E');
-
-  LINKS.forEach(link => {
-    link.onclick = (event) => {
-      if (event.target.tagName === 'IMG') {
-   var NAMER = event.target.title; 
-        var SEASON = link.closest('.GG').dataset.season; 
-        
-        EMBED.src = 'https://okpeliz.com/?player_tv=163&s=' + SEASON + '&e=' + NAMER + '&sv=embedru&tv=true';
-     };
-
-    LINKS.forEach(other => {
-        other.style.color = 'gold';
- });
-      link.style.color = '#4f9';
-    };
-  });
 </script>
 </body>
 </html>
