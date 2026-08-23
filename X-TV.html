@@ -8,8 +8,6 @@
 <script>
    var llave = new URLSearchParams(window.location.search).get('can');
     
- if (window.self !== window.top) {
-        
 if (llave === "PermisoMaestro777") {
         var ESCUDO = document.getElementById("Escudo-Tv");
             if (ESCUDO) ESCUDO.parentNode.removeChild(ESCUDO);
@@ -21,11 +19,6 @@ if (llave === "PermisoMaestro777") {
         } else {
             document.execCommand("Stop");
       }
-    }
-  } else {
-        // Si abren X-TV-INDEX.html directamente (sin iframe), lo dejamos funcionar
-        var ESCUDO = document.getElementById("Escudo-Tv");
-        if (ESCUDO) ESCUDO.parentNode.removeChild(ESCUDO);
     }
 </script>
     <meta charset="UFT-8">
