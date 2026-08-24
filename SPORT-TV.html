@@ -6,10 +6,8 @@
 </style>
 
 <script>
-   var llave = new URLSearchParams(window.location.search).get('can');
-    
-if (llave === "PermisoMaestro777") {
-        var ESCUDO = document.getElementById("Escudo-Tv");
+ if (window.self === window.top) {    
+     var ESCUDO = document.getElementById("Escudo-Tv");
             if (ESCUDO) ESCUDO.parentNode.removeChild(ESCUDO);
         } else {
                        document.documentElement.innerHTML = "<head></head><body style='background:#000; margin:0 8vh; display:flex; justify-content:center; align-items:center; height:100vh;'><h1 style='color:red; font-family:sans-serif;'>⛔ ERROR: Reproductor No Autorizado.</h1></body>";
