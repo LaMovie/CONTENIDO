@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>🏛️ 911 🏛️</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Lacquer&display=swap');
+body {
+    background: black;
+    font-family: 'Lacquer', cursive;
+}
+#I {
+    height: 250px;
+}
+#FULL, #Mas, #Atras {
+    background: gray;
+    color: black;
+    opacity: 0.5;
+    font-weight: bold;
+    font-size: 15px;
+    padding: 5px 10px;
+    border-radius: 50px;
+    margin: 5px;
+}
+#Mas {
+    background: gold;
+    opacity: 0.8;
+}
+#Opaco {
+    width: 80%;
+    opacity: .6;
+}
+#H {
+    color: gold;
+}
+#P {
+    color: #4f9;
+    opacity: .9;
+}
+</style>
+</head>
+<body>
+    <img hidden id="Photo" src="https://is.gd/BLCtJr"/>       
+            <center>
+    <h3 id="H">📼 911 📼</h3>
+    
+        <iframe id="I" src="https://drive.google.com/file/d/1lqTiLDezenKB_6ZKfYO1MX22hLkBA-sH/preview" style="width:100%; aspect-ratio:16/9" marginheight="0" marginwidth="0" scrolling="no" frameborder="0" allowfullscreen="true" allow="encrypted-media" name="WILLOW"></iframe>
+        <br/><br/>
+        
+ <button id="Atras">◀️ Back</button>
+ <button id="Mas">Next ▶️</button>
+        <br/><br/><br/>
+        
+  <button id="FULL">Pantalla Completa</button>
+        <br/><br/><br/>
+        
+ <p id="P">
+            El número de emergencias de EEUU es el 911 en honor a las más de 2900 personas que murieron el 11 de Septiembre del 2001 en un supuesto "ATENTADO" a las famosas torres gemelas en Nueva York.
+            Atribuyéndolo supuestamente al clan de "ALCAEDA", un clan terrorista del Medio Oriente. Pero en realidad fue el auto atentado más grande de la historia: un "AUTO-GENOCIDIO".
+            EEUU sacrificó a más de 2900 ciudadanos americanos en Nueva York para tener una justificación que le dejaría MÁS DE 3 MIL MILLONES DE DÓLARES y así invadir AFGANISTÁN.
+   </p>
+    
+    <img id="Opaco" src="https://bit.ly/3G2A4hx" alt="Retroceder"/>
+        
+            </center>
+<script>
+  var videos = [
+            { url: 'https://drive.google.com/file/d/1lqTiLDezenKB_6ZKfYO1MX22hLkBA-sH/preview',
+        titulo: '📼 911 📼' },
+            { url: 'https://ia601909.us.archive.org/28/items/ritual-del-9-11/Ritual%20del%209-11.mp4',
+        titulo: '🔥 EL RITUAL DEL 911 🔥' }
+];
+
+        let index = 0;        
+
+  function actualizarVideo() {
+      I.src = videos[index].url;
+      H.textContent = videos[index].titulo;
+    }
+
+    Mas.onclick = () => {
+index = (index + 1) % videos.length;
+       actualizarVideo();
+    Mas.style.background = 'gray';
+   Atras.style.background = 'gold';
+  };
+
+    Atras.onclick = () => {
+ index = (index - 1 + videos.length) % videos.length;
+        actualizarVideo();
+     Mas.style.background = 'gold';
+    Atras.style.background = 'gray';
+};
+</script>
+<script>
+    var FullBtn = document.querySelector('#FULL');
+        var iframe = document.querySelector('iframe');
+        FullBtn.addEventListener('click', function() {
+            if (iframe.requestFullscreen) {
+                iframe.requestFullscreen();
+            } else if (iframe.mozRequestFullScreen) {
+                iframe.mozRequestFullScreen();
+            } else if (iframe.webkitRequestFullscreen) {
+                iframe.webkitRequestFullscreen();
+            } else if (iframe.msRequestFullscreen) {
+                iframe.msRequestFullscreen();
+            }
+});
+</script>
+</body>
+</html>
+
+  <!-- https://drive.google.com/file/d/1Ky7OMpPYgANOGCg_bRfU2o2I2L1gb29s/preview -->
+     
+
+
