@@ -76,33 +76,59 @@ body, html {
     place-items: center;        
     flex-direction: column;
 }
+img {
+    border-radius: 50px;
+    margin-top: 1vh;
+    transition: .6s;
+    width: 60%;
+  &:hover {
+      scale: 1.1;
+  }
+}
 a { 
-    color: #4f3;
+    color: gold;
     width: 70%;
     height: 7vh;
     transition: .5s;
-    font-weight: bold;
+    font-weight: 800;
     background: #000;
     border-radius: 20px;
     text-decoration: none;
+    text-shadow: 0px 0px 10px #000;
     
     /* Propiedades añadidas para centrar el texto */
     display: flex;
     justify-content: center;
     align-items: center;
+    background: linear-gradient(
+    270deg,
+    #ff00cc,
+    #8a2be2,
+    #00bf33,
+    #038,
+    purple
+);
+    animation: rgbMove 8s linear infinite;
+background-size: 1000% 60%;
+    border: .8px solid #f19; 
+    box-shadow: 30px 30px 30px #000;
+    transition: .35s;
+    margin-top: 7vh; 
     
   &:hover {
       scale: 1.1;
       color: red;
   }
 }
-img {
-    border-radius: 50px;
-    transition: .6s;
-    width: 60%;
-  &:hover {
-      scale: 1.1;
-  }
+
+@keyframes rgbMove {
+    0%{background-position:0% 50%;}
+    50%{background-position:100% 50%;}
+    100%{background-position:0% 50%;}
+}
+span {
+    color: #fff;
+    text-shadow: 0px 0px 10px #000;
 }
 </style>     
 </head>
@@ -114,7 +140,7 @@ img {
     <div class="Descargar">
     
             <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgmAlPQIJI0LQiVnneCG7xW59l_2p-7RKls4ZmOunnVDfL6kER56eqpyVAadFOJAlKk4wOo_qEyzJm7KfxO0gkVZSnSNxT2ADEPH5LZXjf4VjyuyRX5Bme1KZK4xqwfF4RFEc_QrANeLfgypJcCJqlIMCd9Y7PggmzynVW5X2IHKwt1yVK_YwKhB8rU6I8/s1254/file_000000001684820e9125bb3387187004.png"/>
-            <a href="https://apk.e-droid.net/apk_t/app4208818_2525.apk?v=1">🛒 MiSurtiYa 🛒</a>
+            <a href="https://apk.e-droid.net/apk_t/app4208818_2525.apk?v=1">🖲️🛒 <span>MiSurti</span>Ya 🛒🖲️</a>
         
     </div>      
 </div>
