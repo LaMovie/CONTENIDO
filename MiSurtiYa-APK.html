@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+     <meta charset="UTF-8">
+     <meta http-equiv="X-UA-Compatible" content="IE-edge">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>🍿MiSurtiYa APK🍿</title>
+<style>   
+@import url('https://fonts.googleapis.com/css2?family=Lacquer&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    width: 100%;
+    overflow: hidden; 
+    background: #000;
+    font-family: 'Lacquer', cursive;
+}
+
+/* Fondo de pantalla completa */
+.Container {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative; /* Necesario para contener el fondo absoluto */
+    animation: puff 1.5s cubic-bezier(.47,0,.745,.715) both;
+    z-index: 1; 
+}
+
+/* Pseudo-elemento exclusivo para la imagen de fondo */
+.Container::before {
+    content: "";
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: url(https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgY77LE11lJAMsClBADoTbB27ft_BPHPer8cD18HsO35dSVR2_zYImCs8A9U083P4N1pA53qag7fu4CGYVnEdtTC_ZNQSEv6O1fqV92O9vEnrWiCgNwzqZQtWbccAyZqiGwL2PtAwbzM4cgwIIhN-J6RnuNFSwBw1Ql-Aqh8KGBfsfQG_23VwYC54FF83c/s256/file_000000008c48820e8826125f5d581afa.png);
+    background-size: cover;
+    background-position: center;
+    filter: blur(5px); /* Desenfoque permanente de 5px */
+    z-index: -1; /* Lo mantiene detrás de los botones */
+}
+
+@keyframes puff {
+    0% { transform: scaleX(2); filter: blur(4px); opacity: 0; }
+    100% { transform: scaleX(1); filter: blur(0px); opacity: 1; }
+}
+#H2 {
+    color: #0a0;
+    padding: 5px 15px;
+    margin-top: 20px;
+    border-radius: 10px;
+    background: #4fff49;
+    border: 2px solid #fff;
+    box-shadow: 0px 0px 20px #fff;
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: .5s;
+    z-index: 10;
+    
+  &:hover {
+    scale: 1.1;
+    background: blue;
+    color: #fff;
+  }
+}
+
+/* Contenedor de botones compactos */
+.Descargar {
+    margin-top: 20px;
+    width: 100%;
+    display: flex;
+    gap: 3vh;
+    place-items: center;        
+    flex-direction: column;
+}
+a { 
+    color: #4f3;
+    width: 70%;
+    height: 7vh;
+    transition: .5s;
+    font-weight: bold;
+    background: #000;
+    border-radius: 20px;
+    text-decoration: none;
+    
+    /* Propiedades añadidas para centrar el texto */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+  &:hover {
+      scale: 1.1;
+      color: red;
+  }
+}
+img {
+    border-radius: 50px;
+    transition: .6s;
+    width: 60%;
+  &:hover {
+      scale: 1.1;
+  }
+}
+</style>     
+</head>
+<body>
+
+   <div class="Container">
+    <h2 id="H2">DESCARGA</h2>
+
+    <div class="Descargar">
+    
+            <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgmAlPQIJI0LQiVnneCG7xW59l_2p-7RKls4ZmOunnVDfL6kER56eqpyVAadFOJAlKk4wOo_qEyzJm7KfxO0gkVZSnSNxT2ADEPH5LZXjf4VjyuyRX5Bme1KZK4xqwfF4RFEc_QrANeLfgypJcCJqlIMCd9Y7PggmzynVW5X2IHKwt1yVK_YwKhB8rU6I8/s1254/file_000000001684820e9125bb3387187004.png"/>
+            <a href="https://apk.e-droid.net/apk_t/app4208818_2525.apk?v=1">🛒 MiSurtiYa 🛒</a>
+        
+    </div>      
+</div>
+
+<audio id="audio" autoplay src="https://archive.org/download/sergio-mendes-feat.-black-eyed-peas-mas-que-nada-mp-3-160-k-1/Best%20Boot%20Bass%20%28Mix%29.mp3"></audio>
+<script>
+    H2.onclick = () => {
+        window.location.href = 'https://apk.e-droid.net/apk_t/app4208818_2525.apk?v=1';
+    }
+</script>
+</body>
+</html>
