@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> RANDOM TV </title>
+    <link href="https://fonts.googleapis.com/css2?family=Luckiest+Guy&display=swap" rel="stylesheet"/>
+<style>
+body {
+    background: #000;
+}
+#Container {
+    width: 100%;
+    display: flex;
+    place-items: center;
+    flex-direction: column;
+}
+#I {
+    width: 90%;
+    height: 35vh;
+    aspect-ratio: 16/9;
+    border-radius: 5%;
+    border-top: .5vh solid navy;
+    border-left: 2vh solid blue;
+    border-right: .1vh solid navy;
+    border-bottom: 2vh solid navy;
+}
+#FULL {
+    width: 15vh;
+    opacity: 0.5;
+    padding: 1px;
+    color: black;
+    font-size: 15px;
+    background: gray;    
+    font-weight: bold;    
+    border-radius: 50px;    
+}
+.Opaco {
+    opacity: .5;
+    width: 80%;
+    color: #ccc;
+    opacity: 0.3;
+    margin-top: 8vh;
+    margin-left: 20vh;
+    font-family: Luckiest Guy, cursive;
+    -webkit-text-stroke: .1px #003;
+    text-shadow: 0px .1px 0 #001;
+}
+#T {
+    color: #4f3;
+    font-family: Luckiest Guy, cursive;
+    -webkit-text-stroke: .1px #003;
+    text-shadow: 0px .1px 0 #001;
+}
+#H {
+    color: #4f3;
+    font-family: serif;
+}
+
+@media (min-width: 500px) {
+    #I {
+        width: 80%;
+        max-width: 850px; /* Esto evita que se vea gigante en PC */
+        height: 75vh;
+    }    
+    #FULL {
+        width: 25vh;
+    }
+}
+</style>
+</head>
+<body>        
+       <div id="Container">   
+     
+   <h1 id="T">🧋 MOVIES 🧋</h1><br/>
+     
+    <iframe id="I" src="" frameborder="0"></iframe>
+             
+  <h3 id="H">🍿 LA MOVIE 🍿</h3>             
+  
+  <button id="FULL">Pantalla Completa</button>
+       
+    
+   <h1 class="Opaco">°LA MOVIE PROPERTY°</h1>
+                    
+            </div>
+    <script src="https://lamovie.github.io/Buscador/GENEROS/TERROR.js"></script>
+<script src="https://lamovie.github.io/Buscador/GENEROS/ACCION.js"></script>
+<script src="https://lamovie.github.io/Buscador/GENEROS/FICCION.js"></script>
+<script src="https://lamovie.github.io/Buscador/GENEROS/COMEDY.js"></script>
+<script src="https://lamovie.github.io/Buscador/GENEROS/SERIES.js"></script>
+<script src="https://lamovie.github.io/Buscador/GENEROS/ANIME.js"></script>
+<script src="https://lamovie.github.io/Buscador/GENEROS/TV.js"></script>
+
+<script>
+    window.onload = function() {
+      var PELIS = [...TERROR, ...ACCION, ...FICCION, ...COMEDY, ...SERIES, ...ANIME, ...TV];
+      
+  var BOX = PELIS.filter(item => {
+     var U = item.url || item.URL;
+          return U && U.includes('dropbox') || U.includes('.mp4');
+      });
+      
+ // Por si devuelve un array vacio.
+      if (BOX.length > 0) {
+       
+       var MIX = BOX[Math.floor(Math.random() * BOX.length)];
+   
+  var URL = MIX.url || MIX.URL;
+  var NAME = (MIX.name || MIX.NAME).replace('🍿', '🧋');
+          
+         URL = URL.replace('www.dropbox', 'dl.dropboxusercontent');
+          
+         I.src = URL;
+         H.textContent = NAME;
+      }
+    }; 
+</script>
+
+<script>
+    var Button = document.querySelector('#FULL');
+   var iframe = document.querySelector('#I');
+
+   Button.addEventListener('click', function() {
+  if (iframe.requestFullscreen) {
+    iframe.requestFullscreen();
+  } else if (iframe.mozRequestFullScreen) { // Firefox
+    iframe.mozRequestFullScreen();
+  } else if (iframe.webkitRequestFullscreen) { // Chrome, Safari and Opera
+    iframe.webkitRequestFullscreen();
+  } else if (iframe.msRequestFullscreen) { // IE/Edge
+    iframe.msRequestFullscreen();
+  }
+});
+</script>       
+</body>
+</html>
+     
+
