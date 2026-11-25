@@ -103,7 +103,7 @@ body {
       
   var BOX = PELIS.filter(item => {
      var U = item.url || item.URL;
-          return U && U.includes('dropbox') || U.includes('.mp4');
+          return U && U.includes('.mp4');
       });
       
  // Por si devuelve un array vacio.
@@ -111,11 +111,10 @@ body {
        
        var MIX = BOX[Math.floor(Math.random() * BOX.length)];
    
-  var URL = MIX.url || MIX.URL;
+  var URL = (MIX.url || MIX.URL).replace('www.dropbox', 'dl.dropboxusercontent');
+  
   var NAME = (MIX.name || MIX.NAME).replace('🍿', '🧋');
-          
-         URL = URL.replace('www.dropbox', 'dl.dropboxusercontent');
-          
+                             
          V.src = URL;
          H.textContent = NAME;
       }
